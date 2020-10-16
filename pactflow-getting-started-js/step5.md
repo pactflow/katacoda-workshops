@@ -30,7 +30,7 @@ server.use((req, res, next) => {
 })
 
 server.get("/products/:id", (req, res) => {
-  res.json({id: 1, name: "aussie", type: "hamburger"})
+  res.json({id: 1, name: "aussie", type: "hamburger", version: "1.0.0"})
 })
 
 module.exports = {
