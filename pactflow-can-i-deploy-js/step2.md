@@ -80,7 +80,7 @@ module.exports = {
 
 ### Create our Product API Client
 
-Lastly, here is our API client code. This code is responsible for fetching products from the API, returning a `Product`, and will be the target of our Pact test:
+Lastly, here is our API client code. This code is responsible for fetching products from the API, returning a `Product`:
 
 <pre class="file" data-filename="api.js" data-target="replace">
 const axios = require('axios');
@@ -99,6 +99,8 @@ module.exports = {
   ProductApiClient
 }
 </pre>
+
+This class, and specifically the `getProduct()` method, will be the target of our Pact test.
 
 ### Check
 

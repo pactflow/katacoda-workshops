@@ -36,6 +36,6 @@ In future workshops, we'll dive further into how to integrate Pact into other st
 
 ## Further material
 
-Learn about gating deployments with `can-i-deploy` by taking the next course: https://katacoda.com/pact/scenarios/pactflow-can-i-deploy-js).
+Learn about gating deployments with `can-i-deploy` by taking the next course: https://katacoda.com/pact/scenarios/pactflow-can-i-deploy-js.
 
 You may also be interested in one of our longer form [workshops](https://docs.pact.io/implementation_guides/workshops), or getting deeper into [CI/CD](https://docs.pactflow.io/docs/workshops/ci-cd/) with Pact.
