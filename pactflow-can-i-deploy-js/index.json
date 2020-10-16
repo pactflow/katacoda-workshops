@@ -1,0 +1,54 @@
+{
+  "title": "Pactflow - Gating deployments using can-i-deploy",
+  "description": "A Pactflow tutorial to teach the basics of integrated can-i-deploy into your CI/CD pipeline",
+  "difficulty": "Beginner",
+  "time": "15",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step5.md"
+      },
+      {
+        "title": "Step 6",
+        "text": "step6.md"
+      },
+      {
+        "title": "Step 7",
+        "text": "step7.md"
+      },
+      {
+        "title": "Step 8",
+        "text": "step8.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "assets": {},
+    "files": []
+  },
+  "environment": {
+    "hidefinish": true,
+    "uilayout": "vscode-terminal-split"
+  },
+  "backend": {
+    "imageid": "nodejs:12"
+  }
+}
