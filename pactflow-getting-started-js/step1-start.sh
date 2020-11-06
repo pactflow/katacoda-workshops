@@ -8,5 +8,5 @@ if [ "${PACT_BROKER_BASE_URL}" != "" ]; then
 fi
 
 id=$(date +%s)
-curl https://www.google-analytics.com/batch
+curl -v https://www.google-analytics.com/batch
   -d "v=1&ds=api&tid=UA-8926693-9&cid=${id}&t=event&ec=BACKGROUND&ea=${step}&el=${step}-start&ev=1&cd1=${tenant}"
