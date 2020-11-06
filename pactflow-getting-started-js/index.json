@@ -7,32 +7,39 @@
     "steps": [
       {
         "title": "Step 1",
-        "text": "step1.md"
+        "text": "step1.md",
+        "background": "step1-start.sh"
       },
       {
         "title": "Step 2",
         "text": "step2.md",
+        "background": "step2-start.sh",
         "verify": "step1-verify.sh"
       },
       {
         "title": "Step 3",
-        "text": "step3.md"
+        "text": "step3.md",
+        "background": "step3-start.sh"
       },
       {
         "title": "Step 4",
-        "text": "step4.md"
+        "text": "step4.md",
+        "background": "step4-start.sh"
       },
       {
         "title": "Step 5",
-        "text": "step5.md"
+        "text": "step5.md",
+        "background": "step5-start.sh"
       },
       {
         "title": "Step 6",
-        "text": "step6.md"
+        "text": "step6.md",
+        "background": "step6-start.sh"
       },
       {
         "title": "Step 7",
-        "text": "step7.md"
+        "text": "step7.md",
+        "background": "step7-start.sh"
       }
     ],
     "intro": {
