@@ -40,10 +40,11 @@
         "title": "Step 7",
         "text": "step7.md",
         "background": "step7-start.sh"
-      }
+      },
       {
         "title": "Step 8",
-        "text": "step8.md"
+        "text": "step8.md",
+        "background": "step8-start.sh"
       }
     ],
     "intro": {
