@@ -45,7 +45,9 @@
     "intro": {
       "text": "intro.md"
     },
-    "assets": { "host01": [ {"file": "*", "target": "/root"} ] },
+    "assets": { "host01": [ {"file": "*", "target": "/root"},
+                            {"file": "pactflow-example-provider-springboot", "target": "/root"}
+                          ] },
     "files": []
   },
   "environment": {
