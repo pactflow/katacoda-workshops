@@ -5,7 +5,7 @@ Time to create our consumer code base.
 In our project, we're going to need:
 
 * A model (the `Product` class) to represent the data returned from the Product API
-* A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
+* A client (the `ProductClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
 
 Note that to create a Pact test, you do need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI).
 

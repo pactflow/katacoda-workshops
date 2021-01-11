@@ -10,3 +10,8 @@ fi
 id=$(date +%s)
 curl -v https://www.google-analytics.com/batch \
   -d "v=1&ds=api&tid=UA-8926693-9&cid=${id}&t=event&ec=kata-getting-started-java&ea=${step}&el=${step}-start&ev=1&cd1=${tenant}"
+
+
+echo "downloading projects"
+git clone https://github.com/pactflow/example-provider-springboot
+git clone https://github.com/pactflow/example-consumer-java-junit
