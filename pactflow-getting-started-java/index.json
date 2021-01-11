@@ -21,12 +21,13 @@
         "title": "Step 3",
         "text": "step3.md",
         "background": "step3-start.sh",
-        "verify": "step3-verify.sh",
+        "verify": "step3-verify.sh"
       },
       {
         "title": "Step 4",
         "text": "step4.md",
-        "background": "step4-start.sh"
+        "background": "step4-start.sh",
+        "foreground": "step4-shell.sh"
       },
       {
         "title": "Step 5",
