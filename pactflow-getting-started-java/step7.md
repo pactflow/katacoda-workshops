@@ -2,12 +2,12 @@ If you've made it this far, you should now have a basic understanding of how Pac
 
 ## Next Steps?
 
-Here are a few things to try to see what scenarios Pact can help you with:
+Here are a few things to try to change in `/root/example-provider-springboot/src/main/java/com/example/springboot/Product.java`{{open}} to see what scenarios Pact can help you with:
 
 1. Try changing the provider code in a backwards incompatible way, what happens?
 
         ```
-        // First try commenting out the 'name' key in `/root/example-provider-springboot/src/main/java/com/example/springboot/Product.java`{{open}}, then run:
+        // First try commenting out the 'name' key in the Product constructor, then run:
         ./gradlew clean test
         ```
         This should fail!
@@ -15,7 +15,7 @@ Here are a few things to try to see what scenarios Pact can help you with:
 1. Try changing the provider code in a way that won't break existing consumers, but in a traditional "backwards incompatible" way, what happens?
 
         ```
-        // Try commenting out the 'version' key
+        // Try commenting out the 'version' key in the Product constructor, then run:
         ./gradlew clean test
         ```
         This should _not_ fail - no consumers need this field!
