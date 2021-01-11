@@ -10,5 +10,5 @@ export PATH="${PATH}:/root/example-consumer-java-junit/pact/bin/"
 echo "=> testing Pact CLI Tools"
 pact-broker --help publish
 
-export COMMIT=`git rev-parse --short HEAD`+`date +%s`
+export COMMIT=`git rev-parse --short HEAD`
 export BRANCH=`git rev-parse --abbrev-ref HEAD`

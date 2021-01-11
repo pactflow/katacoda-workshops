@@ -98,8 +98,6 @@ Before moving to the next step, check the following:
 1. You could run the pact test with `./gradlew clean test`{{execute}}
 1. There is a contract file that has been created at `/root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`
 
-_NOTE: in most setups, you wouldn't have a single file with everything in it, but for the purposes of keeping this workshop simple, we have a single test file that does it all._
-
 ### References
 
 * https://docs.pact.io/implementation_guides/jvm/provider/junit5/
