@@ -9,6 +9,8 @@ In our project, we're going to need:
 
 Note that to create a Pact test, you do need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI).
 
+We'll be running the following commands from the sub-project in `/root/example-consumer-java-junit`
+
 ### Scope of a Consumer Pact Test
 
 Ideally, the Pact tests should be a unit test for your API client class, and they should just focus on ensuring that the request creation and response handling are correct. If you use pact for your UI tests, you'll end up with an explosion of redundant interactions that will make the verification process tedious. Remember that pact is for testing the contract used for communication, and not for testing particular UI behaviour or business logic.
@@ -21,7 +23,7 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 ### Create a new Project
 
-We are going to be using Gradle as our build system, however you are free to use whatever build tool that you need (we support several other tools such as Maven and SBT). Open up the file `pactflow-example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you need (we support several other tools such as Maven and SBT). Open up the file `example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
 
 <pre class="file">
 plugins {
@@ -62,15 +64,15 @@ test {
 }
 </pre>
 
-Install dependencies for the project by running `./gradlew test`{{execute}}
+Install dependencies for the project by running `./gradlew`{{execute}}
 
-(click on the highlighted command above to run `./gradlew test` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
+(click on the highlighted command above to run `./gradlew` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
 
 ### Create our Product Model
 
 Now that we have our basic project, let's create our `Product` domain model:
 
-`pactflow-example-consumer-java-junit/src/main/java/com/example/products/Product.java{{open}}`
+`example-consumer-java-junit/src/main/java/com/example/products/Product.java`{{open}}
 <pre class="file">
 @Data
 class Product {
@@ -91,23 +93,34 @@ class Product {
 
 ### Create our Product API Client
 
-Lastly, here is our API client code. This code is responsible for fetching products from the API, returning a `Product`:
+Lastly, here is our (abbreviated) API client code. This code is responsible for fetching products from the API, returning a `Product`:
 
-<pre class="file" data-filename="api.js" data-target="replace">
-const axios = require('axios');
-const { Product } = require('./product');
+`example-consumer-java-junit/src/main/java/com/example/products/ProductClient.java`{{open}}
+<pre class="file" >
+public class ProductClient {
+  private String url;
 
-class ProductApiClient {
-  constructor(url) {
-    this.url = url
+  public ProductClient setUrl(String url) {
+    this.url = url;
+    return this;
   }
 
-  async getProduct(id) {
-    return axios.get(`${this.url}/products/${id}`).then(r => new Product(r.data.id, r.data.name, r.data.type));
+  public Product getProduct(String id) throws IOException {
+    return (Product) Request.Get(this.url + "/product/" + id)
+      .addHeader("Accept", "application/json")
+      .execute().handleResponse(httpResponse -> {
+        try {
+          ObjectMapper mapper = new ObjectMapper();
+          Product product = mapper.readValue(httpResponse.getEntity().getContent(), Product.class);
+
+          return product;
+        } catch (JsonMappingException e) {
+          throw new IOException(e);
+        }
+      });
   }
-}
-module.exports = {
-  ProductApiClient
+
+  ...
 }
 </pre>
 

@@ -1,1 +1,1 @@
-[ -f ~/node_modules/.bin/pact-broker ] && echo "done"
+[ -d /root/example-provider-springboot -a -d /root/example-consumer-java-junit ] && echo "done"
