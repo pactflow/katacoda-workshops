@@ -21,56 +21,71 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 ### Create a new Project
 
-Create the following `package.json` to initialise new npm project by choosing `"copy to editor"`. This should open up a new file in the editor to the right, and populate it with the contents below.
-We'll use this approach moving forward as we progress through the workshop.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you need (we support several other tools such as Maven and SBT). Open up the file `pactflow-example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
 
-We need two dev dependencies to run our pact tests:
+<pre class="file">
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+  id "au.com.dius.pact" version "4.1.0"
+}
 
-1. Mocha to use as our unit testing framework (we are also using Chai.js for assertions)
-2. Pact for our API assertions
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
-We have some other dependencies for our Provider and some additional scripts which can be ignored for now.
+repositories {
+	mavenCentral()
+}
 
-<pre class="file" data-filename="package.json" data-target="replace">
-{
-  "name": "pactflow-getting-started-js",
-  "version": "0.1.0",
-  "dependencies": {
-    "axios": "^0.19.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  },
-  "scripts": {
-    "test:consumer": "mocha --exit --timeout 30000 consumer.pact.spec.js",
-    "test:provider": "mocha --exit --timeout 30000 provider.pact.spec.js",
-    "publish": "npx pact-broker publish ./pacts --consumer-app-version 1.0.0-someconsumersha --tag master"
-  },
-  "devDependencies": {
-    "@pact-foundation/pact": "^9.9.12",
-    "chai": "^4.2.0",
-    "mocha": "^8.1.3"
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
   }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "org.apache.httpcomponents:fluent-hc:4.5.5"
+	testCompile 'au.com.dius:pact-jvm-consumer-junit5:4.0.10'
+
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
 }
 </pre>
 
-Install the dependencies for the project: `npm i`{{execute}}
+Install dependencies for the project by running `./gradlew test`{{execute}}
 
-(click on the highlighted command above to run `npm i` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
+(click on the highlighted command above to run `./gradlew test` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
 
 ### Create our Product Model
 
 Now that we have our basic project, let's create our `Product` domain model:
 
-<pre class="file" data-filename="product.js" data-target="replace">
+`pactflow-example-consumer-java-junit/src/main/java/com/example/products/Product.java{{open}}`
+<pre class="file">
+@Data
 class Product {
-  constructor(id, name, type) {
-    this.id = id
-    this.name = name
-    this.type = type
+  @JsonFormat( shape = JsonFormat.Shape.STRING)
+  private String id;
+  private String name;
+  private String type;
+
+  Product() {}
+
+  Product(String id, String name, String type) {
+    this.id = id;
+    this.name = name;
+    this.type = type;
   }
-}
-module.exports = {
-  Product
 }
 </pre>
 
