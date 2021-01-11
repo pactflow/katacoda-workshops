@@ -1,0 +1,1 @@
+[ -f /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json ] && echo "done"

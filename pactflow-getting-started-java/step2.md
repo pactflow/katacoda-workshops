@@ -1,15 +1,15 @@
 ## The Consumer
 
-Time to create our consumer code base.
+Time to create our consumer code base. Your terminal should currently be cloning the following repository: https://github.com/pactflow/example-consumer-java-junit
 
 In our project, we're going to need:
 
 * A model (the `Product` class) to represent the data returned from the Product API
 * A client (the `ProductClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
 
-Note that to create a Pact test, you do need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI).
+To be able to create a Pact test, you _do_ need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI). That is to say, you can start writing Pact tests before all of your consumer code is ready.
 
-We'll be running the following commands from the sub-project in `/root/example-consumer-java-junit`
+_NOTE_: We'll be running the following commands from the sub-project in `/root/example-consumer-java-junit`, and your terminal should already be in this directory.
 
 ### Scope of a Consumer Pact Test
 
@@ -23,7 +23,7 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 ### Create a new Project
 
-We are going to be using Gradle as our build system, however you are free to use whatever build tool that you need (we support several other tools such as Maven and SBT). Open up the file `example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
 
 <pre class="file">
 plugins {
@@ -70,7 +70,7 @@ Install dependencies for the project by running `./gradlew`{{execute}}
 
 ### Create our Product Model
 
-Now that we have our basic project, let's create our `Product` domain model:
+Now that we have our build system in place, let's create our `Product` domain model:
 
 `example-consumer-java-junit/src/main/java/com/example/products/Product.java`{{open}}
 <pre class="file">
@@ -130,7 +130,4 @@ This class, and specifically the `getProduct()` method, will be the target of ou
 
 Before moving to the next step, check the following:
 
-1. There is a file called `package.json` in your editor
-1. You have run `npm i`{{execute}} and the dependencies have been installed
-1. There is a file called `product.js` in your editor
-1. There is a file called `api.js` in your editor
+1. You have run the following command and it has succeeded `./gradlew`{{execute}}

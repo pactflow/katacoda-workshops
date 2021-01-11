@@ -1,89 +1,105 @@
 ## Testing the consumer
 
-Now that we have our basic consumer code base, it's time to write our first Pact test!
+Now that we have our basic consumer code base, it's time to write our first Pact test! We'll be using JUnit 5 for this task.
 
 Pact implements a specific type of integration test called a contract test. Martin Fowler defines it as follows:
 
 > An integration contract test is a test at the boundary of an external service verifying that it meets the contract expected by a consuming service — [Martin Fowler](https://martinfowler.com/bliki/IntegrationContractTest.html)
 
-Create the pact test (click "copy to editor"):
+Open the pact test: `example-consumer-java-junit/src/test/java/com/example/products/ProductsPactTest.java`{{open}}
 
-<pre class="file" data-filename="consumer.pact.spec.js" data-target="replace">
-// (1) Import the pact library and matching methods
-const { Pact } = require ('@pact-foundation/pact');
-const { ProductApiClient } = require ('./api');
-const { Product } = require ('./product');
-const { like, regex } = require ('@pact-foundation/pact/dsl/matchers');
-const chai = require("chai")
-const expect = chai.expect
+<pre class="file">
+package com.example.products;
 
-// (2) Configure our Pact library
-const mockProvider = new Pact({
-  consumer: 'katacoda-consumer',
-  provider: 'katacoda-provider',
-  cors: true // needed for katacoda environment
-});
+// (1) Pact dependencies
+import au.com.dius.pact.consumer.MockServer;
+import au.com.dius.pact.core.model.RequestResponsePact;
+import au.com.dius.pact.core.model.annotations.Pact;
+import au.com.dius.pact.consumer.dsl.PactDslJsonArray;
+import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
+import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
+import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
+import au.com.dius.pact.consumer.junit5.PactTestFor;
 
-describe('Products API test', () => {
-  // (3) Setup Pact lifecycle hooks
-  before(() => mockProvider.setup());
-  afterEach(() => mockProvider.verify());
-  after(() => mockProvider.finalize());
+// (1) JUnit extension imports
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Test;
 
-  it('get product by ID', async () => {
-    // (4) Arrange
-    const expectedProduct = { id: 10, type: 'pizza', name: 'Margharita' }
+// (1) Unit test matchers (not Pact specific)
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
-    await mockProvider.addInteraction({
-      state: 'a product with ID 10 exists',
-      uponReceiving: 'a request to get a product',
-      withRequest: {
-        method: 'GET',
-        path: '/products/10'
-      },
-      willRespondWith: {
-        status: 200,
-        headers: {
-          'Content-Type': regex({generate: 'application/json; charset=utf-8', matcher: '^application\/json'}),
-        },
-        body: like(expectedProduct),
-      },
-    });
+import java.io.IOException;
+import java.util.List;
 
+// (2) JUnit annotations
+@ExtendWith(PactConsumerTestExt.class)
+@PactTestFor(providerName = "pactflow-example-provider-springboot")
+public class ProductsPactTest {
+
+  // (3) Arrange
+  @Pact(consumer="pactflow-example-consumer-java-junit")
+  public RequestResponsePact getProduct(PactDslWithProvider builder) {
+    PactDslJsonBody body = new PactDslJsonBody();
+    body.stringType("name", "product name");
+    body.stringType("type", "product series");
+    body.stringType("id", "5cc989d0-d800-434c-b4bb-b1268499e850");
+
+      return builder
+        .given("a product with ID 10 exists")
+        .uponReceiving("a request to get a product")
+          .path("/product/10")
+          .method("GET")
+        .willRespondWith()
+          .status(200)
+          .body(body)
+        .toPact();
+    }
+
+  // (4) Act
+  @PactTestFor(pactMethod = "getProduct")
+  @Test
+  public void testGetProduct(MockServer mockServer) throws IOException {
     // (5) Act
-    const api = new ProductApiClient(mockProvider.mockService.baseUrl);
-    const product = await api.getProduct(10);
+    Product product = new ProductClient().setUrl(mockServer.getUrl()).getProduct("10");
 
     // (6) Assert that we got the expected response
-    expect(product).to.deep.equal(new Product(10, 'Margharita', 'pizza'));
-  });
-});
+    assertThat(product.getId(), is("5cc989d0-d800-434c-b4bb-b1268499e850"));
+  }
+
+  ...
+}
 </pre>
 
 There's a lot here, so let's break it down a little.
 
-Steps `1`, `2`, `3` are JS specific activities to get Pact into a project. Steps `4`, `5`, `6` follow the [3A's (Arrange/Act/Assert) pattern](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019#write-your-tests) for authoring unit tests.
+Steps `1`, `2` are Java specific activities to get Pact into a project, including the dependencies and JUnit configuration.
+
+Steps `3`, `4` and `5` follow the [3A's (Arrange/Act/Assert) pattern](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019#write-your-tests) for authoring unit tests.
 
 1. Import the appropriate library - this will differ depending on language
-2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in Pactflow
-3. Here we setup some Pact lifecycle hooks, usually moved into a test helper. First we run `setup()` before all of the tests run to start the Pact runtime. We also configure two other lifecycle hooks to `verify()` that the test was successful each `test`, and write out the pact file (`finalize()`) when the suite is finished. This specific step will vary depending on which language you use.
-4. _Arrange_: we tell Pact what we're expecting our code to do and what we expect the provider to return when we do it
+2. Configure Pact. The name of the provider is important, as it uniquely identifies the applications in Pactflow
+3. _Arrange_: here we setup a Pact lifecycle hook that is responsible for configuring the Pact provider mock service, specifically for the `getProduct` interaction. We tell Pact what we're expecting our code to do and what we expect the provider to return when we do it. The Act and Assert phases will be part of a separate method that Pact knows how to invoke using the `PactTestFor` annotation.
 5. _Act_: we configure our API client to send requests to the Pact mock service (instead of the real provider) and we execute the call to the API
 6. _Assert_: we check that our call to `getProduct(...)` worked as expected. This should just do what a regular unit test of this method would do.
 
 ### Run the test
 
-`npm run test:consumer`{{execute}}
+`./gradlew clean test`{{execute}}
 
 It should have created the following file:
 
-`cat pacts/katacoda-consumer-katacoda-provider.json`{{execute}}
+`cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`{{execute}}
 
 ### Check
 
 Before moving to the next step, check the following:
 
-1. You could run the pact test with `npm run test:consumer`{{execute}}
-1. There is a contract file that has been created at `pacts/katacoda-consumer-katacoda-provider.json`
+1. You could run the pact test with `./gradlew clean test`{{execute}}
+1. There is a contract file that has been created at `/root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`
 
 _NOTE: in most setups, you wouldn't have a single file with everything in it, but for the purposes of keeping this workshop simple, we have a single test file that does it all._
+
+### References
+
+* https://docs.pact.io/implementation_guides/jvm/provider/junit5/
