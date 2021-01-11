@@ -60,10 +60,10 @@ public class ProductsPactTest {
   @PactTestFor(pactMethod = "getProduct")
   @Test
   public void testGetProduct(MockServer mockServer) throws IOException {
-    // (5) Act
+    // (4) Act
     Product product = new ProductClient().setUrl(mockServer.getUrl()).getProduct("10");
 
-    // (6) Assert that we got the expected response
+    // (5) Assert that we got the expected response
     assertThat(product.getId(), is("5cc989d0-d800-434c-b4bb-b1268499e850"));
   }
 

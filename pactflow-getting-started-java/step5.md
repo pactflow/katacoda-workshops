@@ -14,34 +14,99 @@ This is how you might visualise the coverage of a provider Pact test:
 
 ![Provider side Pact test scope](./assets/provider-test-coverage.png)
 
-### Create the Product API
+### Create a new Project
 
-Here is the Product API using the [Express JS](https://expressjs.com) framework.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-provider-springboot/build.gradle`{{open}} to look at the dependencies needed for our project.
 
-<pre class="file" data-filename="provider.js" data-target="replace">
-const express = require("express")
-const cors = require("cors")
+<pre class="file">
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+  id "au.com.dius.pact" version "4.1.0"
+}
 
-const server = express()
-server.use(cors())
-server.use((req, res, next) => {
-  res.header("Content-Type", "application/json; charset=utf-8")
-  next()
-})
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
-server.get("/products/:id", (req, res) => {
-  res.json({id: 1, name: "aussie", type: "hamburger", version: "1.0.0"})
-})
+repositories {
+	mavenCentral()
+}
 
-module.exports = {
-  server
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testCompile 'au.com.dius.pact.provider:junit:4.1.8'
+	testCompile 'au.com.dius.pact.provider:junit5:4.1.8'
+	testCompile 'au.com.dius.pact.provider:spring:4.1.8'
+
+	runtimeOnly 'com.h2database:h2'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+
+	// These properties need to be set on the test JVM process
+	systemProperty("pact.provider.version", System.getenv("TRAVIS_COMMIT") == null ? "" : System.getenv("TRAVIS_COMMIT"))
+	systemProperty("pact.provider.tag", System.getenv("TRAVIS_BRANCH") == null ? "" : System.getenv("TRAVIS_BRANCH"))
+	systemProperty("pact.verifier.publishResults", System.getenv("PACT_BROKER_PUBLISH_VERIFICATION_RESULTS") == null ? "false" : "true")
 }
 </pre>
 
-Create the `product.js` file.
+Install dependencies for the project by running `./gradlew`{{execute}}
+
+(click on the highlighted command above to run `./gradlew` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
+
+Note the system properties at the bottom of the gradle file are used to configure dynamic aspects of the build. See https://docs.pact.io/implementation_guides/jvm/provider/junit for more.
+
+### Create the Product API
+
+We are going to use Spring Boot for our API. Spring is beyond the scope of this tutorial, so we will simply focus on the target of our test - which is the `/product/:id` route.
+
+Here is our (abbreviated) REST controller `/root/example-provider-springboot/src/main/java/com/example/springboot/ProductController.java`{{open}}
+<pre class="file">
+@RestController
+@CrossOrigin(origins = { "*" })
+@RequestMapping(value = "/", produces = "application/json; charset=utf-8")
+class ProductController {
+
+  private final ProductRepository repository;
+
+  ProductController(ProductRepository repository) {
+    this.repository = repository;
+  }
+
+  @GetMapping({ "/product/{id}" })
+  Product one(@PathVariable Long id) {
+
+    return repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+  }
+
+  ...
+}
+</pre>
+
 
 ### Check
 
-Before moving to the next step, check the following:
+Before moving to the next step, confirm that your API is working:
 
-1. There is a file called `provider.js` in your editor
+Run `./gradlew bootRun` in a terminal. In a separate terminal, you can run `curl localhost:8080/products/1` which should return a response.
+
+Your terminal should look like this:
+
+![Provider API running](./assets/provider-bootrun-terminal.png)
+
+Once you've confirmed this, return to Terminal 1 and terminate the running process with `ctrl-c`.

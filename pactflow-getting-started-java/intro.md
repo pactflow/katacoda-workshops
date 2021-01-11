@@ -20,7 +20,7 @@ You will:
 
 Note that there will be two projects as we progress through the workshop, you can find them in the following directories:
 
-Consumer project: `/root/pactflow-example-consumer-java-junit`
-Provider project: `/root/pactflow-example-provider-springboot`
+* Consumer project: `/root/pactflow-example-consumer-java-junit`
+* Provider project: `/root/pactflow-example-provider-springboot`
 
 The workshop will guide you through both of these.

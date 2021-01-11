@@ -8,41 +8,72 @@ _NOTE: Credentials from the previous step will be required for this step to run.
 
 This step involves the following:
 
-1. Starting the API \(line 5\)
-1. Telling Pact to use the contracts stored in Pactflow and where the Product API will be running \(lines 8-16\)
-1. Running the Provider verification task \(line 18\)
+1. Importing the Pact, JUnit and Spring dependencies
+1. Starting the spring boot application - the API - using the `@SpringBootTest` annotation
+1. Configuring Pact to use the contracts stored in Pactflow
+1. Configuring Pact to test the API running at `http://localhost:8080`
+1. Executing the provider verification
+1. Handling any provider states
 
-Create our Provider pact test file `provider.pact.spec.js`:
+Let's look at our Provider pact test `/root/example-provider-springboot/src/test/java/com/example/springboot/ProductsPactTest.java`{{open}}:
 
-<pre class="file" data-filename="provider.pact.spec.js" data-target="replace">
-const { Verifier } = require('@pact-foundation/pact');
-const { server} = require('./provider');
+<pre class="file" >
+package com.example.springboot;
 
-describe("Pact Verification", () => {
-  before((done) => server.listen(8081, done))
+// (1) Pact JUnit specific imports
+import au.com.dius.pact.provider.junitsupport.*;
+import au.com.dius.pact.provider.junitsupport.loader.*;
+import au.com.dius.pact.provider.junit5.HttpTestTarget;
+import au.com.dius.pact.provider.junit5.PactVerificationContext;
+import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider;
 
-  it("validates the expectations of ProductService",  () => {
-    const opts = {
-      logLevel: "INFO",
-      providerBaseUrl: "http://localhost:8081",
-      providerVersion: "1.0.0-someprovidersha",
-      provider: "katacoda-provider",
-      consumerVersionSelectors: [{ tag: 'master', latest: true }, { tag: 'prod', latest: true } ],
-      pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
-      publishVerificationResult: true,
-      enablePending: true
-    }
+import java.io.IOException;
 
-    return new Verifier(opts).verifyProvider()
-    .then(output => {
-        console.log("Pact Verification Complete!")
-        console.log(output)
-      })
-  })
-});
+// (1) Junit imports
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestTemplate;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+// (1) Spring context
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+// (2)
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+// (3)
+@Provider("pactflow-example-provider-springboot")
+@PactBroker(scheme = "https", host = "${PACT_BROKER_HOST}", tags = {"master", "prod"}, providerTags = "master", enablePendingPacts = "true", authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"))
+class ProductsPactTest {
+
+  @Autowired
+  ProductRepository repository;
+
+  // (4)
+  @BeforeEach
+  public void setupTestTarget(PactVerificationContext context) {
+    context.setTarget(new HttpTestTarget("localhost", 8080));
+  }
+
+  // (5)
+  @TestTemplate
+  @ExtendWith(PactVerificationInvocationContextProvider.class)
+  public void pactVerificationTestTemplate(PactVerificationContext context) {
+    context.verifyInteraction();
+  }
+
+  // (6)
+  @State("a product with ID 10 exists")
+  public void setupProductX010000021() throws IOException {
+    System.out.println("a product with ID 10 exists");
+    repository.save(new Product(10L, "test", "product description", "1.0.0"));
+  }
+  ...
+}
 </pre>
 
-And then run it: `npm run test:provider`{{execute}}
+Run the test: `./gradlew clean test`{{execute}}
 
 
 ## Check
