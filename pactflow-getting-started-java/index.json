@@ -50,7 +50,7 @@
   },
   "environment": {
     "hidefinish": true,
-    "uilayout": "vscode-terminal-split"
+    "uilayout": "editor-terminal"
   },
   "backend": {
     "imageid": "openjdk:15"
