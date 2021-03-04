@@ -2,7 +2,8 @@
 const { Pact } = require ('@pact-foundation/pact');
 const { ProductApiClient } = require ('./api');
 const { Product } = require ('./product');
-const { like, regex } = require ('@pact-foundation/pact/dsl/matchers');
+const { Matchers } = require("@pact-foundation/pact")
+const { like, regex } = Matchers
 const chai = require("chai")
 const expect = chai.expect
 
