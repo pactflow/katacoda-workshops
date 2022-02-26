@@ -244,6 +244,7 @@ init();
 
 ### Check
 
-Before moving to the next step, check the API starts by running:
+Before moving to the next step, cd in the the `/root/example-consumer` directory and run the provider to see if it starts:
 
+1. `cd /root/example-consumer`{{execute}}
 1. `npm start`{{execute}}
