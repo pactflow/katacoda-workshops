@@ -25,6 +25,10 @@ There are no missing dependencies
 
 Later on, when consumers start to use our API, we will be prevented from releasing a change that results in a backwards incompatible change for our consumers. Consumers will also use this command to ensure they are compatible with the Provider API in the target environment (in this case, `production`).
 
+We can now deploy our provider to production. Once we have deployed, we let Pactflow know that the new version of the Provider has been promoted to that environment:
+
+`npx pact-broker record-deployment --pacticipant pactflow-example-provider-dredd --version $GIT_COMMIT --environment production`{{execute}}
+
 # Check
 
 Your dashboard should look something like this, where both your consumer and provider are marked as having been deployed to `production`:

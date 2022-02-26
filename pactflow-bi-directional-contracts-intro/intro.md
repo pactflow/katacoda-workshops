@@ -8,6 +8,7 @@ You must have:
 
 - a Pactflow account (https://pactflow.io)
 - obtained a [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token) from your Pactflow account
+* A basic understanding of APIs, unit testing and how to operate a linux terminal
 
 ## Goals
 
