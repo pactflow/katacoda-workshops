@@ -1,11 +1,9 @@
 ## The Consumer
 
-Time to create our consumer code base.
+Time to create our consumer code base. In our project, we're going to need:
 
-In our project, we're going to need:
-
--  A model (the `Product` class) to represent the data returned from the Product API: ``example-bi-directional-consumer-mountebank/src/api.js`{{open}}
-* A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: ``example-bi-directional-consumer-mountebank/src/product.js`{{open}}
+-  A model (the `Product` class) to represent the data returned from the Product API: `example-bi-directional-consumer-mountebank/src/api.js`{{open}}
+- A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: `example-bi-directional-consumer-mountebank/src/product.js`{{open}}
 
 Install the dependencies for the project: `npm i`{{execute}}
 
@@ -33,22 +31,8 @@ const axios = require("axios");
 const { Product } = require("./product");
 
 export class ProductAPIClient {
-  constructor(url) {
-    if (url === undefined || url === "") {
-      url = process.env.BASE_URL;
-    }
-    if (url.endsWith("/")) {
-      url = url.substr(0, url.length - 1);
-    }
-    this.url = url;
-  }
 
-  withPath(path) {
-    if (!path.startsWith("/")) {
-      path = "/" + path;
-    }
-    return `${this.url}${path}`;
-  }
+  // ... removed for simplicity
 
   async getAllProducts() {
     return axios
@@ -71,8 +55,7 @@ This class, and specifically the `getProduct()` and `getAllProducts` methods, wi
 
 Before moving to the next step, check the following:
 
-1. There is a file called `package.json` in your editor
+1. You are in the correct directory `cd /root/example-bi-directional-consumer-mountebank`{{execute}}
 1. You have run `npm i`{{execute}} and the dependencies have been installed
-1. There is a file called `product.js` in your editor
-1. There is a file called `api.js` in your editor
-
+1. You have studied and understood the Product class: `example-bi-directional-consumer-mountebank/src/product.js`{{open}}
+1. You have studied and understood the API client: `example-bi-directional-consumer-mountebank/src/api.js`{{open}}

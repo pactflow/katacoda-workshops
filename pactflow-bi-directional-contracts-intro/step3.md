@@ -29,7 +29,7 @@ When using a black-box style tool, the testing involves the following steps:
 
 Here is the Dredd configuration file, with some properties removed for clarity:
 
-``example-provider-dredd/dredd.yml`{{open}}
+`example-provider-dredd/dredd.yml`{{open}}
 
 <pre class="file" >
 ...

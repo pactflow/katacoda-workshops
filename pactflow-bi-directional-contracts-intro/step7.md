@@ -2,7 +2,7 @@
 
 Now that we have written our consumer code, we need to test it, and ensure that it is compatible with its provider.
 
-### Scope of a Consumer Contract Test
+### Scope of a consumer contract test
 
 Ideally, contract tests should be closer to a _unit test_ for your API client class, and they should just focus on ensuring that the request creation and response handling are correct. Running in the context of a unit testing framework (Jest, JUnit, PHPUnit etc.) will give you the most flexible and reliable tests (even if the test is not strictly a unit test by definition).
 
@@ -27,4 +27,11 @@ As there are plenty of [example projects](https://docs.pactflow.io/docs/examples
 
 ### The contract test
 
-Open up the API spec: ``example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
+
+
+Open up the API spec: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
+
+### Check
+
+1. You can run the test `npm t`{{execute}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-consumer-mountebank-pactflow-example-provider-dredd.json`{{open}}

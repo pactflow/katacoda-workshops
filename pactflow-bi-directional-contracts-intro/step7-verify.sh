@@ -1,0 +1,1 @@
+[ -f /root/example-bi-directional-consumer-mountebank/pacts/pactflow-example-consumer-mountebank-pactflow-example-provider-dredd.json ] && echo "done"

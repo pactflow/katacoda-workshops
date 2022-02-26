@@ -144,7 +144,7 @@ _NOTE: you can see the full project here: https://github.com/pactflow/example-pr
 
 We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
-``example-provider-dredd/src/product/product.js`{{open}}
+`example-provider-dredd/src/product/product.js`{{open}}
 
 <pre class="file" >
 class Product {
@@ -160,7 +160,7 @@ class Product {
 module.exports = Product;
 </pre>
 
-``example-provider-dredd/src/product/product.routes.js`{{open}}
+`example-provider-dredd/src/product/product.routes.js`{{open}}
 
 <pre class="file" >
 const router = require('express').Router();
@@ -173,7 +173,7 @@ router.post("/products", controller.create);
 module.exports = router;
 </pre>
 
-``example-provider-dredd/src/product/product.repository.js`{{open}}
+`example-provider-dredd/src/product/product.repository.js`{{open}}
 
 <pre class="file" >
 const Product = require('./product');
@@ -204,7 +204,7 @@ class ProductRepository {
 module.exports = ProductRepository;
 </pre>
 
-``example-provider-dredd/src/product/product.controller.js`{{open}}
+`example-provider-dredd/src/product/product.controller.js`{{open}}
 
 <pre class="file" >
 const Product = require("./product");
@@ -228,7 +228,7 @@ exports.getById = async (req, res) => {
 exports.repository = repository;
 </pre>
 
-``example-provider-dredd/src/server.js`{{open}}
+`example-provider-dredd/src/server.js`{{open}}
 
 <pre class="file" >
 const express = require("express");
@@ -252,7 +252,7 @@ init();
 
 ### Check
 
-Before moving to the next step, cd into the ``example-provider-dredd` directory and run the provider to see if it starts.
+Before moving to the next step, cd into the `example-provider-dredd` directory and run the provider to see if it starts.
 
 The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
 
