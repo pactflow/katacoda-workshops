@@ -26,7 +26,7 @@ If you don't have a Pactflow account, you can publish a [test broker](https://te
 ````
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
 export PACT_BROKER_USERNAME=dXfltyFMgNOFZAxr8io9wJ37iUpY42M
-export PACT_BROKER_PASSWORD=O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1
+export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
 ```{{execute}}
 
 The account is protected using basic auth. Use the username `dXfltyFMgNOFZAxr8io9wJ37iUpY42M`, and password `O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1` to view the pacts.

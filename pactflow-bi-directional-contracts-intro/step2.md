@@ -259,6 +259,7 @@ Before moving to the next step, cd into the `/root/example-provider-dredd` direc
 
 Open up a separate terminal and run the following command:
 
+1. `cd /root/example-provider-dredd`{{execute}}
 1. `curl localhost:3000/products | jq .`{{execute}}
 
 You should see the following output:
@@ -288,3 +289,5 @@ You should see the following output:
   }
 ]
 ```
+
+Switch back to your first terminal and terminate (`ctrl-c`) the process to make sure your provider is no longer running.

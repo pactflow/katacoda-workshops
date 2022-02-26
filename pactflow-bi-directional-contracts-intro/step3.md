@@ -48,7 +48,33 @@ endpoint: 'http://127.0.0.1:3000'
 
 Now we can run the tests:
 
-1. `npm t`{{execute}}
+1. `cd /root/example-provider-dredd`{{execute interrupt}}
+1. `npm t`{{execute interrupt}}
+
+Your ouput should look like this:
+
+```
+$ npm t
+
+> product-service@1.0.0 test /root/example-provider-dredd
+> dredd
+
+
+> product-service@1.0.0 start /root/example-provider-dredd
+> node server.js
+
+Provider API listening on port 3000...
+warn: API description parser warning in /root/example-provider-dredd/oas/products.yml:14 (from line 14 column 9 to column 17): 'Request Body Object' contains unsupported key 'required'
+warn: API description parser warning in /root/example-provider-dredd/oas/products.yml:73 (from line 73 column 9 to column 15): 'Parameter Object' contains unsupported key 'schema'
+warn: API description parser warning in /root/example-provider-dredd/oas/products.yml:107 (from line 107 column 7 to column 27): 'Schema Object' contains unsupported key 'additionalProperties'
+pass: POST (200) /products duration: 72ms
+pass: GET (200) /products duration: 16ms
+pass: GET (200) /product/10 duration: 24ms
+complete: 3 passing, 0 failing, 0 errors, 0 skipped, 3 total
+complete: Tests took 135ms
+```
+
+As you can see, Dredd has issued calls to all 3 endpoints and the tests are ✅.
 
 <!-- ## Deploy
 
