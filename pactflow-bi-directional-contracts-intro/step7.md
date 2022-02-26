@@ -27,4 +27,4 @@ As there are plenty of [example projects](https://docs.pactflow.io/docs/examples
 
 ### The contract test
 
-Open up the API spec: `/root/example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
+Open up the API spec: ``example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}

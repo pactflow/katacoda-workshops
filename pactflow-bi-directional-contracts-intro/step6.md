@@ -4,8 +4,8 @@ Time to create our consumer code base.
 
 In our project, we're going to need:
 
--  A model (the `Product` class) to represent the data returned from the Product API: `/root/example-bi-directional-consumer-mountebank/src/api.js`{{open}}
-* A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: `/root/example-bi-directional-consumer-mountebank/src/product.js`{{open}}
+-  A model (the `Product` class) to represent the data returned from the Product API: ``example-bi-directional-consumer-mountebank/src/api.js`{{open}}
+* A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: ``example-bi-directional-consumer-mountebank/src/product.js`{{open}}
 
 Install the dependencies for the project: `npm i`{{execute}}
 
