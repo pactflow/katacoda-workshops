@@ -14,7 +14,7 @@ You must have:
 You will:
 
 1. Create and document an API using [OpenAPI Specification](https://www.openapis.org/)
-1. Write tests for the API using the Dredd API testing tool
+1. Write tests for the API using the Postman API testing tool
 1. Publish the _provider contract_ (an OpenAPI document) to Pactflow
 1. Prevent deploying breaking changes to an environment, such as production
 1. Write tests for an API client using mocks, and convert those mocks into a _consumer contract_
