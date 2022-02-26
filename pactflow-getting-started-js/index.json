@@ -14,7 +14,8 @@
         "title": "Step 2",
         "text": "step2.md",
         "verify": "step2-verify.sh",
-        "background": "step2-start.sh"
+        "background": "step2-start.sh",
+        "foreground": "step2-shell.sh"
       },
       {
         "title": "Step 3",

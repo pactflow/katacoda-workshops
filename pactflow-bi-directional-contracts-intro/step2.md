@@ -128,7 +128,7 @@ components:
 
 </pre>
 
-Having designed our API, we can now set about building.
+Having designed our API, we can now set about building it.
 
 ### Implement the Product API
 
