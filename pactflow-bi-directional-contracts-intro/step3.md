@@ -1,41 +1,56 @@
-# Testing (Verify) the provider
+# Testing the provider
 
-Now that we have a provider contract, we need to do two things to prevent introducing breaking changes to our consumers.
+Now that we have our working Provider, we need to do two things to prevent introducing breaking changes to our consumers.
 
-1. Ensure the API doesn't drift from it's OAS
+1. Ensure the API doesn't drift from it's OpenAPI description document (OAS)
 2. Ensure the OAS doesn't change such that it could break any of its consumers
 
-_NOTE: Credentials from the previous step will be required for this step to run._
+Right now, we don't have any consumers, but we want to be prepared for when we do.
 
-### Scope of a Provider test
+### Verifying the provider contract (1)
 
-TBC - discuss options and tradeoffs here (code gen, unit test and functional tests)
+There are severals ways we can test the Provider, to ensure it doesn't drift from the OAS. This process is referred to as _verifying the provider contract_.
 
-<!-- On the Provider side, Pact needs to replay all of the interactions \(usually HTTP requests\) against your service. There are a number of choices that can be made here, but usually these are the choices:
+1. Generate the OAS from code. This is the most reliable, because whenever the implementation changes, the OAS will change with it. Tools like Spring Docs (Java) and Swashbuckle (.NET) will do this for you.
+1. White-box style tests that run as part of your unit tests. Tools such as RestAssured (Java) or Supertest (NodeJS) are examples of
+1. Black-box style functional API testing, using tools like Dredd or Postman.
 
-- Invoke just the controller layer \(in an MVC app, or the "Adapter" in our diagram\) and stub out layers beneath
-- Choosing a real vs mocked out database
-- Choosing to hit mock HTTP servers or mocks for external services
-
-Generally speaking, we test the entire service and mock out external services such as downstream APIs \(which would need their own set of Pact tests\) and databases. This gives you some of the benefits of an integration test without the high costs of maintenance.
-
-This is how you might visualise the coverage of a provider Pact test:
-
-![Provider side Pact test scope](./assets/provider-test-coverage.png) -->
+In our case, (1) is not acceptable as we've chosen to following design first approach. We decided to use (3), using a tool called Dredd. Dredd will read in our OAS, and issue HTTP calls to our locally running provider to ensure it's compatible with the spec.
 
 #### Run the Provider tests
 
-This step involves the following:
+When using a black-box style tool, the testing involves the following steps:
 
-1. Starting the API
-1. Telling Pact to use the contracts stored in Pactflow and where the Product API will be running \(lines 8-16\)
-1. Running the Provider verification task \(line 18\)
+1. Starting the API locally, stubbing out downstream dependencies where possible
+1. Preparing data so that all of the OAS scenarios may be tested
+1. Configuring the tool to read in the OAS and discover the provider
+1. Running the tool
+1. Capturing the output
 
-Create our Provider pact test file `provider.pact.spec.js`:
+Here is the Dredd configuration file, with some properties removed for clarity:
 
-And then run it: `npm run test:provider`{{execute}}
+`example-provider-dredd/dredd.yml`{{open}}
 
-## Deploy
+<pre class="file" >
+...
+language: nodejs
+server: npm start
+server-wait: 3
+reporter: [markdown]
+output: [./output/report.md]
+loglevel: warning
+config: ./dredd.yml
+blueprint: ./oas/products.yml
+endpoint: 'http://127.0.0.1:3000'
+</pre>
+
+## Check
+
+Now we can run the tests:
+
+1. `npm t`{{execute}}
+
+<!-- ## Deploy
 
 Now we've created our provider and confirmed it can meet the needs of its consumers, we can deploy it to production!
 
@@ -55,4 +70,4 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 
 Your dashboard should look something like this, where your provider has been tagged as having been deployed to `prod`:
 
-![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)
+![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png) -->

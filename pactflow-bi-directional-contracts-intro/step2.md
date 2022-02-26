@@ -128,13 +128,21 @@ components:
 
 </pre>
 
+As you can see, we have 3 main endpoints:
+
+1. `POST /products` - create a new product
+1. `GET /products` - gets all products
+1. `GET /products/:id` - gets a single product
+
 Having designed our API, we can now set about building it.
 
 ### Implement the Product API
 
-Here is the Product API using the [Express JS](https://expressjs.com) framework.
+Here is the Product API using the [Express JS](https://expressjs.com) framework. Once again, writing an API is beyond the scope of this tutorial.
 
 _NOTE: you can see the full project here: https://github.com/pactflow/example-provider-dredd_
+
+We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
 `example-provider-dredd/src/product/product.js`{{open}}
 
@@ -244,7 +252,39 @@ init();
 
 ### Check
 
-Before moving to the next step, cd in the the `/root/example-consumer` directory and run the provider to see if it starts:
+Before moving to the next step, cd into the `/root/example-provider-dredd` directory and run the provider to see if it starts:
 
-1. `cd /root/example-consumer`{{execute}}
+1. `cd /root/example-provider-dredd`{{execute}}
 1. `npm start`{{execute}}
+
+Open up a separate terminal and run the following command:
+
+1. `curl localhost:3000/products | jq .`{{execute}}
+
+You should see the following output:
+
+```
+[
+  {
+    "id": "09",
+    "type": "CREDIT_CARD",
+    "name": "Gem Visa",
+    "version": "v1",
+    "price": 99.99
+  },
+  {
+    "id": "10",
+    "type": "CREDIT_CARD",
+    "name": "28 Degrees",
+    "version": "v1",
+    "price": 49.49
+  },
+  {
+    "id": "11",
+    "type": "PERSONAL_LOAN",
+    "name": "MyFlexiPay",
+    "version": "v2",
+    "price": 16.5
+  }
+]
+```

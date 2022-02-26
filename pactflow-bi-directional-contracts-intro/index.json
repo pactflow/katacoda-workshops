@@ -34,7 +34,8 @@
       {
         "title": "Step 6",
         "text": "step6.md",
-        "background": "step6-start.sh"
+        "background": "step6-start.sh",
+        "foreground": "step6-shell.sh"
       },
       {
         "title": "Step 7",
