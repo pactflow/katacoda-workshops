@@ -29,7 +29,7 @@ When using a black-box style tool, the testing involves the following steps:
 
 Here is the Dredd configuration file, with some properties removed for clarity:
 
-`example-provider-dredd/dredd.yml`{{open}}
+`/root/example-provider-dredd/dredd.yml`{{open}}
 
 <pre class="file" >
 ...
@@ -75,25 +75,3 @@ complete: Tests took 135ms
 ```
 
 As you can see, Dredd has issued calls to all 3 endpoints and the tests are ✅.
-
-<!-- ## Deploy
-
-Now we've created our provider and confirmed it can meet the needs of its consumers, we can deploy it to production!
-
-As with the consumer, we can first check if this is safe to do: `npm run can-deploy:provider`{{execute}}
-
-Great! Because the Provider meets the needs of the consumer (and the consumer is not yet in production) it is safe to do.
-
-Deploy the provider: `npm run deploy:provider`{{execute}}
-
-_REMINDER: The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production_
-
-This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
-
-![first consumer pipeline run](./assets/provider-run.png)
-
-## Check
-
-Your dashboard should look something like this, where your provider has been tagged as having been deployed to `prod`:
-
-![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png) -->

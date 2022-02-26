@@ -6,7 +6,7 @@ As we are following a specification or [design first approach](https://swagger.i
 
 Authoring an OAS document is beyond the scope of this tutorial, but you can find plenty of resources on the internet (such as at [swagger.io](https://swagger.io)).
 
-<pre class="file" data-filename="products.yml" data-target="replace">
+<pre class="file">
 openapi: 3.0.1
 info:
   title: Product API
@@ -144,7 +144,7 @@ _NOTE: you can see the full project here: https://github.com/pactflow/example-pr
 
 We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
-`example-provider-dredd/src/product/product.js`{{open}}
+`/root/example-provider-dredd/src/product/product.js`{{open}}
 
 <pre class="file" >
 class Product {
@@ -160,7 +160,7 @@ class Product {
 module.exports = Product;
 </pre>
 
-`example-provider-dredd/src/product/product.routes.js`{{open}}
+`/root/example-provider-dredd/src/product/product.routes.js`{{open}}
 
 <pre class="file" >
 const router = require('express').Router();
@@ -173,7 +173,7 @@ router.post("/products", controller.create);
 module.exports = router;
 </pre>
 
-`example-provider-dredd/src/product/product.repository.js`{{open}}
+`/root/example-provider-dredd/src/product/product.repository.js`{{open}}
 
 <pre class="file" >
 const Product = require('./product');
@@ -204,7 +204,7 @@ class ProductRepository {
 module.exports = ProductRepository;
 </pre>
 
-`example-provider-dredd/src/product/product.controller.js`{{open}}
+`/root/example-provider-dredd/src/product/product.controller.js`{{open}}
 
 <pre class="file" >
 const Product = require("./product");
@@ -228,7 +228,7 @@ exports.getById = async (req, res) => {
 exports.repository = repository;
 </pre>
 
-`example-provider-dredd/src/server.js`{{open}}
+`/root/example-provider-dredd/src/server.js`{{open}}
 
 <pre class="file" >
 const express = require("express");

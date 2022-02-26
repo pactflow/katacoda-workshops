@@ -1,89 +1,30 @@
-## Testing the consumer
+# Consumer Contract Test
 
-Now that we have our basic consumer code base, it's time to write our first Pact test!
+Now that we have written our consumer code, we need to test it, and ensure that it is compatible with its provider.
 
-Pact implements a specific type of integration test called a contract test. Martin Fowler defines it as follows:
+### Scope of a Consumer Contract Test
 
-> An integration contract test is a test at the boundary of an external service verifying that it meets the contract expected by a consuming service — [Martin Fowler](https://martinfowler.com/bliki/IntegrationContractTest.html)
+Ideally, contract tests should be closer to a _unit test_ for your API client class, and they should just focus on ensuring that the request creation and response handling are correct. Running in the context of a unit testing framework (Jest, JUnit, PHPUnit etc.) will give you the most flexible and reliable tests (even if the test is not strictly a unit test by definition).
 
-Create the pact test (click "copy to editor"):
+_NOTE: In Bi-Directional Contract Testing however, you don't need to worry as much if these tests overlap into functional or other forms of tests like you would with Pact. This means they may be higher level - including initiated via a UI test (see this [Cypress example](https://github.com/pactflow/example-bdc-consumer-cypress))._
 
-<pre class="file" data-filename="consumer.pact.spec.js" data-target="replace">
-// (1) Import the pact library and matching methods
-const { Pact } = require ('@pact-foundation/pact');
-const { ProductApiClient } = require ('./api');
-const { Product } = require ('./product');
-const { Matchers } = require("@pact-foundation/pact")
-const { like, regex } = Matchers
-const chai = require("chai")
-const expect = chai.expect
+Usually, your application will be broken down into a number of sub-components, depending on what type of application your consumer is \(e.g. a Web application or another API\). This is how you might visualise the coverage of a consumer contract test:
 
-// (2) Configure our Pact library
-const mockProvider = new Pact({
-  consumer: 'katacoda-consumer',
-  provider: 'katacoda-provider',
-  cors: true // needed for katacoda environment
-});
+![Scope of a consumer contract test](./assets/consumer-test-coverage.png)
 
-describe('Products API test', () => {
-  // (3) Setup Pact lifecycle hooks
-  before(() => mockProvider.setup());
-  afterEach(() => mockProvider.verify());
-  after(() => mockProvider.finalize());
+Here, a _Collaborator_ is a component whose job is to communicate with another system. In our case, this is the `API` class communicating with the external `Product API` system. This is what we want our consumer test to inspect.
 
-  it('get product by ID', async () => {
-    // (4) Arrange
-    const expectedProduct = { id: 10, type: 'pizza', name: 'Margharita' }
+### Choosing a contract testing strategy
 
-    await mockProvider.addInteraction({
-      state: 'a product with ID 10 exists',
-      uponReceiving: 'a request to get a product',
-      withRequest: {
-        method: 'GET',
-        path: '/products/10'
-      },
-      willRespondWith: {
-        status: 200,
-        headers: {
-          'Content-Type': regex({generate: 'application/json; charset=utf-8', matcher: '^application\/json'}),
-        },
-        body: like(expectedProduct),
-      },
-    });
+Pactflow currently supports pact files as a consumer contract format. In order to produce a consumer contract, you need to decide on a testing approach to capture the contract:
 
-    // (5) Act
-    const api = new ProductApiClient(mockProvider.mockService.baseUrl);
-    const product = await api.getProduct(10);
+1. Use [Pact](docs.pact.io) - this will be the default choice for many, as it can both mock the API calls and produce a pact file
+2. Use an existing mocking tools such as Wiremock or Mountebank, or record/replay tools, and convert the mocks to a Pact file after a successful run.
 
-    // (6) Assert that we got the expected response
-    expect(product).to.deep.equal(new Product(10, 'Margharita', 'pizza'));
-  });
-});
-</pre>
+[Read more](https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/pact#strategies-to-capture-consumer-contracts) on these strategies.
 
-There's a lot here, so let's break it down a little.
+As there are plenty of [example projects](https://docs.pactflow.io/docs/examples) for how to write Pact tests, *we will choose option (2)* and use [Mountebank](http://mbtest.org/) to mock our APIs.
 
-1. Import the appropriate library - this will differ depending on language
-2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in Pactflow
-3. Here we setup some Pact lifecycle hooks. First we run `setup()` before all of the tests run to start the Pact runtime). We also configure two other lifecycle hooks to `verify()` that the test was successful each `test`, and write out the pact file (`finalize()`) when the suite is finished. This specific step will vary depending on which language you use
-4. _Arrange_: we tell Pact what we're expecting our code to do and what we expect the provider to return when we do it
-5. _Act_: we configure our API client to send requests to the Pact mock service (instead of the real provider) and we execute the call to the API
-6. _Assert_: we check that our call to `getProduct(...)` worked as expected. This should just do what a regular unit test of this method does.
+### The contract test
 
-
-### Run the test
-
-`npm run test:consumer`{{execute}}
-
-It should have created the following file:
-
-`cat pacts/katacoda-consumer-katacoda-provider.json`{{execute}}
-
-### Check
-
-Before moving to the next step, check the following:
-
-1. You could run the pact test with `npm run test:consumer`{{execute}}
-1. There is a contract file that has been created at `pacts/katacoda-consumer-katacoda-provider.json`
-
-_NOTE: in most setups, you wouldn't have a single file with everything in it, but for the purposes of keeping this workshop simple, we have a single test file that does it all._
+Open up the API spec: `/root/example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
