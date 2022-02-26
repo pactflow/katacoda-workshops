@@ -8,13 +8,13 @@
       {
         "title": "Step 1",
         "text": "step1.md",
-        "background": "step1-start.sh"
+        "background": "step1-start.sh",
+        "foreground": "step1-shell.sh"
       },
       {
         "title": "Step 2",
         "text": "step2.md",
-        "background": "step2-start.sh",
-        "foreground": "step2-shell.sh"
+        "background": "step2-start.sh"
       },
       {
         "title": "Step 3",

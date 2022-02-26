@@ -29,14 +29,11 @@ TBC
 
 ## Don't have a Pactflow account?
 
-If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io) that uses the [open source pact broker](https://github.com/pact-foundation/pact_broker/).
+If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io).
 
-````
+```
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
-export PACT_BROKER_TOKEN=dXfltyFMgNOFZAxr8io9wJ37iUpY42M
 export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
 ```{{execute}}
 
-The account is protected using basic auth. Use the username `dXfltyFMgNOFZAxr8io9wJ37iUpY42M`, and password `O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1` to view the pacts.
-
-````
+If you use this account, note that you won't have access to the UI.

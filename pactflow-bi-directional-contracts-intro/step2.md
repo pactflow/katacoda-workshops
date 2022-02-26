@@ -252,9 +252,12 @@ init();
 
 ### Check
 
-Before moving to the next step, cd into the `/root/example-provider-dredd` directory and run the provider to see if it starts:
+Before moving to the next step, cd into the `/root/example-provider-dredd` directory and run the provider to see if it starts.
+
+The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
 
 1. `cd /root/example-provider-dredd`{{execute}}
+1. `npm i`{{execute}}
 1. `npm start`{{execute}}
 
 Open up a separate terminal and run the following command:
