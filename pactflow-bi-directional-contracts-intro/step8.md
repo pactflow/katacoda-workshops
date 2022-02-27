@@ -12,7 +12,6 @@ As per step 4, we're going to need credentials to our Pactflow account here:
    export PACT_BROKER_TOKEN=YOUR_API_TOKEN
    ```
 
-1. Set the application version `export GIT_COMMIT="$(git rev-parse --short HEAD)"`{{execute}}
 1. `npm run publish`{{execute}}
 1. Go to your Pactflow dashboard and check that a new contract has appeared
 
@@ -24,7 +23,7 @@ Your dashboard should look something like this:
 
 If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io).
 
-````
+```
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
 export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
 ```{{execute}}
@@ -33,5 +32,4 @@ If you use this account, note that you won't have access to the UI.
 
 ## Check
 
-There should be a contract published in your Pactflow account before moving on
-````
+There should be a contract published in your Pactflow account before moving on.

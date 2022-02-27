@@ -262,7 +262,7 @@ The tutorial environment should have installed 2 projects and their dependencies
 
 Open up a separate terminal and run the following command:
 
-1. `cd /rootexample-provider-dredd`{{execute}}
+1. `cd /root/example-provider-dredd`{{execute}}
 1. `curl localhost:3000/products | jq .`{{execute}}
 
 You should see the following output:
