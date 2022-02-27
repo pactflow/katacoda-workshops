@@ -1,0 +1,1 @@
+[ -f /root/example-provider-dredd/output/report.md ] && echo "done"
