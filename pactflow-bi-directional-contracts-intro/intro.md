@@ -22,19 +22,3 @@ You will:
 1. Publish the consumer contract to Pactflow
 
 We will use specific testing tools in this workshop, but as you will learn, you can use many different tools to achieve the same outcome.
-
-## Agenda
-
-1. Scenario Overview
-1. Author the OAS and implement the provider
-
-step 2: the OAS + provider
-step 3: Test the provider
-step 4: Publish contract
-step 5: deploy the provider
-
-step 6: write the consumer
-step 7: consumer test
-step 8: Publish contract
-step 9: deploy the consumer
-step 10: summary
