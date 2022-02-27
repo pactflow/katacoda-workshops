@@ -57,6 +57,11 @@
         "title": "Step 10",
         "text": "step10.md",
         "background": "step10-start.sh"
+      },
+      {
+        "title": "Step 11",
+        "text": "step11.md",
+        "background": "step11-start.sh"
       }
     ],
     "intro": {

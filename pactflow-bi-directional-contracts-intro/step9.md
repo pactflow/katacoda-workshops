@@ -8,24 +8,36 @@ _REMEMBER: The `can-i-deploy` command is an important part of a CI/CD workflow, 
 
 This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
 
+TBC
+
 ![consumer pipeline run](./assets/consumer-pipeline.png)
 
 Let's run the command:
 
-`npx pact-broker can-i-deploy --pacticipant pactflow-example-consumer-mountebank --version $GIT_COMMIT --to-environment production`{{execute}}
+`npm run can-i-deploy`{{execute}}
 
-This should pass, because the provider has already published its contract and deployed to production, and we believe the consumer is compatible with the provider OAS:
+This should pass, because the provider has already pulbished its contract and deployed to production, and we believe the consumer is compatible with the provider OAS:
 
 ```
-$ npx pact-broker can-i-deploy --pacticipant pactflow-example-consumer-dredd --version $GIT_COMMIT --to-environment production
+$ npx pact-broker can-i-deploy --pacticipant pactflow-example-consumer-mountebank --version $GIT_COMMIT --to-environment production
 Computer says yes \o/
 
-There are no missing dependencies
+CONSUMER                             | C.VERSION | PROVIDER                        | P.VERSION | SUCCESS? | RESULT#
+-------------------------------------|-----------|---------------------------------|-----------|----------|--------
+pactflow-example-consumer-mountebank | 5009e94   | pactflow-example-provider-dredd | 6559541   | true     | 1
+
+VERIFICATION RESULTS
+--------------------
+1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-provider-dredd/version/6559541/consumer/pactflow-example-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
+
+All required verification results are published and successful
 ```
 
 We can now deploy our consumer to production. Once we have deployed, we let Pactflow know that the new version of the consumer has been promoted to that environment:
 
-`npx pact-broker record-deployment --pacticipant pactflow-example-consumer-mountebank --version $GIT_COMMIT --environment production`{{execute}}
+`npm run deploy`{{execute}}
+
+This allows Pactflow to prevent any providers from deploying an incompatible change to `production`.
 
 # Check
 
@@ -34,43 +46,3 @@ Your dashboard should look something like this, where both your consumer and con
 TBC
 
 ![pactflow dashboard - completed](./assets/pactflow-dashboard-complete.png)
-
-<!-- ## Deploy
-
-So we've created our consumer, published the contract and now it's time to deploy to production!
-
-Before we do, however, we can check if this is safe to do:
-
-`npm run can-deploy:consumer`{{execute}}
-
-You should see the following output:
-
-```
-
-> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to prod
-
-Computer says no ¯\_(ツ)\_/¯
-
-| CONSUMER          | C.VERSION             | consumer          | P.VERSION | SUCCESS? |
-| ----------------- | --------------------- | ----------------- | --------- | -------- |
-| katacoda-consumer | 1.0.0-someconsumersha | katacoda-consumer | ???       | ???      |
-
-There is no verified pact between version 1.0.0-someconsumersha of katacoda-consumer and the latest version of katacoda-consumer with tag prod (no such version exists)
-
-```
-
-Oh oh! We can't deploy yet, because our consumer has yet to be created, let alone confirm if it can satisfy our needs.
-
-The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production.
-
-This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
-
-![first consumer pipeline run](./assets/consumer-run-1.png)
-
-## Check
-
-There should be a contract published in your Pactflow account before moving on -->
-
-```
-
-```

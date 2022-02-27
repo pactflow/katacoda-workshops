@@ -12,12 +12,17 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 
 Let's run the command:
 
-`npx pact-broker can-i-deploy --pacticipant pactflow-example-provider-dredd --version $GIT_COMMIT --to-environment production`{{execute}}
+`npm run can-i-deploy`{{execute}}
 
 This should pass, because as we discussed above, there are no consumers:
 
 ```
-$ npx pact-broker can-i-deploy --pacticipant pactflow-example-provider-dredd --version $GIT_COMMIT --to-environment production
+$ npm run can-i-deploy
+
+> product-service@1.0.0 can-i-deploy /root/example-provider-dredd
+> pact-broker can-i-deploy --pacticipant pactflow-example-provider-dredd --version="$(npx @pact-foundation/absolute-version)" --to-environment production
+
+npx: installed 47 in 2.835s
 Computer says yes \o/
 
 There are no missing dependencies
@@ -27,7 +32,9 @@ Later on, when consumers start to use our API, we will be prevented from releasi
 
 We can now deploy our provider to production. Once we have deployed, we let Pactflow know that the new version of the Provider has been promoted to that environment:
 
-`npx pact-broker record-deployment --pacticipant pactflow-example-provider-dredd --version $GIT_COMMIT --environment production`{{execute}}
+`npm run deploy`{{execute}}
+
+This allows Pactflow to communicate to any future consumers of the provider, that the OAS associated with this version of the provider is supported in production. If a consumer adds functionality that uses a subset of the OAS, they will be free to deploy safely!
 
 # Check
 
@@ -36,43 +43,3 @@ Your dashboard should look something like this, where both your consumer and pro
 TBC
 
 ![pactflow dashboard - completed](./assets/pactflow-dashboard-complete.png)
-
-<!-- ## Deploy
-
-So we've created our consumer, published the contract and now it's time to deploy to production!
-
-Before we do, however, we can check if this is safe to do:
-
-`npm run can-deploy:consumer`{{execute}}
-
-You should see the following output:
-
-```
-
-> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to prod
-
-Computer says no ¯\_(ツ)\_/¯
-
-| CONSUMER          | C.VERSION             | PROVIDER          | P.VERSION | SUCCESS? |
-| ----------------- | --------------------- | ----------------- | --------- | -------- |
-| katacoda-consumer | 1.0.0-someconsumersha | katacoda-provider | ???       | ???      |
-
-There is no verified pact between version 1.0.0-someconsumersha of katacoda-consumer and the latest version of katacoda-provider with tag prod (no such version exists)
-
-```
-
-Oh oh! We can't deploy yet, because our Provider has yet to be created, let alone confirm if it can satisfy our needs.
-
-The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production.
-
-This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
-
-![first consumer pipeline run](./assets/consumer-run-1.png)
-
-## Check
-
-There should be a contract published in your Pactflow account before moving on -->
-
-```
-
-```

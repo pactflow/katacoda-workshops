@@ -256,13 +256,13 @@ Before moving to the next step, cd into the `example-provider-dredd` directory a
 
 The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
 
-1. `cd `example-provider-dredd`{{execute}}
+1. `cd /root/example-provider-dredd`{{execute}}
 1. `npm i`{{execute}}
 1. `npm start`{{execute}}
 
 Open up a separate terminal and run the following command:
 
-1. `cd `example-provider-dredd`{{execute}}
+1. `cd /rootexample-provider-dredd`{{execute}}
 1. `curl localhost:3000/products | jq .`{{execute}}
 
 You should see the following output:

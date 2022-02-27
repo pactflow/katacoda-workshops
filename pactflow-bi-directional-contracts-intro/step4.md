@@ -17,8 +17,7 @@ This information will be helpful later on, when we need to check compatibility w
    export PACT_BROKER_TOKEN=YOUR_API_TOKEN
    ```
 
-1. Set the application version `export GIT_COMMIT="$(git rev-parse --short HEAD)"`{{execute}}
-1. `npm run test:publish`{{execute}}
+1. `npm run publish`{{execute}}
 1. Go to your Pactflow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
@@ -31,9 +30,10 @@ TBC
 
 If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io).
 
-```
+````
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
 export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
 ```{{execute}}
 
 If you use this account, note that you won't have access to the UI.
+````

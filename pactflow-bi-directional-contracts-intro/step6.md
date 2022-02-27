@@ -1,9 +1,9 @@
 ## The Consumer
 
-Time to create our consumer code base. In our project, we're going to need:
+Time to create our consumer code base. For the sake of simplicity, we're going to focus only on the bits of our application that communicate to the provider. In our project, they are:
 
--  A model (the `Product` class) to represent the data returned from the Product API: `example-bi-directional-consumer-mountebank/src/api.js`{{open}}
-- A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: `example-bi-directional-consumer-mountebank/src/product.js`{{open}}
+- The model (the `Product` class), representing the data returned from the Product API: `example-bi-directional-consumer-mountebank/src/api.js`{{open}}
+- The API client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product: `example-bi-directional-consumer-mountebank/src/product.js`{{open}}
 
 Install the dependencies for the project: `npm i`{{execute}}
 
@@ -22,7 +22,7 @@ export class Product {
 }
 </pre>
 
-###  Product API Client
+### Product API Client
 
 Here is a simplified version of our API client code. This code is responsible for fetching products from the API, and returning a `Product`:
 

@@ -7,7 +7,10 @@ Now that we have our working Provider, we need to do two things to prevent intro
 
 Right now, we don't have any consumers, but we want to be prepared for when we do.
 
-### Verifying the provider contract (1)
+For (1), we need to decide on our testing approach.
+For (2), we'll use Pactflow's contract comparison capability to prevent breaking changes, which we cover in Step 5.
+
+### Verifying the provider contract
 
 There are severals ways we can test the Provider, to ensure it doesn't drift from the OAS. This process is referred to as _verifying the provider contract_.
 
@@ -44,11 +47,13 @@ blueprint: ./oas/products.yml
 endpoint: 'http://127.0.0.1:3000'
 </pre>
 
+Dredd will start our provider (`npm start`), read in the OAS file (`./oas/products.yml`) and then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:3000`.
+
 ## Check
 
 Now we can run the tests:
 
-1. `cd `example-provider-dredd`{{execute interrupt}}
+1. `cd /root/example-provider-dredd`{{execute interrupt}}
 1. `npm t`{{execute interrupt}}
 
 Your ouput should look like this:
@@ -56,17 +61,17 @@ Your ouput should look like this:
 ```
 $ npm t
 
-> product-service@1.0.0 test `example-provider-dredd
+> product-service@1.0.0 test example-provider-dredd
 > dredd
 
 
-> product-service@1.0.0 start `example-provider-dredd
+> product-service@1.0.0 start example-provider-dredd
 > node server.js
 
 Provider API listening on port 3000...
-warn: API description parser warning in `example-provider-dredd/oas/products.yml:14 (from line 14 column 9 to column 17): 'Request Body Object' contains unsupported key 'required'
-warn: API description parser warning in `example-provider-dredd/oas/products.yml:73 (from line 73 column 9 to column 15): 'Parameter Object' contains unsupported key 'schema'
-warn: API description parser warning in `example-provider-dredd/oas/products.yml:107 (from line 107 column 7 to column 27): 'Schema Object' contains unsupported key 'additionalProperties'
+warn: API description parser warning in example-provider-dredd/oas/products.yml:14 (from line 14 column 9 to column 17): 'Request Body Object' contains unsupported key 'required'
+warn: API description parser warning in example-provider-dredd/oas/products.yml:73 (from line 73 column 9 to column 15): 'Parameter Object' contains unsupported key 'schema'
+warn: API description parser warning in example-provider-dredd/oas/products.yml:107 (from line 107 column 7 to column 27): 'Schema Object' contains unsupported key 'additionalProperties'
 pass: POST (200) /products duration: 72ms
 pass: GET (200) /products duration: 16ms
 pass: GET (200) /product/10 duration: 24ms
