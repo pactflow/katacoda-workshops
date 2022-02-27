@@ -30,10 +30,9 @@ TBC
 
 If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io).
 
-````
+```
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
 export PACT_BROKER_TOKEN=129cCdfCWhMzcC9pFwb4bw
 ```{{execute}}
 
 If you use this account, note that you won't have access to the UI.
-````
