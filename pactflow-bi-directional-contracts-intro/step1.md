@@ -27,9 +27,3 @@ Let's get some terminology out of the way so we have a shared vocabulary:
 ### Further Reading
 
 You can read more about this feature: https://pactflow.io/bi-directional-contract-testing/
-
-<!-- ## Tools
-
-The key tool we'll be learning today is the `pact-broker` CLI tool, centered around the [`can-i-deploy`](https://docs.pact.io/pact_broker/can_i_deploy) command. Pact JS bundles the Pact CLI tools into its package automatically, but they can also be downloaded as a standalone package, or as a docker container for other languages.
-
-See more here https://docs.pact.io/implementation_guides/cli/#pact-cli -->

@@ -50,11 +50,11 @@ The cross contract verification between the pact for the version of pactflow-exa
 
 If you head into the Pactflow UI and drill down into the "contract comparison" tab, you'll see the output from comparing the consumer and provider contracts:
 
-TBC - Screenshot
+![pactflow dashboard - completed](./assets/cross-contract-failure.png)
 
 As you can see, it's alerting us to the fact that the consumer needs a field `name` but the provider doesn't support it.
 
-Read more about how to [interpret failures](https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/pact#strategies-to-capture-consumer-contracts).
+Read more about how to [interpret failures](https://docs.pactflow.io/docs/bi-directional-contract-testing/compatibility-checks).
 
 ## Consumer breaking changes
 

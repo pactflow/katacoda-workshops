@@ -38,8 +38,4 @@ This allows Pactflow to communicate to any future consumers of the provider, tha
 
 # Check
 
-Your dashboard should look something like this, where both your consumer and provider are marked as having been deployed to `production`:
-
-TBC
-
-![pactflow dashboard - completed](./assets/pactflow-dashboard-complete.png)
+Your dashboard should now be updated, noting the provider has now been deployed to `production`.

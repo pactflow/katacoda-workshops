@@ -6,11 +6,9 @@ Just like our provider counterpart, we're going to call `can-i-deploy` to check 
 
 _REMEMBER: The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production_
 
-This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
+<!-- This diagram shows an illustrative CI/CD pipeline as it relates to our progress to date:
 
-TBC
-
-![consumer pipeline run](./assets/consumer-pipeline.png)
+![consumer pipeline run](./assets/consumer-pipeline.png) -->
 
 Let's run the command:
 
@@ -42,7 +40,5 @@ This allows Pactflow to prevent any providers from deploying an incompatible cha
 # Check
 
 Your dashboard should look something like this, where both your consumer and consumer are marked as having been deployed to `production`:
-
-TBC
 
 ![pactflow dashboard - completed](./assets/pactflow-dashboard-complete.png)
