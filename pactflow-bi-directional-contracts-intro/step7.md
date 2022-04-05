@@ -6,7 +6,7 @@ Now that we have written our consumer code, we need to test it, and ensure that 
 
 Ideally, contract tests should be closer to a _unit test_ for your API client class, and they should just focus on ensuring that the request creation and response handling are correct. Running in the context of a unit testing framework (Jest, JUnit, PHPUnit etc.) will give you the most flexible and reliable tests - even if the test is not strictly a unit test by definition.
 
-_NOTE: In Bi-Directional Contract Testing however, you don't need to worry as much if these tests overlap into functional or other forms of tests like you would with Pact. This means they may be higher level - including initiated via a UI test (see this [Cypress example](https://github.com/pactflow/example-bdc-consumer-cypress))._
+_NOTE: In Bi-Directional Contract Testing however, you don't need to worry as much if these tests overlap into functional or other forms of tests like you would with Pact. This means they may be higher level - including initiated via a UI test (see this [Cypress example](https://github.com/pactflow/example-bi-directional-consumer-cypress))._
 
 Usually, your application will be broken down into a number of sub-components, depending on what type of application your consumer is \(e.g. a Web application or another API\). This is how you might visualise the focus of a consumer contract test:
 
@@ -126,5 +126,5 @@ OK, time to run the tests!
 
 ### Check
 
-1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-consumer-mountebank-pactflow-example-provider-dredd.json`{{open}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json`{{open}}
 2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}

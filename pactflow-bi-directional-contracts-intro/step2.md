@@ -140,11 +140,11 @@ Having designed our API, we can now set about building it.
 
 Here is the Product API using the [Express JS](https://expressjs.com) framework. Once again, writing an API is beyond the scope of this tutorial.
 
-_NOTE: you can see the full project here: https://github.com/pactflow/example-provider-dredd_
+_NOTE: you can see the full project here: https://github.com/pactflow/example-bi-directional-provider-dredd_
 
 We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
-`example-provider-dredd/src/product/product.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.js`{{open}}
 
 <pre class="file" >
 class Product {
@@ -160,7 +160,7 @@ class Product {
 module.exports = Product;
 </pre>
 
-`example-provider-dredd/src/product/product.routes.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.routes.js`{{open}}
 
 <pre class="file" >
 const router = require('express').Router();
@@ -173,7 +173,7 @@ router.post("/products", controller.create);
 module.exports = router;
 </pre>
 
-`example-provider-dredd/src/product/product.repository.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.repository.js`{{open}}
 
 <pre class="file" >
 const Product = require('./product');
@@ -204,7 +204,7 @@ class ProductRepository {
 module.exports = ProductRepository;
 </pre>
 
-`example-provider-dredd/src/product/product.controller.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.controller.js`{{open}}
 
 <pre class="file" >
 const Product = require("./product");
@@ -228,7 +228,7 @@ exports.getById = async (req, res) => {
 exports.repository = repository;
 </pre>
 
-`example-provider-dredd/src/server.js`{{open}}
+`example-bi-directional-provider-dredd/src/server.js`{{open}}
 
 <pre class="file" >
 const express = require("express");
@@ -252,17 +252,17 @@ init();
 
 ### Check
 
-Before moving to the next step, cd into the `example-provider-dredd` directory and run the provider to see if it starts.
+Before moving to the next step, cd into the `example-bi-directional-provider-dredd` directory and run the provider to see if it starts.
 
 The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
 
-1. `cd /root/example-provider-dredd`{{execute}}
+1. `cd /root/example-bi-directional-provider-dredd`{{execute}}
 1. `npm i`{{execute}}
 1. `npm start`{{execute}}
 
 Open up a separate terminal and run the following command:
 
-1. `cd /root/example-provider-dredd`{{execute}}
+1. `cd /root/example-bi-directional-provider-dredd`{{execute}}
 1. `curl localhost:3000/products | jq .`{{execute}}
 
 You should see the following output:

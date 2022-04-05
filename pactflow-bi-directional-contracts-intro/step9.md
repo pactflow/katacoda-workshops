@@ -22,11 +22,11 @@ Computer says yes \o/
 
 CONSUMER                             | C.VERSION | PROVIDER                        | P.VERSION | SUCCESS? | RESULT#
 -------------------------------------|-----------|---------------------------------|-----------|----------|--------
-pactflow-example-consumer-mountebank | 5009e94   | pactflow-example-provider-dredd | 6559541   | true     | 1
+pactflow-example-consumer-mountebank | 5009e94   | pactflow-example-bi-directional-provider-dredd | 6559541   | true     | 1
 
 VERIFICATION RESULTS
 --------------------
-1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-provider-dredd/version/6559541/consumer/pactflow-example-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
+1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-bi-directional-provider-dredd/version/6559541/consumer/pactflow-example-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
 
 All required verification results are published and successful
 ```
