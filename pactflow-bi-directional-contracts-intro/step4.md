@@ -22,4 +22,4 @@ This information will be helpful later on, when we need to check compatibility w
 
 Your dashboard should look something like this:
 
-![pactflow-dashboard-unverified](.//assets/dashboard-provider-only.png)
+![pactflow-dashboard-unverified](./assets/dashboard-provider-only.png)
