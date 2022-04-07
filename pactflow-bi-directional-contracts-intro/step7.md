@@ -126,5 +126,5 @@ OK, time to run the tests!
 
 ### Check
 
-1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-consumer-mountebank-pactflow-example-provider-dredd.json`{{open}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json`{{open}}
 2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}

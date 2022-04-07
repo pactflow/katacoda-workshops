@@ -17,16 +17,16 @@ Let's run the command:
 This should pass, because the provider has already pulbished its contract and deployed to production, and we believe the consumer is compatible with the provider OAS:
 
 ```
-$ npx pact-broker can-i-deploy --pacticipant pactflow-example-consumer-mountebank --version $GIT_COMMIT --to-environment production
+$ npx pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-consumer-mountebank --version $GIT_COMMIT --to-environment production
 Computer says yes \o/
 
 CONSUMER                             | C.VERSION | PROVIDER                        | P.VERSION | SUCCESS? | RESULT#
 -------------------------------------|-----------|---------------------------------|-----------|----------|--------
-pactflow-example-consumer-mountebank | 5009e94   | pactflow-example-provider-dredd | 6559541   | true     | 1
+pactflow-example-bi-directional-consumer-mountebank | 5009e94   | pactflow-example-bi-directional-provider-dredd | 6559541   | true     | 1
 
 VERIFICATION RESULTS
 --------------------
-1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-provider-dredd/version/6559541/consumer/pactflow-example-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
+1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-bi-directional-provider-dredd/version/6559541/consumer/pactflow-example-bi-directional-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
 
 All required verification results are published and successful
 ```
