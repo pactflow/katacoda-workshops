@@ -15,18 +15,24 @@ Change directories into `cd /root/example-bi-directional-provider-dredd`{{execut
 
 1.  Try changing the provider code in a backwards incompatible way, what happens?
 
-        ```
-        // First comment out the 'price' key in the product.js file and from the OAS, then run
-        npm t
-        npm run publish
-        npm run can-i-deploy
-        ```
 
-OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `price` field? Pactflow knows all of the consumers needs down to the field level. Because no consumer uses `price` this is a safe operation.
+    First comment out the 'price' key in the product.js file and from the OAS, then run
 
-Revert the change `git checkout --`{{execute}}
+    1. `npm t`{{execute}}
+    2. `npm run publish`{{execute}}
+    3. `npm run can-i-deploy`{{execute}}
+   
+    OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `price` field? Pactflow knows all of the consumers needs down to the field level. Because no consumer uses `price` this is a safe operation.
 
-2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in the OAS and run the steps from above:
+    Revert the change `git checkout --`{{execute}}
+
+2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in the OAS and run the steps from above - shown again:
+
+
+    1. `npm t`{{execute}}
+    2. `npm run publish`{{execute}}
+    3. `npm run can-i-deploy`{{execute}}
+   
 
 ```
 ✗ npm run can-i-deploy
@@ -62,12 +68,11 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
 
 1.  Try adding a new expectation on the provider by updating the contract. For example, add a new property to the `expectedProduct` field in `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}:
 
-        ```
-        npm t
-        npm run publish
-        npm run can-i-deploy
-        ```
-        You shouldn't be able to deploy!
+    1. `npm t`{{execute}}
+    2. `npm run publish`{{execute}}
+    3. `npm run can-i-deploy`{{execute}}
+   
+    You shouldn't be able to deploy!
 
 ```
 ✗ npm run can-i-deploy

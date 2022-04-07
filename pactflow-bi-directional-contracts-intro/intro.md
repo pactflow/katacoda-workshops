@@ -38,6 +38,6 @@ You will:
 ### Tools used
 
 - Node - for the applications being tested
-- [Mountebank](https://mbtest.org) - for API mocking
+- [Mountebank](http://www.mbtest.org/) - for API mocking
 - [Dredd](https://dredd.org/en/latest/index.html) - for API Testing
 - Github Actions - for CI/CD pipeline
