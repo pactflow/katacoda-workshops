@@ -7,7 +7,7 @@ The course is written in NodeJS, however, extensive experience with the language
 You must have:
 
 - a Pactflow account (https://pactflow.io)
-- obtained a [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token) from your Pactflow account
+- obtained a [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token) from your Pactflow account
 - a basic understanding of APIs, unit testing and how to operate a linux terminal
 
 

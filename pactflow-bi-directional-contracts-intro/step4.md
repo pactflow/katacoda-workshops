@@ -9,7 +9,7 @@ The publishing step takes two key components:
 
 This information will be helpful later on, when we need to check compatibility with its consumers.
 
-1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token)
+1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
 
    ```

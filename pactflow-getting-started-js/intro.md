@@ -4,7 +4,7 @@ The course is written in NodeJS, however, extensive experience with the language
 
 ## Workshop Prerequisites
 
-* Have a Pactflow account (https://pactflow.io) and access to a [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token)
+* Have a Pactflow account (https://pactflow.io) and access to a [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 
 ## Goals
 

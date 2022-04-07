@@ -4,7 +4,7 @@ Now that we have created our consumer contract, we need to share it to our provi
 
 As per step 4, we're going to need credentials to our Pactflow account here:
 
-1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token)
+1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
 
    ```

@@ -4,7 +4,7 @@ Now that we have created our contract, we need to share the contract to our prov
 
 We're going to use the Pact [CLI Tools](https://docs.pact.io/implementation_guides/cli) for this purpose.
 
-1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/docs/getting-started/#configuring-your-api-token)
+1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
 
     ```
