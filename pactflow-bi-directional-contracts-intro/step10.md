@@ -13,10 +13,8 @@ Let's see it in action.
 
 Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
 
-1.  Try changing the provider code in a backwards incompatible way, what happens?
 
-
-    First comment out the 'price' key in the product.js file and from the OAS, then run
+1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key  `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml` {{open}} at lines 106/117/118
 
     1. `npm t`{{execute}}
     2. `npm run publish`{{execute}}
@@ -26,12 +24,13 @@ Change directories into `cd /root/example-bi-directional-provider-dredd`{{execut
 
     Revert the change `git checkout --`{{execute}}
 
-2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in the OAS and run the steps from above - shown again:
-
-
+2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml` {{open}} at lines 105/113/114
+   
     1. `npm t`{{execute}}
     2. `npm run publish`{{execute}}
     3. `npm run can-i-deploy`{{execute}}
+   
+    You should have an output like below
    
 
 ```
@@ -54,7 +53,7 @@ VERIFICATION RESULTS
 The cross contract verification between the pact for the version of pactflow-example-bi-directional-consumer-mountebank currently deployed to production (5009e94+1645930887) and the oas for version aec911-master+aec911.SNAPSHOT.Matts-iMac of pactflow-example-bi-directional-provider-dredd failed
 ```
 
-If you head into the Pactflow UI and drill down into the "contract comparison" tab, you'll see the output from comparing the consumer and provider contracts:
+Head into the Pactflow UI and drill down into the "contract comparison" tab, you'll see the output from comparing the consumer and provider contracts:
 
 ![pactflow dashboard - completed](./assets/cross-contract-failure.png)
 
