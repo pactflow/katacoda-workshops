@@ -69,9 +69,19 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
 
 1.  Try adding a new expectation on the provider by updating the contract. For example, add a new property to the `expectedProduct` field in `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}:
 
-    1. `npm t`{{execute}}
-    2. `npm run publish`{{execute}}
-    3. `npm run can-i-deploy`{{execute}}
+    ```
+    const expectedProduct = {
+        id: "10",
+        type: "CREDIT_CARD",
+        name: "28 Degrees",
+        foo: "bar"
+    };
+    ```
+
+    1. `git add . && git commit -m 'feat: add foo'`{{execute}}
+    2. `npm t`{{execute}}
+    3. `npm run publish`{{execute}}
+    4. `npm run can-i-deploy`{{execute}}
    
     You shouldn't be able to deploy!
 
