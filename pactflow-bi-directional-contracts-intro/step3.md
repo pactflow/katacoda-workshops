@@ -32,7 +32,7 @@ When using a black-box style tool, the testing involves the following steps:
 
 Here is the Dredd configuration file, with some properties removed for clarity:
 
-`example-provider-dredd/dredd.yml`{{open}}
+`example-bi-directional-provider-dredd/dredd.yml`{{open}}
 
 <pre class="file" >
 ...
@@ -53,7 +53,7 @@ Dredd will start our provider (`npm start`), read in the OAS file (`./oas/produc
 
 Now we can run the tests:
 
-1. `cd /root/example-provider-dredd`{{execute interrupt}}
+1. `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
 1. `npm t`{{execute interrupt}}
 
 Your ouput should look like this:
@@ -61,17 +61,17 @@ Your ouput should look like this:
 ```
 $ npm t
 
-> product-service@1.0.0 test example-provider-dredd
+> product-service@1.0.0 test example-bi-directional-provider-dredd
 > dredd
 
 
-> product-service@1.0.0 start example-provider-dredd
+> product-service@1.0.0 start example-bi-directional-provider-dredd
 > node server.js
 
 Provider API listening on port 3001...
-warn: API description parser warning in example-provider-dredd/oas/products.yml:14 (from line 14 column 9 to column 17): 'Request Body Object' contains unsupported key 'required'
-warn: API description parser warning in example-provider-dredd/oas/products.yml:73 (from line 73 column 9 to column 15): 'Parameter Object' contains unsupported key 'schema'
-warn: API description parser warning in example-provider-dredd/oas/products.yml:107 (from line 107 column 7 to column 27): 'Schema Object' contains unsupported key 'additionalProperties'
+warn: API description parser warning in example-bi-directional-provider-dredd/oas/products.yml:14 (from line 14 column 9 to column 17): 'Request Body Object' contains unsupported key 'required'
+warn: API description parser warning in example-bi-directional-provider-dredd/oas/products.yml:73 (from line 73 column 9 to column 15): 'Parameter Object' contains unsupported key 'schema'
+warn: API description parser warning in example-bi-directional-provider-dredd/oas/products.yml:107 (from line 107 column 7 to column 27): 'Schema Object' contains unsupported key 'additionalProperties'
 pass: POST (200) /products duration: 72ms
 pass: GET (200) /products duration: 16ms
 pass: GET (200) /product/10 duration: 24ms

@@ -19,7 +19,7 @@ This should pass, because as we discussed above, there are no consumers:
 ```
 $ npm run can-i-deploy
 
-> product-service@1.0.0 can-i-deploy /root/example-provider-dredd
+> product-service@1.0.0 can-i-deploy /root/example-bi-directional-provider-dredd
 > pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-provider-dredd --version="$(npx @pact-foundation/absolute-version)" --to-environment production
 
 npx: installed 47 in 2.835s

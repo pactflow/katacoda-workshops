@@ -11,7 +11,7 @@ Let's see it in action.
 
 ## Provider breaking changes
 
-Change directories into `cd /root/example-provider-dredd`{{execute interrupt}}
+Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
 
 1.  Try changing the provider code in a backwards incompatible way, what happens?
 

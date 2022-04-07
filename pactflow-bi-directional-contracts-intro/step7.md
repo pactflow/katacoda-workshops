@@ -18,7 +18,7 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 Pactflow currently supports pact files as a consumer contract format. In order to produce a consumer contract, you need to decide on a testing approach to capture the contract:
 
-1. Use [Pact](docs.pact.io) - this will be the default choice for many, as it can both mock the API calls and produce a pact file
+1. Use [Pact](http://docs.pact.io) - this will be the default choice for many, as it can both mock the API calls and produce a pact file
 2. Use an existing mocking tools such as Wiremock or Mountebank, or record/replay tools (such as VCR or Polly), and convert the mocks to a pact file after a successful run.
 
 [Read more](https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/pact#strategies-to-capture-consumer-contracts) on these strategies.
