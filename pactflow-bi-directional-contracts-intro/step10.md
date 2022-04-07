@@ -14,21 +14,23 @@ Let's see it in action.
 Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
 
 
-1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key  `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 106/117/118
+1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key  `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 24/38/57/89/106/117/118
 
-    1. `npm t`{{execute}}
-    2. `npm run publish`{{execute}}
-    3. `npm run can-i-deploy`{{execute}}
+    1. `git add . && git commit -m 'feat: remove price'`{{execute}}
+    2. `npm t`{{execute}}
+    3. `npm run publish`{{execute}}
+    4. `npm run can-i-deploy`{{execute}}
    
     OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `price` field? Pactflow knows all of the consumers needs down to the field level. Because no consumer uses `price` this is a safe operation.
 
-    Revert the change `git checkout --`{{execute}}
+    Reset our change `git reset --hard origin/master`{{execute}}
 
-2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 105/113/114
+2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 58/105/113/114
    
-    1. `npm t`{{execute}}
-    2. `npm run publish`{{execute}}
-    3. `npm run can-i-deploy`{{execute}}
+    1. `git add . && git commit -m 'feat: remove name'`{{execute}}
+    2. `npm t`{{execute}}
+    3. `npm run publish`{{execute}}
+    4. `npm run can-i-deploy`{{execute}}
    
     You should have an output like below
    

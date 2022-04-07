@@ -16,9 +16,10 @@ This information will be helpful later on, when we need to check compatibility w
    export PACT_BROKER_BASE_URL=https://YOUR_PACTFLOW_SUBDOMAIN.pactflow.io
    export PACT_BROKER_TOKEN=YOUR_API_TOKEN
    ```
-
-1. `npm run publish`{{execute}}
-1. Go to your Pactflow dashboard and check that a new contract has appeared
+2. `echo $PACT_BROKER_BASE_URL`{{execute}} This should return your base url
+3. `echo $PACT_BROKER_TOKEN`{{execute}} This should return your token, you can now move on
+4. `npm run publish`{{execute}}
+5. Go to your Pactflow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
 
