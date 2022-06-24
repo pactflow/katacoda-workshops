@@ -55,7 +55,7 @@ export class ProductAPIClient {
 
 ```
 
-This class, and specifically the `getProduct()` and `getAllProducts()` methods, will be the target of our contract tests.
+This class, and specifically the `getProduct()` and `getAllProducts()`{{}} methods, will be the target of our contract tests.
 
 ### Check
 
