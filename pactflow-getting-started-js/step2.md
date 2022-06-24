@@ -4,8 +4,8 @@ Time to create our consumer code base.
 
 In our project, we're going to need:
 
-* A model (the `Product` class) to represent the data returned from the Product API
-* A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
+- A model (the `Product` class) to represent the data returned from the Product API
+- A client (the `ProductApiClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
 
 Note that to create a Pact test, you do need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI).
 
@@ -21,7 +21,19 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 ### Create a new Project
 
-Create the following `package.json` to initialise new npm project by choosing `"copy to editor"`. This should open up a new file in the editor to the right, and populate it with the contents below.
+> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab, but it's
+> already planned for a future update. Till then, all exec will be automatically switched to copy when using the visual editor, so you should switch to a tab when prompted
+
+1. Switch to Tab 1
+2. Clicking on the code block when prompted
+3. This should create a new file in your workspace
+4. You can switch to the editor tab
+5. Click the filename above to copy.
+6. Ensure the `editor` tab is open
+7. press `ctrl+p` or `command+p` to search for a file
+8. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+9. You will now be able to see your newly created file
+
 We'll use this approach moving forward as we progress through the workshop.
 
 We need two dev dependencies to run our pact tests:
@@ -31,8 +43,10 @@ We need two dev dependencies to run our pact tests:
 
 We have some other dependencies for our Provider and some additional scripts which can be ignored for now.
 
-<pre class="file" data-filename="package.json" data-target="replace">
-{
+Switch to `Tab 1` and click on the code block below to create filename: `package.json`:
+
+```js
+echo '{
   "name": "pactflow-getting-started-js",
   "version": "0.1.0",
   "dependencies": {
@@ -46,14 +60,14 @@ We have some other dependencies for our Provider and some additional scripts whi
     "publish": "npx pact-broker publish ./pacts --consumer-app-version 1.0.0-someconsumersha --tag master"
   },
   "devDependencies": {
-    "@pact-foundation/pact": "^9.9.12",
+    "@pact-foundation/pact": "^9.17.3",
     "chai": "^4.2.0",
     "mocha": "^8.1.3"
   }
-}
-</pre>
+}' > package.json
+```{{exec}}
 
-Install the dependencies for the project: `npm i`{{execute}}
+Switch to Tab 1 and Install the dependencies for the project: `npm i`{{execute}}
 
 (click on the highlighted command above to run `npm i` automatically in the terminal window to the right. Again, look out for these as we progress through the workshop)
 
@@ -61,40 +75,48 @@ Install the dependencies for the project: `npm i`{{execute}}
 
 Now that we have our basic project, let's create our `Product` domain model:
 
-<pre class="file" data-filename="product.js" data-target="replace">
-class Product {
+
+Switch to `Tab 1` and click on the code block below to create filename: `product.js`:
+
+```js
+echo 'class Product {
   constructor(id, name, type) {
-    this.id = id
-    this.name = name
-    this.type = type
+    this.id = id;
+    this.name = name;
+    this.type = type;
   }
 }
 module.exports = {
-  Product
-}
-</pre>
+  Product,
+}' > product.js;
+```{{exec}}
 
 ### Create our Product API Client
 
 Lastly, here is our API client code. This code is responsible for fetching products from the API, returning a `Product`:
 
-<pre class="file" data-filename="api.js" data-target="replace">
-const axios = require('axios');
-const { Product } = require('./product');
+
+Switch to `Tab 1` and click on the code block below to create filename: `api.js`:
+
+```js
+echo 'const axios = require("axios");
+const { Product } = require("./product");
 
 class ProductApiClient {
   constructor(url) {
-    this.url = url
+    this.url = url;
   }
 
   async getProduct(id) {
-    return axios.get(`${this.url}/products/${id}`).then(r => new Product(r.data.id, r.data.name, r.data.type));
+    return axios
+      .get(`${this.url}/products/${id}`)
+      .then((r) => new Product(r.data.id, r.data.name, r.data.type));
   }
 }
 module.exports = {
-  ProductApiClient
-}
-</pre>
+  ProductApiClient,
+};' > api.js
+```{{exec}}
 
 This class, and specifically the `getProduct()` method, will be the target of our Pact test.
 

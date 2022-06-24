@@ -4,9 +4,9 @@
 
 On the Provider side, Pact needs to replay all of the interactions \(usually HTTP requests\) against your service. There are a number of choices that can be made here, but usually these are the choices:
 
-* Invoke just the controller layer \(in an MVC app, or the "Adapter" in our diagram\) and stub out layers beneath
-* Choosing a real vs mocked out database
-* Choosing to hit mock HTTP servers or mocks for external services
+- Invoke just the controller layer \(in an MVC app, or the "Adapter" in our diagram\) and stub out layers beneath
+- Choosing a real vs mocked out database
+- Choosing to hit mock HTTP servers or mocks for external services
 
 Generally speaking, we test the entire service and mock out external services such as downstream APIs \(which would need their own set of Pact tests\) and databases. This gives you some of the benefits of an integration test without the high costs of maintenance.
 
@@ -16,9 +16,14 @@ This is how you might visualise the coverage of a provider Pact test:
 
 ### Create a new Project
 
-We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-provider-springboot/build.gradle`{{open}} to look at the dependencies needed for our project.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-provider-springboot/build.gradle`{{copy}}
 
-<pre class="file">
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list to look at the dependencies needed for our project.
+
+```
 plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -63,7 +68,7 @@ test {
 	systemProperty("pact.provider.tag", System.getenv("TRAVIS_BRANCH") == null ? "" : System.getenv("TRAVIS_BRANCH"))
 	systemProperty("pact.verifier.publishResults", System.getenv("PACT_BROKER_PUBLISH_VERIFICATION_RESULTS") == null ? "false" : "true")
 }
-</pre>
+```
 
 Install dependencies for the project by running `./gradlew`{{execute}}
 
@@ -75,8 +80,14 @@ Note the system properties at the bottom of the gradle file are used to configur
 
 We are going to use Spring Boot for our API. Spring is beyond the scope of this tutorial, so we will simply focus on the target of our test - which is the `/product/:id` route.
 
-Here is our (abbreviated) REST controller `/root/example-provider-springboot/src/main/java/com/example/springboot/ProductController.java`{{open}}
-<pre class="file">
+Here is our (abbreviated) REST controller `/root/example-provider-springboot/src/main/java/com/example/springboot/ProductController.java`{{copy}}
+
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. Click on the path above to copy it, press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 @RestController
 @CrossOrigin(origins = { "*" })
 @RequestMapping(value = "/", produces = "application/json; charset=utf-8")
@@ -96,8 +107,7 @@ class ProductController {
 
   ...
 }
-</pre>
-
+```
 
 ### Check
 

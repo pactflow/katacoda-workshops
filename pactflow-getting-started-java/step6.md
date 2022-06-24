@@ -15,9 +15,14 @@ This step involves the following:
 1. Executing the provider verification
 1. Handling any provider states
 
-Let's look at our Provider pact test `/root/example-provider-springboot/src/test/java/com/example/springboot/ProductsPactTest.java`{{open}}:
+Let's look at our Provider pact test `/root/example-provider-springboot/src/test/java/com/example/springboot/ProductsPactTest.java`{{copy}}
 
-<pre class="file" >
+1. Ensure the `editor` tab is open
+2. Click on a filename(s) above to copy it
+3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 package com.example.springboot;
 
 // (1) Pact JUnit specific imports
@@ -71,10 +76,9 @@ class ProductsPactTest {
   }
   ...
 }
-</pre>
+```
 
 Run the test: `./gradlew clean test`{{execute}}
-
 
 ## Check
 

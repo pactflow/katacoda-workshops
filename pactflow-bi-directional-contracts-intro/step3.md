@@ -32,9 +32,14 @@ When using a black-box style tool, the testing involves the following steps:
 
 Here is the Dredd configuration file, with some properties removed for clarity:
 
-`example-bi-directional-provider-dredd/dredd.yml`{{open}}
+1. Ensure the `editor` tab is open
+2. Click on a filename(s) below to copy it
+3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-<pre class="file" >
+`example-bi-directional-provider-dredd/dredd.yml`{{copy}}
+
+```
 ...
 language: nodejs
 server: npm start
@@ -45,7 +50,7 @@ loglevel: warning
 config: ./dredd.yml
 blueprint: ./oas/products.yml
 endpoint: 'http://127.0.0.1:3001'
-</pre>
+```
 
 Dredd will start our provider (`npm start`), read in the OAS file (`./oas/products.yml`) and then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:3001`.
 
@@ -53,8 +58,8 @@ Dredd will start our provider (`npm start`), read in the OAS file (`./oas/produc
 
 Now we can run the tests:
 
-1. `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
-1. `npm t`{{execute interrupt}}
+1. `cd /root/example-bi-directional-provider-dredd`{{execute}}
+2. `npm t`{{execute}}
 
 Your ouput should look like this:
 

@@ -17,7 +17,7 @@
     "deploy:provider": "npx pact-broker create-version-tag --pacticipant katacoda-provider --version 1.0.0-someprovidersha --tag prod"
   },
   "devDependencies": {
-    "@pact-foundation/pact": "^9.9.12",
+    "@pact-foundation/pact": "^9.17.3",
     "chai": "^4.2.0",
     "mocha": "^8.1.3"
   }

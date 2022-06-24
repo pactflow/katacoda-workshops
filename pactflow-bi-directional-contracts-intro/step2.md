@@ -6,7 +6,7 @@ As we are following a specification or [design first approach](https://swagger.i
 
 Authoring an OAS document is beyond the scope of this tutorial, but you can find plenty of resources on the internet (such as at [swagger.io](https://swagger.io)).
 
-<pre class="file">
+```
 openapi: 3.0.1
 info:
   title: Product API
@@ -126,7 +126,7 @@ components:
         price:
           type: number
 
-</pre>
+```
 
 As you can see, we have 3 main endpoints:
 
@@ -140,13 +140,18 @@ Having designed our API, we can now set about building it.
 
 Here is the Product API using the [Express JS](https://expressjs.com) framework. Once again, writing an API is beyond the scope of this tutorial.
 
-_NOTE: you can see the full project here: https://github.com/pactflow/example-bi-directional-provider-dredd_
+_NOTE: you can see the full project here: <https://github.com/pactflow/example-bi-directional-provider-dredd>_
 
 We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
-`example-bi-directional-provider-dredd/src/product/product.js`{{open}}
+1. Ensure the `editor` tab is open
+2. Click on a filename(s) below to copy it
+3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-<pre class="file" >
+`example-bi-directional-provider-dredd/src/product/product.js`{{copy}}
+
+```
 class Product {
     constructor(id, type, name, version, price) {
         this.id = id;
@@ -158,11 +163,11 @@ class Product {
 }
 
 module.exports = Product;
-</pre>
+```
 
-`example-bi-directional-provider-dredd/src/product/product.routes.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.routes.js`{{copy}}
 
-<pre class="file" >
+```
 const router = require('express').Router();
 const controller = require('./product.controller');
 
@@ -171,11 +176,11 @@ router.get("/products", controller.getAll);
 router.post("/products", controller.create);
 
 module.exports = router;
-</pre>
+```
 
-`example-bi-directional-provider-dredd/src/product/product.repository.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.repository.js`{{copy}}
 
-<pre class="file" >
+```
 const Product = require('./product');
 
 class ProductRepository {
@@ -202,11 +207,16 @@ class ProductRepository {
 }
 
 module.exports = ProductRepository;
-</pre>
+```
 
-`example-bi-directional-provider-dredd/src/product/product.controller.js`{{open}}
+`example-bi-directional-provider-dredd/src/product/product.controller.js`{{copy}}
 
-<pre class="file" >
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 const Product = require("./product");
 const ProductRepository = require("./product.repository");
 
@@ -226,11 +236,11 @@ exports.getById = async (req, res) => {
 };
 
 exports.repository = repository;
-</pre>
+```
 
-`example-bi-directional-provider-dredd/src/server.js`{{open}}
+`example-bi-directional-provider-dredd/server.js`{{copy}}
 
-<pre class="file" >
+```
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -248,7 +258,7 @@ const init = () => {
 };
 
 init();
-</pre>
+```
 
 ### Check
 

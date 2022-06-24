@@ -7,8 +7,7 @@
     "steps": [
       {
         "title": "Step 1",
-        "text": "step1.md",
-        "background": "step1-start.sh"
+        "text": "step1.md"
       },
       {
         "title": "Step 2",
@@ -43,7 +42,8 @@
       }
     ],
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
     },
     "assets": {},
     "files": []
@@ -53,6 +53,6 @@
     "uilayout": "vscode-terminal-split"
   },
   "backend": {
-    "imageid": "nodejs:12"
+    "imageid": "ubuntu"
   }
 }

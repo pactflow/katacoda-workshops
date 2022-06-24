@@ -14,33 +14,37 @@ This step involves the following:
 
 Create our Provider pact test file `provider.pact.spec.js`:
 
-<pre class="file" data-filename="provider.pact.spec.js" data-target="replace">
-const { Verifier } = require('@pact-foundation/pact');
-const { server} = require('./provider');
+filename: `provider.pact.spec.js`:
+
+```js
+echo 'const { Verifier } = require("@pact-foundation/pact");
+const { server } = require("./provider");
 
 describe("Pact Verification", () => {
-  before((done) => server.listen(8081, done))
+  before((done) => server.listen(8081, done));
 
-  it("validates the expectations of ProductService",  () => {
+  it("validates the expectations of ProductService", () => {
     const opts = {
       logLevel: "INFO",
       providerBaseUrl: "http://localhost:8081",
       providerVersion: "1.0.0-someprovidersha",
       provider: "katacoda-provider",
-      consumerVersionSelectors: [{ tag: 'master', latest: true }, { tag: 'prod', latest: true } ],
+      consumerVersionSelectors: [
+        { tag: "master", latest: true },
+        { tag: "prod", latest: true },
+      ],
       pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
       publishVerificationResult: true,
-      enablePending: true
-    }
+      enablePending: true,
+    };
 
-    return new Verifier(opts).verifyProvider()
-    .then(output => {
-        console.log("Pact Verification Complete!")
-        console.log(output)
-      })
-  })
-});
-</pre>
+    return new Verifier(opts).verifyProvider().then((output) => {
+      console.log("Pact Verification Complete!");
+      console.log(output);
+    });
+  });
+});' > provider.pact.spec.js
+```{{exec}}
 
 And then run it: `npm run test:provider`{{execute}}
 
@@ -65,3 +69,4 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 Your dashboard should look something like this, where your provider has been tagged as having been deployed to `prod`:
 
 ![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)
+```

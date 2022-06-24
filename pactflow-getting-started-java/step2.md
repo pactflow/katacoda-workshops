@@ -4,8 +4,8 @@ Time to create our consumer code base. Your terminal should currently be cloning
 
 In our project, we're going to need:
 
-* A model (the `Product` class) to represent the data returned from the Product API
-* A client (the `ProductClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
+- A model (the `Product` class) to represent the data returned from the Product API
+- A client (the `ProductClient`) which will be responsible for making the HTTP calls to the Product API and returning an internal representation of an Product.
 
 To be able to create a Pact test, you _do_ need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI). That is to say, you can start writing Pact tests before all of your consumer code is ready.
 
@@ -23,9 +23,14 @@ Here, a _Collaborator_ is a component whose job is to communicate with another s
 
 ### Create a new Project
 
-We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-consumer-java-junit/build.gradle`{{open}} to look at the dependencies needed for our project.
+We are going to be using Gradle as our build system, however you are free to use whatever build tool that you prefer (we support several other tools such as Maven and SBT). Open up the file `example-consumer-java-junit/build.gradle`{{copy}}
 
-<pre class="file">
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list to look at the dependencies needed for our project.
+
+```
 plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -62,7 +67,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
-</pre>
+```
 
 Install dependencies for the project by running `./gradlew`{{execute}}
 
@@ -72,8 +77,14 @@ Install dependencies for the project by running `./gradlew`{{execute}}
 
 Now that we have our build system in place, let's create our `Product` domain model:
 
-`example-consumer-java-junit/src/main/java/com/example/products/Product.java`{{open}}
-<pre class="file">
+`example-consumer-java-junit/src/main/java/com/example/products/Product.java`{{copy}}
+
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 @Data
 class Product {
   @JsonFormat( shape = JsonFormat.Shape.STRING)
@@ -89,14 +100,20 @@ class Product {
     this.type = type;
   }
 }
-</pre>
+```
 
 ### Create our Product API Client
 
 Lastly, here is our (abbreviated) API client code. This code is responsible for fetching products from the API, returning a `Product`:
 
-`example-consumer-java-junit/src/main/java/com/example/products/ProductClient.java`{{open}}
-<pre class="file" >
+`example-consumer-java-junit/src/main/java/com/example/products/ProductClient.java`{{copy}}
+
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 public class ProductClient {
   private String url;
 
@@ -122,7 +139,7 @@ public class ProductClient {
 
   ...
 }
-</pre>
+```
 
 This class, and specifically the `getProduct()` method, will be the target of our Pact test.
 
