@@ -94,7 +94,7 @@ Steps `3`, `4` and `5` follow the [3A's (Arrange/Act/Assert) pattern](https://do
 
 It should have created the following file:
 
-`cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`{{execute}}
+`cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json | jq .`{{execute}}
 
 ### Check
 
@@ -102,6 +102,8 @@ Before moving to the next step, check the following:
 
 1. You could run the pact test with `./gradlew clean test`{{execute}}
 1. There is a contract file that has been created at `/root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`
+   1. You can see this in your editor by running `cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json | jq .`{{execute}}
+   2. Or you can click the Editor tab and search for the file with `command+p` or `ctrl+p`
 
 ### References
 

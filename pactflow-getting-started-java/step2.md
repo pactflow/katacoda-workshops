@@ -9,7 +9,7 @@ In our project, we're going to need:
 
 To be able to create a Pact test, you _do_ need to write the code that executes the HTTP requests to your service (in your client class), but you don't need to write the full stack of consumer code (eg. the UI). That is to say, you can start writing Pact tests before all of your consumer code is ready.
 
-_NOTE_: We'll be running the following commands from the sub-project in `/root/example-consumer-java-junit`, and your terminal should already be in this directory.
+_NOTE_: We'll be running the following commands from the sub-project in `/root/example-consumer-java-junit`, and your terminal should already be in this directory, if not try `cd /root/example-consumer-java-junit`{}
 
 ### Scope of a Consumer Pact Test
 

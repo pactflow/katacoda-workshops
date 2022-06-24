@@ -113,7 +113,7 @@ class ProductController {
 
 Before moving to the next step, confirm that your API is working:
 
-Run `./gradlew bootRun`{{execute}} in a terminal. In a separate terminal, you can run `curl localhost:8080/product/1`{{execute}} which should return a response.
+Run `./gradlew bootRun`{{execute}} in a terminal. In a separate terminal, you can run `curl localhost:8080/product/1 | jq .`{{execute}} which should return a response.
 
 Your terminal should look like this:
 

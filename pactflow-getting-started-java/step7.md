@@ -11,19 +11,13 @@ Here are a few things to try to change in `/root/example-provider-springboot/src
 
 1.  Try changing the provider code in a backwards incompatible way, what happens?
 
-        ```
-        // First try commenting out the 'name' key in the Product constructor, then run:
-        ./gradlew clean test
-        ```
-        This should fail!
+    - First try commenting out the 'name' key in the Product constructor, then run: `./gradlew clean test`{{execute}}
+    - This should fail!
 
 2.  Try changing the provider code in a way that won't break existing consumers, but in a traditional "backwards incompatible" way, what happens?
-
-        ```
-        // Try commenting out the 'version' key in the Product constructor, then run:
-        ./gradlew clean test
-        ```
-        This should _not_ fail - no consumers need this field!
+    - Try commenting out the 'version' key in the Product constructor, then run:
+      `./gradlew clean test`{{execute}}
+    - This should _not_ fail - no consumers need this field!
 
 ## The bigger picture
 
@@ -40,6 +34,6 @@ In future workshops, we'll dive further into how to integrate Pact into other st
 
 ## Further material
 
-Learn about gating deployments with `can-i-deploy` by taking the next course: https://katacoda.com/pact/scenarios/pactflow-can-i-deploy-js.
+Learn about gating deployments with `can-i-deploy` by taking the next course: [https://killercoda.com/pactflow/scenario/pactflow-can-i-deploy-js](https://killercoda.com/pactflow/scenario/pactflow-can-i-deploy-js).
 
 You may also be interested in one of our longer form [workshops](https://docs.pact.io/implementation_guides/workshops), or getting deeper into [CI/CD](https://docs.pactflow.io/docs/workshops/ci-cd/) with Pact.
