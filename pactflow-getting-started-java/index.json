@@ -46,7 +46,8 @@
       }
     ],
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
     },
     "assets": {},
     "files": []
