@@ -5,7 +5,7 @@ The course is written in NodeJS, however, extensive experience with the language
 ## Workshop Prerequisites
 
 You must have:
-* completed the [introductory course](https://katacoda.com/pact/scenarios/pactflow-getting-started-js)
+* completed the [introductory course](https://killercoda.com/pactflow/scenario/pactflow-getting-started-js)
 * a Pactflow account (https://pactflow.io)
 * obtained a [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token) from your Pactflow account
 
