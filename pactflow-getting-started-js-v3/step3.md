@@ -11,6 +11,7 @@ Create the pact test:
 Switch to `Tab 1` and click on the code block below to create filename: `consumer.pact.spec.js`:
 
 ```js
+echo '
 // (1) Import the pact library and matching methods
 const { PactV3 } = require("@pact-foundation/pact");
 const { MatchersV3 } = require("@pact-foundation/pact");
@@ -67,8 +68,7 @@ const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
     });
 
 });
-});
-' > consumer.pact.spec.js
+});' > consumer.pact.spec.js
 ```{{exec}}
 
 There's a lot here, so let's break it down a little.
