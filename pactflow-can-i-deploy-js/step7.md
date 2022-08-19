@@ -5,7 +5,7 @@ Now that the provider is in production, and has satisfied the needs of the consu
 This should now pass:
 
 ```
-> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to prod
+> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to-environment prod
 
 Computer says yes \o/
 
