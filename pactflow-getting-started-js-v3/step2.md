@@ -45,7 +45,7 @@ We have some other dependencies for our Provider and some additional scripts whi
 
 Switch to `Tab 1` and click on the code block below to create filename: `package.json`:
 
-````js
+```js
 echo '{
   "name": "pactflow-getting-started-js",
   "version": "0.1.0",
@@ -132,4 +132,3 @@ Before moving to the next step, check the following:
 1. You have run `npm i`{{execute}} and the dependencies have been installed
 1. There is a file called `product.js` in your editor
 1. There is a file called `api.js` in your editor
-````

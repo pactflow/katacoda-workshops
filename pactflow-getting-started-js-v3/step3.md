@@ -10,7 +10,6 @@ Create the pact test:
 
 Switch to `Tab 1` and click on the code block below to create filename: `consumer.pact.spec.js`:
 
-````js
 // (1) Import the pact library and matching methods
 const { PactV3 } = require("@pact-foundation/pact");
 const { MatchersV3 } = require("@pact-foundation/pact");
@@ -27,17 +26,17 @@ const expect = chai.expect;
 
 // (2) Configure our Pact library
 const mockProvider = new PactV3({
-  consumer: "katacoda-consumer-v3",
-  provider: "katacoda-provider-v3",
-  cors: true, // needed for katacoda environment
+consumer: "katacoda-consumer-v3",
+provider: "katacoda-provider-v3",
+cors: true, // needed for katacoda environment
 });
 
 describe("Products API test", () => {
-  it("get product by ID", async () => {
-    // (3) Arrange: Setup our expected interactions
-    //
-    // We use Pact to mock out the backend API
-    const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
+it("get product by ID", async () => {
+// (3) Arrange: Setup our expected interactions
+//
+// We use Pact to mock out the backend API
+const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
 
     mockProvider
       .given("a product with ID 10 exists")
@@ -65,9 +64,11 @@ describe("Products API test", () => {
       // client code unmarshalled it into the object  we expected
       expect(product).to.deep.equal(new Product(10, "Margharita", "pizza"));
     });
-  });
+
+});
 });
 ' > consumer.pact.spec.js
+
 ```{{exec}}
 
 There's a lot here, so let's break it down a little.
@@ -98,4 +99,5 @@ Before moving to the next step, check the following:
   1. You can open the file in Editor tab
 
 _NOTE: in most setups, you wouldn't have a single file with everything in it, but for the purposes of keeping this workshop simple, we have a single test file that does it all._
-````
+
+```
