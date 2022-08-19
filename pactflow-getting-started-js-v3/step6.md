@@ -51,6 +51,6 @@ And then run it: `npm run test:provider`{{execute}}
 
 ## Check
 
-Your dashboard should look something like this, showing the pact as verified (you can ignore any tags applied for now).
+Your dashboard should look something like this, showing the pact as verified.
 
 ![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)

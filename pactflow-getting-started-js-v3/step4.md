@@ -17,7 +17,13 @@ Your dashboard should look something like this:
 
 ![pactflow-dashboard-unverified](./assets/pactflow-dashboard-unverified.png)
 
-Note the pact is currently "unverified" because the provider has ever confirmed it can fulfill the contract. It has been tagged as "master" to indicate it's the latest contract for this current consumer. We'll use [tags](https://docs.pact.io/pact_broker/tags/) to indicate which environment an application is in at any given time.
+Note the pact is currently "unverified" because the provider has never confirmed it can fulfill the contract.
+
+When pacts and verification results are published, we set the "branch" property for the application version.
+
+Read more about [branches](https://docs.pact.io/pact_broker/branches/) in Pact.
+
+When an application version is deployed or released, we use the `record-deployment` or `record-release` commands provided by the Pact Broker CLI to indicate which environment an application is in at any given time.
 
 ## Don't have a Pactflow account?
 

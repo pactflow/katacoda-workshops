@@ -73,7 +73,7 @@ const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
 
 There's a lot here, so let's break it down a little.
 
-Steps `1`, `2`, `3` are JS specific activities to get Pact into a project. Steps `2`, `3`, and `4`, follow the [3A's (Arrange/Act/Assert) pattern](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019#write-your-tests) for authoring unit tests.
+Steps `1`, `2` are JS specific activities to get Pact into a project. Steps `3`, `4`, and `5`, follow the [3A's (Arrange/Act/Assert) pattern](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019#write-your-tests) for authoring unit tests.
 
 1. Import the appropriate library - this will differ depending on language
 2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in Pactflow
