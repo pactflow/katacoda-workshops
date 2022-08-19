@@ -49,7 +49,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 // (3)
 @Provider("pactflow-example-provider-springboot")
-@PactBroker(scheme = "https", host = "${PACT_BROKER_HOST}", tags = {"master", "prod"}, providerTags = "master", enablePendingPacts = "true", authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"))
+@PactBroker(scheme = "https", host = "${PACT_BROKER_HOST}", providerBranch = "${GIT_COMMIT}", enablePendingPacts = "true", authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"))
 class ProductsPactTest {
 
   @Autowired
@@ -75,6 +75,26 @@ class ProductsPactTest {
     repository.save(new Product(10L, "test", "product description", "1.0.0"));
   }
   ...
+}
+```
+
+We choose which contracts to select with consumer version selectors
+   1. Read more about [consumer version selectors](https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors)
+   2. See the [Recommended configuration for verifying pacts
+      ](https://docs.pact.io/provider/recommended_configuration)
+
+See `build.gradle` where we set [system properties](https://docs.pact.io/implementation_guides/jvm/docs/system-properties), such as consumerversionselectors
+
+```
+test {
+	useJUnitPlatform()
+
+	// These properties need to be set on the test JVM process
+	systemProperty("pact.provider.version", System.getenv("GIT_COMMIT") == null ? "" : System.getenv("GIT_COMMIT"))
+	systemProperty("pact.provider.tag", System.getenv("GIT_BRANCH") == null ? "" : System.getenv("GIT_BRANCH"))
+	systemProperty("pact.provider.branch", System.getenv("GIT_BRANCH") == null ? "" : System.getenv("GIT_BRANCH"))
+	systemProperty("pactbroker.consumerversionselectors.rawjson", "[{\"mainBranch\":true}]")
+	systemProperty("pact.verifier.publishResults", System.getenv("PACT_BROKER_PUBLISH_VERIFICATION_RESULTS") == null ? "false" : "true")
 }
 ```
 
