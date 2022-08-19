@@ -35,8 +35,8 @@ const opts = {
 logLevel: "INFO",
 providerBaseUrl: "http://localhost:8081",
 providerVersion: "1.0.0-someprovidersha",
-provider: "katacoda-provider-v2",
-consumerVersionSelectors: [{{ branch: "main"} }],
+provider: "katacoda-provider",
+consumerVersionSelectors: [{ branch: "main"} ],
 pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
 // pactUrls: [
 // `${process.env.PWD}/pacts/katacoda-consumer-katacoda-provider.json`,
@@ -61,18 +61,17 @@ And then run it: `npm run test:provider`{{execute}}
 
 Now we've created our provider and confirmed it can meet the needs of its consumers, we can deploy it to production!
 
-As with the consumer, we can first check if this is safe to do: `npm run can-deploy:provider`{{execute}}
+As with the consumer, we can first check if this is safe to do: `npm run can-i-deploy:provider`{{execute}}
 
 Great! Because the Provider meets the needs of the consumer (and the consumer is not yet in production) it is safe to do.
 
 _REMINDER: The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production_
 
-You can read more about [can-i-deploy]
-](https://docs.pact.io/pact_broker/can_i_deploy)
+You can read more about [can-i-deploy](https://docs.pact.io/pact_broker/can_i_deploy)
 
 When an application version is deployed or released, we use the record-deployment or record-release commands provided by the Pact Broker CLI.
 
-Deploy the provider: `npm run deploy:provider`{{execute}}
+Deploy the provider: `npm run record-deployment:provider`{{execute}}
 
 When a server based application is deployed to an instance, the previously deployed version is removed from that environment, and no longer needs to be supported. When an application like a mobile app or code library is released, the previously released versions are still available, and still need to be supported for a time at least.
 
@@ -90,6 +89,6 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 
 ## Check
 
-Your dashboard should look something like this, where your provider has been marked as having been deployed to `prod`:
+Your dashboard should look something like this, where your provider has been marked as having been deployed to `production`:
 
 ![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)

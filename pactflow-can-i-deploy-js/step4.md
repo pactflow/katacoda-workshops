@@ -29,10 +29,10 @@ When an application version is deployed or released, we use the `record-deployme
 
 If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io) that uses the [open source pact broker](https://github.com/pact-foundation/pact_broker/).
 
+```
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
 export PACT_BROKER_USERNAME=dXfltyFMgNOFZAxr8io9wJ37iUpY42M
 export PACT_BROKER_PASSWORD=O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1
-
 ```{{execute}}
 
 The account is protected using basic auth. Use the username `dXfltyFMgNOFZAxr8io9wJ37iUpY42M`, and password `O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1` to view the pacts.
@@ -43,13 +43,13 @@ So we've created our consumer, published the contract and now it's time to deplo
 
 Before we do, however, we can check if this is safe to do:
 
-`npm run can-deploy:consumer`{{execute}}
+`npm run can-i-deploy:consumer`{{execute}}
 
 You should see the following output:
 
+```
 
-
-> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to prod
+> npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to-environment production
 
 Computer says no ¯\_(ツ)\_/¯
 
@@ -57,7 +57,7 @@ Computer says no ¯\_(ツ)\_/¯
 | ----------------- | --------------------- | ----------------- | --------- | -------- |
 | katacoda-consumer | 1.0.0-someconsumersha | katacoda-provider | ???       | ???      |
 
-There is no verified pact between version 1.0.0-someconsumersha of katacoda-consumer and the latest version of katacoda-provider with tag prod (no such version exists)
+There is no verified pact between version 1.0.0-someconsumersha of katacoda-consumer and a version of katacoda-provider currently deployed or released to production (no version is currently recorded as deployed/released in this environment)
 
 ```
 
