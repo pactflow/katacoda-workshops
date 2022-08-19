@@ -10,7 +10,7 @@ describe("Pact Verification", () => {
       providerBaseUrl: "http://localhost:8081",
       providerVersion: "1.0.0-someprovidersha",
       provider: "katacoda-provider",
-      consumerVersionSelectors: [{ tag: 'master', latest: true }, { tag: 'prod', latest: true } ],
+      consumerVersionSelectors: [ { branch: "main"} ],
       pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
       publishVerificationResult: true,
       enablePending: true
