@@ -47,23 +47,27 @@ Switch to `Tab 1` and click on the code block below to create filename: `package
 
 ```js
 echo '{
-  "name": "pactflow-getting-started-js",
-  "version": "0.1.0",
-  "dependencies": {
-    "axios": "^0.19.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  },
-  "scripts": {
-    "test:consumer": "mocha --exit --timeout 30000 consumer.pact.spec.js",
-    "test:provider": "mocha --exit --timeout 30000 provider.pact.spec.js",
-    "publish": "npx pact-broker publish ./pacts --consumer-app-version 1.0.0-someconsumersha --tag master"
-  },
-  "devDependencies": {
-    "@pact-foundation/pact": "^9.17.3",
-    "chai": "^4.2.0",
-    "mocha": "^8.1.3"
-  }
+"name": "pactflow-getting-started-js",
+"version": "0.1.0",
+"dependencies": {
+"axios": "^0.27.2",
+"cors": "^2.8.5",
+"express": "^4.18.1"
+},
+"scripts": {
+"test:consumer": "mocha --exit --timeout 30000 consumer.pact.spec.js",
+"test:provider": "mocha --exit --timeout 30000 provider.pact.spec.js",
+"publish": "npx pact-broker publish ./pacts --consumer-app-version 1.0.0-someconsumersha --branch main",
+"can-i-deploy:consumer": "npx pact-broker can-i-deploy --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --to-environment production",
+"can-i-deploy:provider": "npx pact-broker can-i-deploy --pacticipant katacoda-provider --version 1.0.0-someprovidersha --to-environment production",
+"record-deployment:consumer": "npx pact-broker record-deployment --pacticipant katacoda-consumer --version 1.0.0-someconsumersha --environment production",
+"record-deployment:provider": "npx pact-broker record-deployment --pacticipant katacoda-provider --version 1.0.0-someprovidersha --environment production"
+},
+"devDependencies": {
+"@pact-foundation/pact": "^10.1.1",
+"chai": "^4.3.6",
+"mocha": "^10.0.0"
+}
 }' > package.json
 ```{{exec}}
 
