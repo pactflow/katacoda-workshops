@@ -14,6 +14,8 @@ This step involves the following:
 
 Create our Provider pact test file `provider.pact.spec.js`:
 
+```js
+echo '
 const { Verifier } = require("@pact-foundation/pact");
 const { server } = require("./provider");
 
@@ -43,7 +45,6 @@ console.log(output);
 });
 });
 });' > provider.pact.spec.js
-
 ```{{exec}}
 
 And then run it: `npm run test:provider`{{execute}}
@@ -53,5 +54,3 @@ And then run it: `npm run test:provider`{{execute}}
 Your dashboard should look something like this, showing the pact as verified (you can ignore any tags applied for now).
 
 ![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)
-
-```

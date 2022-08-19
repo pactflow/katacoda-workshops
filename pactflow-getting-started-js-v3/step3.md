@@ -87,7 +87,7 @@ Steps `1`, `2`, `3` are JS specific activities to get Pact into a project. Steps
 
 It should have created the following file:
 
-`cat pacts/katacoda-consumer-katacoda-provider.json | jq .`{{execute}}
+`cat pacts/katacoda-consumer-v3-katacoda-provider-v3.json | jq .`{{execute}}
 
 ### Check
 
@@ -95,7 +95,7 @@ Before moving to the next step, check the following:
 
 1. You could run the pact test with `npm run test:consumer`{{execute}}
 1. There is a contract file that has been created at `pacts/katacoda-consumer-katacoda-provider.json`
-  1. Try this in tab 1 `cat pacts/katacoda-consumer-katacoda-provider.json | jq .`{{execute}}
+  1. Try this in tab 1 `cat pacts/katacoda-consumer-v3-katacoda-provider-v3.json | jq .`{{execute}}
   1. You can open the file in Editor tab
 
 _NOTE: in most setups, you wouldn't have a single file with everything in it, but for the purposes of keeping this workshop simple, we have a single test file that does it all._
