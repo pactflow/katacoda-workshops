@@ -13,11 +13,15 @@ Here are a few things to try to see what scenarios Pact can help you with:
    2. `npm run test:provider`{{execute}}
    3. `npm run can-i-deploy:provider`{{execute}} - This should _not_ fail - no consumers need this field!
 1. Try adding a new expectation on the provider by updating the expected product in `consumer.pact.spec.js`:
-   1. `npm run test:consumer`{{execute}}
-   2. `npm run publish`{{execute}}
-   3. `npm run can-i-deploy:consumer`{{execute}} - You shouldn't be able to deploy as no verifications are published!
-   4. `npm run test:provider`{{execute}} - this should fail as the provider is not compatible with the latest pact
-   5. `npm run can-i-deploy:consumer`{{execute}} - this should fail as the provider cannot satisfy the new field requirement
+   1. Update `consumer.pact.spec.js` by adding a new field in the `expectedProduct` eg. `visibility: true`
+   2. bump the version number in the `package.json` file under the `publish` entry to `1.0.1-someprovidersha`
+      1. We want a new version number every time we change our Pact contract, otherwise we will get non-determinstic results
+   3. bump the version number in the `package.json` file under the `can-i-deploy:consumer` entry to `1.0.1-someprovidersha`
+   4. `npm run test:consumer`{{execute}}
+   5. `npm run publish`{{execute}}
+   6. `npm run can-i-deploy:consumer`{{execute}} - You shouldn't be able to deploy as no verifications are published!
+   7. `npm run test:provider`{{execute}} - this should fail as the provider is not compatible with the latest pact
+   8. `npm run can-i-deploy:consumer`{{execute}} - this should fail as the provider cannot satisfy the new field requirement
 
 ## Further material
 
