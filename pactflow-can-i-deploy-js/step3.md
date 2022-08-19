@@ -62,7 +62,7 @@ const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
     expect(product).to.deep.equal(new Product(10, "Margharita", "pizza"));
 
 });
-});;' > consumer.pact.spec.js
+});' > consumer.pact.spec.js
 ```{{exec}}
 
 There's a lot here, so let's break it down a little.
