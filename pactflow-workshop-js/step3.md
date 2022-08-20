@@ -128,6 +128,8 @@ To simplify running the tests, add this to `consumer/package.json`:
 
 Running this test still passes, but it creates a pact file which we can use to validate our assumptions on the provider side, and have conversation around.
 
+Click - `npm run test:pact --prefix consumer`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix consumer
 

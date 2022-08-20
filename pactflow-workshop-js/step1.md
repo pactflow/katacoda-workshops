@@ -44,8 +44,8 @@ export class API {
 }
 ```
 
-After forking or cloning the repository, we may want to install the dependencies `npm install`.
-We can run the client with `npm start --prefix consumer` - it should fail with the error below, because the Provider is not running.
+After forking or cloning the repository, we may want to install the dependencies `npm install`{{execute}}.
+We can run the client with `npm start --prefix consumer`{{execute}} - it should fail with the error below, because the Provider is not running.
 
 ![Failed step1 page](diagrams/workshop_step1_failed_page.png)
 

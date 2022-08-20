@@ -40,6 +40,8 @@ stateHandlers: {
 
 Let's see how we go now:
 
+Click - `npm run test:pact --prefix provider`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix provider
 

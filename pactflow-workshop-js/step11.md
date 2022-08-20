@@ -12,6 +12,8 @@ In this workshop we will be using the open source Pact broker.
 
 In the root directory, run:
 
+Click - `docker-compose up`{{execute}}
+
 ```console
 docker-compose up
 ```
@@ -26,6 +28,8 @@ First, in the consumer project we need to tell Pact about our broker. We can use
 ```
 
 Now run
+
+Click - `npm run test:pact --prefix consumer`{{execute}}
 
 ```console
 ❯ npm run test:pact --prefix consumer
@@ -49,6 +53,8 @@ Ran all test suites matching /pact.spec.js/i.
 ```
 
 To publish the pacts:
+
+Click - `npm run pact:publish --prefix consumer`{{execute}}
 
 ```
 ❯ npm run pact:publish --prefix consumer
@@ -90,6 +96,8 @@ publishVerificationResult: process.env.CI ||
 ```
 
 Let's run the provider verification one last time after this change. It should print a few notices showing which pact(s) it has found from the broker, and why they were selected:
+
+Click - `PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true npm run test:pact --prefix provider`{{execute}}
 
 ```console
 ❯ PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true npm run test:pact --prefix provider
@@ -139,6 +147,8 @@ With just a simple use of the `pact-broker` [can-i-deploy tool](https://docs.pac
 
 You can run the `pact-broker can-i-deploy` checks as follows:
 
+Click - `npx pact-broker can-i-deploy --pacticipant FrontendWebsite --broker-base-url http://localhost:8000 --broker-username pact_workshop --broker-password pact_workshop --latest`{{execute}}
+
 ```console
 ❯ npx pact-broker can-i-deploy \
                --pacticipant FrontendWebsite \
@@ -156,19 +166,24 @@ FrontendWebsite | fe0b6a3   | ProductService | 1.0.0     | true
 All required verification results are published and successful
 
 ----------------------------
+```
 
+Click - `npx pact-broker can-i-deploy --pacticipant ProductService --broker-base-url http://localhost:8000 --broker-username pact_workshop --broker-password pact_workshop --latest`{{execute}}
+
+```console
 ❯ npx pact-broker can-i-deploy \
-                --pacticipant ProductService \
-                --broker-base-url http://localhost:8000 \
-                --broker-username pact_workshop \
-                --broker-password pact_workshop \
-                --latest
+ --pacticipant ProductService \
+ --broker-base-url http://localhost:8000 \
+ --broker-username pact_workshop \
+ --broker-password pact_workshop \
+ --latest
 
 Computer says yes \o/
 
-CONSUMER        | C.VERSION | PROVIDER       | P.VERSION | SUCCESS?
-----------------|-----------|----------------|-----------|---------
-FrontendWebsite | fe0b6a3   | ProductService | 1.0.0     | true
+| CONSUMER        | C.VERSION | PROVIDER       | P.VERSION | SUCCESS? |
+| --------------- | --------- | -------------- | --------- | -------- |
+| FrontendWebsite | fe0b6a3   | ProductService | 1.0.0     | true     |
 
 All required verification results are published and successful
+----------------------------
 ```

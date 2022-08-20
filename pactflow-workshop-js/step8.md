@@ -84,6 +84,8 @@ test("no auth token", async () => {
 
 Generate a new Pact file:
 
+Click - `npm run test:pact --prefix consumer`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix consumer
 
@@ -108,6 +110,8 @@ Ran all test suites matching /pact.spec.js/i.
 We should now have two new interactions in our pact file.
 
 Let's test the provider:
+
+Click - `npm run test:pact --prefix provider`{{execute}}
 
 ```console
 ❯ npm run test:pact --prefix provider

@@ -51,6 +51,8 @@ Authorization: Bearer 2006-01-02T15:04
 
 Let's test this out:
 
+Click - `npm run test:pact --prefix provider`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix provider
 

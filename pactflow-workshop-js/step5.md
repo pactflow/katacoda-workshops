@@ -37,6 +37,8 @@ describe("getting one product", () => {
 
 Let's run and generate an updated pact file on the client:
 
+Click - `npm run test:pact --prefix consumer`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix consumer
 
@@ -57,6 +59,8 @@ Ran all test suites matching /pact.spec.js/i.
 Now we run the provider tests again with the updated contract:
 
 Run the command:
+
+Click - `npm run test:pact --prefix provider`{{execute}}
 
 ```console
 ❯ npm run test:pact --prefix provider

@@ -27,6 +27,8 @@ requestFilter: (req, res, next) => {
 
 We can now run the Provider tests
 
+Click - `npm run test:pact --prefix provider`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix provider
 

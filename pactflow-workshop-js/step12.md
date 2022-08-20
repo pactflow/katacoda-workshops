@@ -63,6 +63,8 @@ pact
 
 Now run
 
+Click - `npm run test:pact --prefix consumer`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix consumer
 
@@ -82,6 +84,8 @@ PASS src/api.pact.spec.js
 ```
 
 Then publish your pacts:
+
+Click - `npm run pact:publish --prefix consumer`{{execute}}
 
 ```
 ❯ npm run pact:publish --prefix consumer
@@ -117,6 +121,8 @@ pactBrokerToken: process.env.PACT_BROKER_TOKEN || 'pact_workshop',
 
 Let's run the provider verification one last time after this change:
 
+Click - `npm run test:pact --prefix provider`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix provider
 
@@ -139,6 +145,8 @@ As per step 11, we can use the `can-i-deploy` command to gate releases.
 
 You can run the `pact-broker can-i-deploy` checks as follows:
 
+Click - `pact-broker can-i-deploy --pacticipant FrontendWebsite --latest`{{execute}}
+
 ```console
 ❯ pact-broker can-i-deploy \
                --pacticipant FrontendWebsite \
@@ -153,7 +161,11 @@ FrontendWebsite | fe0b6a3   | ProductService | 1.0.0     | true
 All required verification results are published and successful
 
 ----------------------------
+```
 
+Click - `pact-broker can-i-deploy --pacticipant ProductService --latest`{{execute}}
+
+```console
 ❯ pact-broker can-i-deploy \
                 --pacticipant ProductService \
                 --latest

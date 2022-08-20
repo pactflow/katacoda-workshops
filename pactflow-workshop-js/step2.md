@@ -54,6 +54,8 @@ describe("API", () => {
 
 Let's run this test and see it all pass:
 
+Click - `npm test --prefix consumer`{{execute}}
+
 ```console
 ❯ npm test --prefix consumer
 
@@ -69,7 +71,7 @@ Time:        1.03s
 Ran all test suites.
 ```
 
-If you encounter failing tests after running `npm test --prefix consumer`, make sure that the current branch is `step2`.
+If you encounter failing tests after running `npm test --prefix consumer`{{execute}}, make sure that the current branch is `step2`.
 
 Meanwhile, our provider team has started building out their API in parallel. Let's run our website against our provider (you'll need two terminals to do this):
 

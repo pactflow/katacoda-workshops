@@ -66,6 +66,8 @@ test("product does not exist", async () => {
 
 Notice that our new tests look almost identical to our previous tests, and only differ on the expectations of the _response_ - the HTTP request expectations are exactly the same.
 
+Click - `npm run test:pact --prefix consumer`{{execute}}
+
 ```console
 ❯ npm run test:pact --prefix consumer
 
@@ -87,6 +89,8 @@ Ran all test suites matching /pact.spec.js/i.
 ```
 
 What does our provider have to say about this new test:
+
+Click - `npm run test:pact --prefix provider`{{execute}}
 
 ```console
 ❯ npm run test:pact --prefix provider
@@ -130,7 +134,7 @@ Failures:
            expected 404 but was 200
 ```
 
-We expected this failure, because the product we are requesing does in fact exist! What we want to test for, is what happens if there is a different _state_ on the Provider. This is what is referred to as "Provider states", and how Pact gets around test ordering and related issues.
+We expected this failure, because the product we are requesting does in fact exist! What we want to test for, is what happens if there is a different _state_ on the Provider. This is what is referred to as "Provider states", and how Pact gets around test ordering and related issues.
 
 We could resolve this by updating our consumer test to use a known non-existent product, but it's worth understanding how Provider states work more generally.
 
