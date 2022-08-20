@@ -34,6 +34,7 @@ logLevel: "INFO",
 providerBaseUrl: "http://localhost:8081",
 providerVersion: "1.0.0-someprovidersha",
 provider: "katacoda-provider",
+providerBranch: "main",
 consumerVersionSelectors: [{ branch: "main"}],
 pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
 // pactUrls: [

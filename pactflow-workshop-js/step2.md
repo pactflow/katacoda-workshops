@@ -75,12 +75,16 @@ If you encounter failing tests after running `npm test --prefix consumer`{{execu
 
 Meanwhile, our provider team has started building out their API in parallel. Let's run our website against our provider (you'll need two terminals to do this):
 
+Click - `npm start --prefix provider`{{execute}}
+
 ```console
 # Terminal 1
 ❯ npm start --prefix provider
 
 Provider API listening on port 8080...
 ```
+
+Click - `npm start --prefix consumer`{{execute}}
 
 ```console
 # Terminal 2
