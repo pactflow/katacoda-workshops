@@ -1,2 +1,2 @@
 echo "Changing branch to step"
-git stash && checkout step1
+git stash && git checkout step1

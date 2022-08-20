@@ -29,4 +29,4 @@ There are two components in scope for our workshop.
 
 ## Learning objectives
 
-If running this as a team workshop format, you may want to take a look through the [learning objectives](./LEARNING.md).
+If running this as a team workshop format, you may want to take a look through the [learning objectives](https://github.com/pact-foundation/pact-workshop-js/blob/master/LEARNING.md).
