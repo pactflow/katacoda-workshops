@@ -27,7 +27,14 @@ As there are plenty of [example projects](https://docs.pactflow.io/docs/examples
 
 ### The contract test
 
-Let's dive in! First, let's open up the API spec and go through the key bits: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
+Let's dive in! First, let's open up the API spec and go through the key bits:
+
+1. Ensure the `editor` tab is open
+2. Click on a filename(s) below to copy it
+3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+`example-bi-directional-consumer-mountebank/src/api.spec.js`{{copy}}
 
 The following key libraries and tools are used:
 
@@ -38,7 +45,7 @@ The following key libraries and tools are used:
 
 At the start of our test, we configure a few important lifecycle hooks:
 
-<pre class="file">
+```
   const mb = new Mountebank();                                          // (1)
   const api = new ProductAPIClient(`http://localhost:${imposterPort}`); // (2)
   const imposter = new Imposter()                                       // (3)
@@ -48,7 +55,7 @@ At the start of our test, we configure a few important lifecycle hooks:
   beforeAll(() => startAndClearStubs());         // (4)
   afterEach(() => writeStubs(mb, imposterPort)); // (5)
   afterAll(() => stopStubs());                   // (6)
-</pre>
+```
 
 1. First, we use a [neat little library](https://github.com/AngelaE/ts-mountebank) that wraps the Mountebank API for us, enabling us to configure Mountebank mocks in code.
 1. We create a new `ProductAPIClient`, directing it to send API calls to the Mountebank mock server, instead of the real one
@@ -56,15 +63,15 @@ At the start of our test, we configure a few important lifecycle hooks:
 
 We then have a few lifecycle methods:
 
-4. Before any tests run, we must start the Mountebank mock server
-5. After each test, we will use a little utility to inspect what mocks were called, and write them to a pact file
-6. At the end of all tests, we shut down the Mountebank process
+1. Before any tests run, we must start the Mountebank mock server
+1. After each test, we will use a little utility to inspect what mocks were called, and write them to a pact file
+1. At the end of all tests, we shut down the Mountebank process
 
 #### Test
 
 Now that we have the infrastructure in place, we can simply write our tests.
 
-<pre class="file">
+```
   describe("retrieving products", () => {
     test("products exists", async () => {
       // (1) Arrange
@@ -89,7 +96,7 @@ Now that we have the infrastructure in place, we can simply write our tests.
       expect(products).toStrictEqual([new Product(expectedProduct)]);
     });
   });
-</pre>
+```
 
 There's a lot here, so let's break it down a little.
 
@@ -103,8 +110,9 @@ After each `test` block finishes successfully, the `afterEach` block will append
 
 To generate our pact file, we have created a few helper functions to inspect Mountebank and write the mocks to file
 
-- `example-bi-directional-consumer-mountebank/test/mountebank.js`{{open}}
-- `example-bi-directional-consumer-mountebank/test/mountebankSerialiser.js`{{open}}
+- `example-bi-directional-consumer-mountebank/test/mountebank.js`{{copy}}
+
+- `example-bi-directional-consumer-mountebank/test/mountebankSerialiser.js`{{copy}}
 
 To extract the mock information, we have a few choices (see http://www.mbtest.org/docs/api/mocks). In this case, when we start Mountebank, we actually pass the `--debug` [flag](http://www.mbtest.org/docs/commandLine#start) giving us a really important behaviour:
 
@@ -126,5 +134,6 @@ OK, time to run the tests!
 
 ### Check
 
-1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json`{{open}}
-2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json`{{copy}}
+   1. Switch to Tab 1 and run `cat pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-dredd.json | jq .`{{exec}}
+2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{copy}}

@@ -47,9 +47,10 @@
       }
     ],
     "intro": {
-      "text": "intro.md"
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
     },
-    "assets": { },
+    "assets": {},
     "files": []
   },
   "environment": {
@@ -57,6 +58,6 @@
     "uilayout": "editor-terminal"
   },
   "backend": {
-    "imageid": "openjdk:15"
+    "imageid": "ubuntu"
   }
 }

@@ -1,0 +1,85 @@
+name: kata tests
+
+on:
+  workflow_dispatch:
+
+env:
+  PACT_BROKER_BASE_URL: https://testdemo.pactflow.io
+  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_CI_CD_WORKSHOP }}
+
+jobs:
+  test_can_i_deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [16.x]
+        folder: [pactflow-can-i-deploy-js, pactflow-can-i-deploy-v3]
+
+    env:
+      root: ${{ matrix.folder }}/assets
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x for ${{ matrix.folder }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: "npm"
+          cache-dependency-path: ${{ env.root }}/package-lock.json
+      - run: npm ci
+        working-directory: ${{ env.root }}
+      - run: npm run test:consumer
+        name: test:consumer ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run publish
+        name: publish ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: GIT_BRANCH=${GITHUB_REF#refs/heads/} npm run test:provider
+        name: test:provider ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run can-i-deploy:provider
+        name: can-i-deploy:provider ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run record-deployment:provider
+        name: record-deployment:provider ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run can-i-deploy:consumer
+        name: can-i-deploy:consumer ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run record-deployment:consumer
+        name: record-deployment:consumer ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+
+  test_getting_started_js:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [16.x]
+        folder: [pactflow-getting-started-js, pactflow-getting-started-js-v3]
+
+    env:
+      root: ${{ matrix.folder }}/assets
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x for ${{ matrix.folder }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: "npm"
+          cache-dependency-path: ${{ env.root }}/package-lock.json
+      - run: npm ci
+        working-directory: ${{ env.root }}
+      - run: npm run test:consumer
+        name: test:consumer ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: npm run publish
+        name: publish ${{ matrix.folder }}
+        working-directory: ${{ env.root }}
+      - run: GIT_BRANCH=${GITHUB_REF#refs/heads/} npm run test:provider
+        name: test:provider ${{ matrix.folder }}
+        working-directory: ${{ env.root }}

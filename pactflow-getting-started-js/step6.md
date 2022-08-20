@@ -8,45 +8,57 @@ _NOTE: Credentials from the previous step will be required for this step to run.
 
 This step involves the following:
 
-1. Starting the API \(line 5\)
-1. Telling Pact to use the contracts stored in Pactflow and where the Product API will be running \(lines 8-16\)
-1. Running the Provider verification task \(line 18\)
+1. Starting the API
+2. Telling Pact to use the contracts stored in Pactflow and where the Product API will be running with consumer, and which contracts to select with consumer version selectors
+   1. Read more about [consumer version selectors](https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors)
+   2. See the [Recommended configuration for verifying pacts
+      ](https://docs.pact.io/provider/recommended_configuration)
+3. Running the Provider verification task
 
 Create our Provider pact test file `provider.pact.spec.js`:
 
-<pre class="file" data-filename="provider.pact.spec.js" data-target="replace">
-const { Verifier } = require('@pact-foundation/pact');
-const { server} = require('./provider');
+```js
+echo '
+const { Verifier } = require("@pact-foundation/pact");
+const { server } = require("./provider");
 
 describe("Pact Verification", () => {
-  before((done) => server.listen(8081, done))
+// (1) Starting the Provider API
 
-  it("validates the expectations of ProductService",  () => {
-    const opts = {
-      logLevel: "INFO",
-      providerBaseUrl: "http://localhost:8081",
-      providerVersion: "1.0.0-someprovidersha",
-      provider: "katacoda-provider",
-      consumerVersionSelectors: [{ tag: 'master', latest: true }, { tag: 'prod', latest: true } ],
-      pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
-      publishVerificationResult: true,
-      enablePending: true
-    }
+before((done) => server.listen(8081, done));
 
-    return new Verifier(opts).verifyProvider()
-    .then(output => {
-        console.log("Pact Verification Complete!")
-        console.log(output)
-      })
-  })
+it("validates the expectations of ProductService", () => {
+// (2) Telling Pact to use the contracts stored in Pactflow and where the Product API will be running
+const opts = {
+logLevel: "INFO",
+providerBaseUrl: "http://localhost:8081",
+providerVersion: "1.0.0-someprovidersha",
+provider: "katacoda-provider",
+providerBranch: "main",
+consumerVersionSelectors: [{ branch: "main"}],
+pactBrokerUrl: process.env.PACT_BROKER_BASE_URL,
+// pactUrls: [
+// `${process.env.PWD}/pacts/katacoda-consumer-katacoda-provider.json`,
+// ],
+publishVerificationResult: true,
+enablePending: true,
+};
+
+    // (3) Running the Provider verification task
+    return new Verifier(opts).verifyProvider().then((output) => {
+      console.log("Pact Verification Complete!");
+      console.log(output);
+    });
+
 });
-</pre>
+});' > provider.pact.spec.js
+
+```{{exec}}
 
 And then run it: `npm run test:provider`{{execute}}
 
-
 ## Check
 
-Your dashboard should look something like this, showing the pact as verified (you can ignore any tags applied for now).
+Your dashboard should look something like this, showing the pact as verified.
 
 ![pactflow-dashboard-provider-verifier](./assets/pactflow-dashboard-provider-verified-prod.png)

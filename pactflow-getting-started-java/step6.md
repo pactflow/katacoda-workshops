@@ -15,9 +15,14 @@ This step involves the following:
 1. Executing the provider verification
 1. Handling any provider states
 
-Let's look at our Provider pact test `/root/example-provider-springboot/src/test/java/com/example/springboot/ProductsPactTest.java`{{open}}:
+Let's look at our Provider pact test `/root/example-provider-springboot/src/test/java/com/example/springboot/ProductsPactTest.java`{{copy}}
 
-<pre class="file" >
+1. Ensure the `editor` tab is open
+2. Click on a filename(s) above to copy it
+3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 package com.example.springboot;
 
 // (1) Pact JUnit specific imports
@@ -44,7 +49,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 // (3)
 @Provider("pactflow-example-provider-springboot")
-@PactBroker(scheme = "https", host = "${PACT_BROKER_HOST}", tags = {"master", "prod"}, providerTags = "master", enablePendingPacts = "true", authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"))
+@PactBroker(scheme = "https", host = "${PACT_BROKER_HOST}", providerBranch = "${GIT_COMMIT}", enablePendingPacts = "true", authentication = @PactBrokerAuth(token = "${PACT_BROKER_TOKEN}"))
 class ProductsPactTest {
 
   @Autowired
@@ -71,10 +76,29 @@ class ProductsPactTest {
   }
   ...
 }
-</pre>
+```
+
+We choose which contracts to select with consumer version selectors
+   1. Read more about [consumer version selectors](https://docs.pact.io/pact_broker/advanced_topics/consumer_version_selectors)
+   2. See the [Recommended configuration for verifying pacts
+      ](https://docs.pact.io/provider/recommended_configuration)
+
+See `build.gradle` where we set [system properties](https://docs.pact.io/implementation_guides/jvm/docs/system-properties), such as consumerversionselectors
+
+```
+test {
+	useJUnitPlatform()
+
+	// These properties need to be set on the test JVM process
+	systemProperty("pact.provider.version", System.getenv("GIT_COMMIT") == null ? "" : System.getenv("GIT_COMMIT"))
+	systemProperty("pact.provider.tag", System.getenv("GIT_BRANCH") == null ? "" : System.getenv("GIT_BRANCH"))
+	systemProperty("pact.provider.branch", System.getenv("GIT_BRANCH") == null ? "" : System.getenv("GIT_BRANCH"))
+	systemProperty("pactbroker.consumerversionselectors.rawjson", "[{\"mainBranch\":true}]")
+	systemProperty("pact.verifier.publishResults", System.getenv("PACT_BROKER_PUBLISH_VERIFICATION_RESULTS") == null ? "false" : "true")
+}
+```
 
 Run the test: `./gradlew clean test`{{execute}}
-
 
 ## Check
 

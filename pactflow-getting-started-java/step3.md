@@ -6,9 +6,14 @@ Pact implements a specific type of integration test called a contract test. Mart
 
 > An integration contract test is a test at the boundary of an external service verifying that it meets the contract expected by a consuming service — [Martin Fowler](https://martinfowler.com/bliki/IntegrationContractTest.html)
 
-Open the pact test: `example-consumer-java-junit/src/test/java/com/example/products/ProductsPactTest.java`{{open}}
+Open the pact test: `example-consumer-java-junit/src/test/java/com/example/products/ProductsPactTest.java`{{copy}}
 
-<pre class="file">
+1. Click the filename above to copy.
+2. Ensure the `editor` tab is open
+3. press `ctrl+p` or `command+p` to search for a file
+4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
+
+```
 package com.example.products;
 
 // (1) Pact dependencies
@@ -69,7 +74,7 @@ public class ProductsPactTest {
 
   ...
 }
-</pre>
+```
 
 There's a lot here, so let's break it down a little.
 
@@ -80,8 +85,8 @@ Steps `3`, `4` and `5` follow the [3A's (Arrange/Act/Assert) pattern](https://do
 1. Import the appropriate library - this will differ depending on language
 2. Configure Pact. The name of the provider is important, as it uniquely identifies the applications in Pactflow
 3. _Arrange_: here we setup a Pact lifecycle hook that is responsible for configuring the Pact provider mock service, specifically for the `getProduct` interaction. We tell Pact what we're expecting our code to do and what we expect the provider to return when we do it. The Act and Assert phases will be part of a separate method that Pact knows how to invoke using the `PactTestFor` annotation.
-5. _Act_: we configure our API client to send requests to the Pact mock service (instead of the real provider) and we execute the call to the API
-6. _Assert_: we check that our call to `getProduct(...)` worked as expected. This should just do what a regular unit test of this method would do.
+4. _Act_: we configure our API client to send requests to the Pact mock service (instead of the real provider) and we execute the call to the API
+5. _Assert_: we check that our call to `getProduct(...)` worked as expected. This should just do what a regular unit test of this method would do.
 
 ### Run the test
 
@@ -89,7 +94,7 @@ Steps `3`, `4` and `5` follow the [3A's (Arrange/Act/Assert) pattern](https://do
 
 It should have created the following file:
 
-`cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`{{execute}}
+`cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json | jq .`{{execute}}
 
 ### Check
 
@@ -97,7 +102,9 @@ Before moving to the next step, check the following:
 
 1. You could run the pact test with `./gradlew clean test`{{execute}}
 1. There is a contract file that has been created at `/root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json`
+   1. You can see this in your editor by running `cat /root/example-consumer-java-junit/build/pacts/pactflow-example-consumer-java-junit-pactflow-example-provider-springboot.json | jq .`{{execute}}
+   2. Or you can click the Editor tab and search for the file with `command+p` or `ctrl+p`
 
 ### References
 
-* https://docs.pact.io/implementation_guides/jvm/provider/junit5/
+- https://docs.pact.io/implementation_guides/jvm/provider/junit5/

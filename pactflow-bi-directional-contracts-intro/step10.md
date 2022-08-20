@@ -11,29 +11,27 @@ Let's see it in action.
 
 ## Provider breaking changes
 
-Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute interrupt}}
+Change directories into `cd /root/example-bi-directional-provider-dredd`{{execute}}
 
-
-1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key  `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 24/38/57/89/106/117/118
+1.  Try adding a new expectation on the provider by updating the contract. First comment out the 'price' key `example-bi-directional-provider-dredd/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{copy}} at lines 24/38/57/89/106/117/118
 
     1. `git add . && git commit -m 'feat: remove price'`{{execute}}
     2. `npm t`{{execute}}
     3. `npm run publish`{{execute}}
     4. `npm run can-i-deploy`{{execute}}
-   
+
     OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `price` field? Pactflow knows all of the consumers needs down to the field level. Because no consumer uses `price` this is a safe operation.
 
     Reset our change `git reset --hard origin/master`{{execute}}
 
-2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{open}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{open}} at lines 58/105/113/114
-   
+2.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-dredd/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-dredd/oas/products.yml`{{copy}} at lines 58/105/113/114
+
     1. `git add . && git commit -m 'feat: remove name'`{{execute}}
     2. `npm t`{{execute}}
     3. `npm run publish`{{execute}}
     4. `npm run can-i-deploy`{{execute}}
-   
+
     You should have an output like below
-   
 
 ```
 ✗ npm run can-i-deploy
@@ -67,7 +65,7 @@ Read more about how to [interpret failures](https://docs.pactflow.io/docs/bi-dir
 
 Change directories into your consumer project: `cd /root/example-bi-directional-consumer-mountebank`{{execute}}
 
-1.  Try adding a new expectation on the provider by updating the contract. For example, add a new property to the `expectedProduct` field in `example-bi-directional-consumer-mountebank/src/api.spec.js`{{open}}:
+1.  Try adding a new expectation on the provider by updating the contract. For example, add a new property to the `expectedProduct` field in `example-bi-directional-consumer-mountebank/src/api.spec.js`{{copy}}:
 
     ```
     const expectedProduct = {
@@ -82,7 +80,7 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
     2. `npm t`{{execute}}
     3. `npm run publish`{{execute}}
     4. `npm run can-i-deploy`{{execute}}
-   
+
     You shouldn't be able to deploy!
 
 ```
@@ -115,6 +113,3 @@ The consumer won't be able to release this change until the Provider API support
 1. It is not safe to remove a field/endpoint from a provider, if an existing consumer _is_ using it, and Pactflow will detect this situation.
 1. Pactflow will prevent a consumer from deploying a change that a Provider has yet to support
 
-## Further material
-
-You may be interested in one of our longer form [workshops](https://docs.pact.io/implementation_guides/workshops), or getting deeper into [CI/CD](https://docs.pactflow.io/docs/workshops/ci-cd/) with Pact.
