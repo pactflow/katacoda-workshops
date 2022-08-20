@@ -1,3 +1,2 @@
-echo "Changing into directory of the consumer project: /root/example-bi-directional-consumer-mountebank"
-cd /root/example-bi-directional-consumer-mountebank
-npm i
+echo "Changing branch to step6"
+git stash && git checkout step6
