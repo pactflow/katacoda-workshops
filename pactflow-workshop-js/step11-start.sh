@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tenant="unknown"
-step="step2"
+step="step11"
 
 if [ "${PACT_BROKER_BASE_URL}" != "" ]; then
   tenant=$(echo $PACT_BROKER_BASE_URL | cut -d '/' -f 3 | cut -d '.' -f 1)
