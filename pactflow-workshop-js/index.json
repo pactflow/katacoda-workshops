@@ -8,7 +8,8 @@
       {
         "title": "Step 1",
         "text": "step1.md",
-        "foreground": "step1-shell.sh"
+        "foreground": "step1-shell.sh",
+        "background": "step1-start.sh"
       },
       {
         "title": "Step 2",
