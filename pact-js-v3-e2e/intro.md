@@ -16,8 +16,6 @@ This comprises a complete E2E example that can be used as a basis for projects.
 - [Running the tests](#running-the-tests)
 - [Running the API](#running-the-api) - [Animal Profile API](#animal-profile-api) - [GET /animals](#get-animals) - [GET /animals/:id](#get-animalsid) - [GET /animals/available](#get-animalsavailable) - [POST /animals](#post-animals) - [Matching service](#matching-service) - [GET /suggestions/:id](#get-suggestionsid)
 - [Viewing contracts with the Pact Broker](#viewing-contracts-with-the-pact-broker)
-- [Running with Vagrant](#running-with-vagrant)
-
 <!-- /TOC -->
 
 ## The Example Project
