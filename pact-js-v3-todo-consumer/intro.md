@@ -8,7 +8,7 @@
 If you want to view a file, search with the prefix `pact-js/examples/v3/e2e` to find the files specific to this example, or look in the editors file-tree
 
 > 1. Ensure the `editor` tab is open
-> 2. Search for the filename, ensuring you 
+> 2. Search for the filename, ensuring you
 > 3. Click into the editor window and press `ctrl+p`(windows/unix) or `command+p`(mac) to search for a file
 > 4. Press `ctrl+v`(windows/unix) or `command+v`(mac) to paste the project path and select a file from the list
 
@@ -18,20 +18,12 @@ If you want to view a file, search with the prefix `pact-js/examples/v3/e2e` to 
 
 This is an example project with a test that uses V3 Pact features. It has an example test for both JSON and XML format.
 
-## To run it
+## Running the tests
 
-1. Install the project dependencies
-
-```console
-cd examples/v3/todo-consumer/
-npm install
-```
-
-2. Run the test with Mocha
-
-```console
-npm test
-```
+1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
+2. `npm run test`{{execute}} - Run consumer and provider tests
+3. `npm run test:publish`{{execute}} - Run consumer tests
+4. `npm run test:provider`{{execute}} - Run provider tests
 
 ## V3 features
 
