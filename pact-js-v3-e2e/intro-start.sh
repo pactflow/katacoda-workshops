@@ -4,11 +4,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
 echo "=> Downloading pact-js"
 git clone https://github.com/pact-foundation/pact-js
 
-root_dir=/root/
-example=pact-js/examples/v3/e2e
-project=${root}${example}
+project=pact-js/examples/v3/e2e
 
-echo "Changing into directory of the consumer project: $project"
+echo "Changing into directory of the project: $project"
 cd $project
 npm i
 
@@ -17,5 +15,5 @@ apt --yes install jq && clear && cat <<-END
 "Welcome to the Pact-JS V3 Tutorial, all the dependencies are installed, and you should be good to go!
 You are in $project directory
 You can switch to the editor tab, to look in the code
-press ctrl+p or cmd +p in the editor window, to search for a specific file in the $example directory"
+press ctrl+p or cmd +p in the editor window, to search for a specific file in the $project directory"
 END
