@@ -5,7 +5,7 @@ echo "=> Downloading pact-js"
 git clone https://github.com/pact-foundation/pact-js
 
 root_dir=/root/
-example=pact-js/examples/v3/run-specific-interactions
+example=pact-js/examples/v3/run-specific-verifications
 project=${root}${example}
 
 echo "Changing into directory of the consumer project: $project"

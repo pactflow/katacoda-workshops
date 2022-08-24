@@ -1,6 +1,6 @@
 {
-  "title": "Pact JS V3 - Demo - Run Specific Interactions",
-  "description": "Run a Pact JS Run Specific Interactions Example direct from our Pact-JS Repo",
+  "title": "Pact JS V3 - Demo - Run Specific Verifications",
+  "description": "Run a Pact JS Run Specific Verifications Example direct from our Pact-JS Repo",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
