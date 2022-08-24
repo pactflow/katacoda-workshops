@@ -13,7 +13,7 @@ cd $project
 npm i
 
 export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-clear && echo "Welcome to the Pact-JS V3 Tutorial, all the dependencies are installed, and you should be good to go!" &&
-    echo "You are in $project directory" &&
-    echo "You can switch to the editor tab, to look in the code" &&
-    echo "press ctrl+p or cmd +p in the editor window, to search for a specific file in the $example directory"
+clear && echo "Welcome to the Pact-JS V3 Tutorial, all the dependencies are installed, and you should be good to go! \n \
+You are in $project directory \n \
+You can switch to the editor tab, to look in the code \n \
+press ctrl+p or cmd +p in the editor window, to search for a specific file in the $example directory"
