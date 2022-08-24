@@ -8,7 +8,8 @@ project=pact-js/examples/v3/run-specific-verifications
 
 echo "Changing into directory of the project: $project"
 cd $project
-npm i
+# chai is a temp plaster until update_examples_deps branch is merged on pact-js
+npm i && npm install --save-dev chai
 
 export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 apt --yes install jq && clear && cat <<-END
