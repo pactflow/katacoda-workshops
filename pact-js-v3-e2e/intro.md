@@ -68,22 +68,24 @@ or individually :
 
 The APIs are described below, including a bunch of cURL statements to invoke them.
 
+Click on the `+` icon next to `Tab1` to open a new tab to run these!
+
 #### GET /animals
 
 ```
-curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals"
+curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals" | jq .
 ```{{execute}}
 
 #### GET /animals/:id
 
 ```
-curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals/1"
+curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals/1" | jq .
 ```{{execute}}
 
 #### GET /animals/available
 
 ```
-curl -H "Authorization: Bearer 1234" -X GET http://localhost:8081/animals/available
+curl -H "Authorization: Bearer 1234" -X GET http://localhost:8081/animals/available | jq .
 ```{{execute}}
 
 #### POST /animals
@@ -108,7 +110,7 @@ curl -H "Authorization: Bearer 1234" -X POST -H "Content-Type: application/json"
     "munching on a paddock bomb",
     "parkour"
   ]
-}' "http://localhost:8081/animals"
+}' "http://localhost:8081/animals" | jq .
 ```{{execute}}
 
 ### Matching service
@@ -116,7 +118,7 @@ curl -H "Authorization: Bearer 1234" -X POST -H "Content-Type: application/json"
 #### GET /suggestions/:id
 
 ```
-curl -H "Authorization: Bearer 1234" -X GET http://localhost:8080/suggestions/1
+curl -H "Authorization: Bearer 1234" -X GET http://localhost:8080/suggestions/1 | jq .
 ```{{execute}}
 
 ## Viewing contracts with the Pact Broker
@@ -129,5 +131,5 @@ A test [Pact Broker](https://github.com/bethesque/pact_broker) is running at htt
 Or use the API:
 
 ```
-curl -v -u 'dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1' https://test.pactflow.io
+curl -v -u 'dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1' https://test.pactflow.io | jq .
 ```{{execute}}

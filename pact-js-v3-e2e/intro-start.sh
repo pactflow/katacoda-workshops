@@ -13,7 +13,7 @@ cd $project
 npm i
 
 export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-clear && cat <<-END
+apt --yes install jq && clear && cat <<-END
 "Welcome to the Pact-JS V3 Tutorial, all the dependencies are installed, and you should be good to go!
 You are in $project directory
 You can switch to the editor tab, to look in the code
