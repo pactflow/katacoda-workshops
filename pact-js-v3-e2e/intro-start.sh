@@ -8,4 +8,5 @@ echo "Changing into directory of the consumer project: /root/pact-js/pact-js/exa
 cd /root/pact-js/examples/v3/e2e
 npm i
 
+export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 clear && echo "Welcome to the Pact-JS V3 Tutorial, all the dependencies are installed, and you should be good to go!"
