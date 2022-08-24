@@ -34,11 +34,11 @@ Given an animal profile, recommends a suitable partner based on similar interest
 
 ## Running the tests
 
-1. `npm install` (on the root project directory)
-1. `npm run compile` (on the root project directory)
-1. `npm run test:consumer` (from e2e directory) - Run consumer tests
-1. `npm run test:publish` (from e2e directory) - Publish contracts to the broker
-1. `npm run test:provider` (from e2e directory) - Run provider tests
+1. `npm install`{{execute}} (on the root project directory)
+1. `npm run compile`{{execute}} (on the root project directory)
+1. `npm run test:consumer`{{execute}} (from e2e directory) - Run consumer tests
+1. `npm run test:publish`{{execute}} (from e2e directory) - Publish contracts to the broker
+1. `npm run test:provider`{{execute}} (from e2e directory) - Run provider tests
 
 [![asciicast](https://asciinema.org/a/105793.png)](https://asciinema.org/a/105793)
 
@@ -46,12 +46,12 @@ Given an animal profile, recommends a suitable partner based on similar interest
 
 If you want to experiment with the API to get an understanding:
 
-1. `npm run api` - Runs the both provider and consumer API
+1. `npm run api`{{execute}} - Runs the both provider and consumer API
 
 or individually :
 
-1. `npm run provider` - Runs the provider API (animal service)
-1. `npm run consumer` - Runs the consumer API (matching service)
+1. `npm run provider`{{execute}} - Runs the provider API (animal service)
+1. `npm run consumer`{{execute}} - Runs the consumer API (matching service)
 
 ### Animal Profile API
 
@@ -59,54 +59,62 @@ The APIs are described below, including a bunch of cURL statements to invoke the
 
 #### GET /animals
 
-```
+````
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals"
-```
+```{{execute}}
 
 #### GET /animals/:id
 
-```
+````
+
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals/1"
-```
+
+```{{execute}}
 
 #### GET /animals/available
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X GET http://localhost:8081/animals/available
-```
+
+```{{execute}}
 
 #### POST /animals
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X POST -H "Content-Type: application/json" -d '{
-  "first_name": "aoeu",
-  "last_name": "aoeu",
-  "age":  21,
-  "gender": "M",
-  "location": {
-    "description": "Melbourne Zoo",
-    "country": "Australia",
-    "post_code": 3000
-  },
-  "eligibility": {
-    "available": true,
-    "previously_married": false
-  },
-  "interests": [
-    "walks in the garden/meadow",
-    "munching on a paddock bomb",
-    "parkour"
-  ]
+"first_name": "aoeu",
+"last_name": "aoeu",
+"age": 21,
+"gender": "M",
+"location": {
+"description": "Melbourne Zoo",
+"country": "Australia",
+"post_code": 3000
+},
+"eligibility": {
+"available": true,
+"previously_married": false
+},
+"interests": [
+"walks in the garden/meadow",
+"munching on a paddock bomb",
+"parkour"
+]
 }' "http://localhost:8081/animals"
-```
+
+```{{execute}}
 
 ### Matching service
 
 #### GET /suggestions/:id
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X GET http://localhost:8080/suggestions/1
-```
+
+```{{execute}}
 
 ## Viewing contracts with the Pact Broker
 
@@ -118,5 +126,9 @@ A test [Pact Broker](https://github.com/bethesque/pact_broker) is running at htt
 Or use the API:
 
 ```
+
 curl -v -u 'dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1' https://test.pactflow.io
+
+```{{execute}}
+
 ```
