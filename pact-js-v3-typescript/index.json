@@ -1,0 +1,22 @@
+{
+  "title": "Pact JS V3 - Demo - TypeScript",
+  "description": "Run a Pact JS TypeScript Example direct from our Pact-JS Repo",
+  "difficulty": "Beginner",
+  "time": "15",
+  "details": {
+    "steps": [],
+    "intro": {
+      "text": "intro.md",
+      "foreground": "intro-start.sh"
+    },
+    "assets": {},
+    "files": []
+  },
+  "environment": {
+    "hidefinish": true,
+    "uilayout": "vscode-terminal-split"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
