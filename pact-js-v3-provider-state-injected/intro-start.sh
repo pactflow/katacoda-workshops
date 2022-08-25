@@ -8,8 +8,7 @@ project=pact-js/examples/v3/provider-state-injected
 
 echo "Changing into directory of the project: $project"
 cd $project
-# chai is a temp plaster until update_examples_deps branch is merged on pact-js
-npm i && npm install --save-dev chai
+npm i
 
 export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 apt --yes install jq && clear && cat <<-END
