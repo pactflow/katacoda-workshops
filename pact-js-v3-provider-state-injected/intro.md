@@ -16,7 +16,11 @@ If you want to view a file, search with the prefix `pact-js/examples/v3/provider
 
 ## Provider state injected example
 
-This example follows what is described in the blog post https://pactflow.io/blog/injecting-values-from-provider-states/
+This example follows what is described in the blog post: 
+
+<a href="https://pactflow.io/blog/injecting-values-from-provider-states/" target="_blank">Injecting values from Provider States</a>
+
+
 
 ## Running the tests
 
