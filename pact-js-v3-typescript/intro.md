@@ -8,7 +8,7 @@
 If you want to view a file, search with the prefix `pact-js/examples/v3/typescript` to find the files specific to this example, or look in the editors file-tree
 
 > 1. Ensure the `editor` tab is open
-> 2. Search for the filename, ensuring you
+> 2. Click on the folder name above, so it is in your clipboard
 > 3. Click into the editor window and press `ctrl+p`(windows/unix) or `command+p`(mac) to search for a file
 > 4. Press `ctrl+v`(windows/unix) or `command+v`(mac) to paste the project path and select a file from the list
 

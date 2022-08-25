@@ -8,7 +8,7 @@
 If you want to view a file, search with the prefix `pact-js/examples/v3/run-specific-verifications` to find the files specific to this example, or look in the editors file-tree
 
 > 1. Ensure the `editor` tab is open
-> 2. Search for the filename, ensuring you
+> 2. Click on the folder name above, so it is in your clipboard
 > 3. Click into the editor window and press `ctrl+p`(windows/unix) or `command+p`(mac) to search for a file
 > 4. Press `ctrl+v`(windows/unix) or `command+v`(mac) to paste the project path and select a file from the list
 
@@ -31,9 +31,12 @@ That way these tests are also used as automated tests for pact-js itself and che
 To play around with the filtering, do the following and see what interactions are executed
 
 - delete the `process.env. ...` lines in `test/provider.spec.js`
-- set the env. variables outside the test run e.g. `PACT_DESCRIPTON="a request to be skipped" npm run test:provider`
+- set the env. variables outside the test run e.g. `PACT_DESCRIPTION="a request to be skipped" npm run test:provider`{{execute}}
 
 ## Running the tests
 
 1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
 2. `npm run test:provider`{{execute}} - Run provider tests
+3. delete the `process.env.PACT_DESCRIPTION` line in `test/provider.spec.js`
+4. `PACT_DESCRIPTION="a request to be skipped" npm run test:provider`{{execute}} - This should fail
+5. `PACT_DESCRIPTION="a request to be used" npm run test:provider`{{execute}} - This should pass
