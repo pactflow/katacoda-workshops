@@ -4,7 +4,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
 echo "=> Downloading pact-js"
 git clone https://github.com/pact-foundation/pact-js
 
-$project=pact-js/examples/v3/provider-state-injected
+project=pact-js/examples/v3/provider-state-injected
 
 echo "Changing into directory of the project: $project"
 cd $project

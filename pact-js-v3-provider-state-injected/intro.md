@@ -2,10 +2,10 @@
 
 ## Some notes on our tutorial platform
 
-> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab, but it's
-> already planned for a future update. Till then, all exec will be automatically switched to copy when using the visual editor, so you should switch to a tab to run commands, which you can click on directly to run in a tab, and switch to the editor to view the source code
+> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab.
+> All commands will be automatically switched to copy when using the visual editor, so you should switch to a tab to run commands, or switch to the editor to view the code
 
-If you want to view a file, search with the prefix `pact-js/examples/v3/e2e` to find the files specific to this example, or look in the editors file-tree
+If you want to view a file, search with the prefix `pact-js/examples/v3/provider-state-injected` to find the files specific to this example, or look in the editors file-tree
 
 > 1. Ensure the `editor` tab is open
 > 2. Search for the filename, ensuring you
@@ -22,5 +22,4 @@ This example follows what is described in the blog post https://pactflow.io/blog
 
 1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
 2. `npm run test`{{execute}} - Run consumer and provider tests
-3. `npm run test:publish`{{execute}} - Run consumer tests
-4. `npm run test:provider`{{execute}} - Run provider tests
+3. `npm run test:provider`{{execute}} - Run provider tests

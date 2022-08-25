@@ -2,13 +2,13 @@
 
 ## Some notes on our tutorial platform
 
-> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab, but it's
-> already planned for a future update. Till then, all exec will be automatically switched to copy when using the visual editor, so you should switch to a tab to run commands, which you can click on directly to run in a tab, and switch to the editor to view the source code
+> <strong>When using the visual editor</strong> it's not possible yet to click-exec code into the Editor tab.
+> All commands will be automatically switched to copy when using the visual editor, so you should switch to a tab to run commands, or switch to the editor to view the code
 
 If you want to view a file, search with the prefix `pact-js/examples/v3/e2e` to find the files specific to this example, or look in the editors file-tree
 
 > 1. Ensure the `editor` tab is open
-> 2. Search for the filename, ensuring you 
+> 2. Search for the filename, ensuring you
 > 3. Click into the editor window and press `ctrl+p`(windows/unix) or `command+p`(mac) to search for a file
 > 4. Press `ctrl+v`(windows/unix) or `command+v`(mac) to paste the project path and select a file from the list
 
@@ -47,9 +47,9 @@ Given an animal profile, recommends a suitable partner based on similar interest
 ## Running the tests
 
 1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
-2. `npm run test:consumer`{{execute}} (from e2e directory) - Run consumer tests
-3. `npm run test:publish`{{execute}} (from e2e directory) - Publish contracts to the broker
-4. `npm run test:provider`{{execute}} (from e2e directory) - Run provider tests
+2. `npm run test:consumer`{{execute}} - Run consumer tests
+3. `npm run test:publish`{{execute}} - Publish contracts to the broker
+4. `npm run test:provider`{{execute}} - Run provider tests
 
 [![asciicast](https://asciinema.org/a/105793.png)](https://asciinema.org/a/105793)
 
@@ -72,45 +72,51 @@ Click on the `+` icon next to `Tab1` to open a new tab to run these!
 
 #### GET /animals
 
-```
+````
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals" | jq .
 ```{{execute}}
 
 #### GET /animals/:id
 
-```
+````
+
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals/1" | jq .
+
 ```{{execute}}
 
 #### GET /animals/available
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X GET http://localhost:8081/animals/available | jq .
+
 ```{{execute}}
 
 #### POST /animals
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X POST -H "Content-Type: application/json" -d '{
-  "first_name": "aoeu",
-  "last_name": "aoeu",
-  "age":  21,
-  "gender": "M",
-  "location": {
-    "description": "Melbourne Zoo",
-    "country": "Australia",
-    "post_code": 3000
-  },
-  "eligibility": {
-    "available": true,
-    "previously_married": false
-  },
-  "interests": [
-    "walks in the garden/meadow",
-    "munching on a paddock bomb",
-    "parkour"
-  ]
+"first_name": "aoeu",
+"last_name": "aoeu",
+"age": 21,
+"gender": "M",
+"location": {
+"description": "Melbourne Zoo",
+"country": "Australia",
+"post_code": 3000
+},
+"eligibility": {
+"available": true,
+"previously_married": false
+},
+"interests": [
+"walks in the garden/meadow",
+"munching on a paddock bomb",
+"parkour"
+]
 }' "http://localhost:8081/animals" | jq .
+
 ```{{execute}}
 
 ### Matching service
@@ -118,7 +124,9 @@ curl -H "Authorization: Bearer 1234" -X POST -H "Content-Type: application/json"
 #### GET /suggestions/:id
 
 ```
+
 curl -H "Authorization: Bearer 1234" -X GET http://localhost:8080/suggestions/1 | jq .
+
 ```{{execute}}
 
 ## Viewing contracts with the Pact Broker
@@ -131,5 +139,9 @@ A test [Pact Broker](https://github.com/bethesque/pact_broker) is running at htt
 Or use the API:
 
 ```
+
 curl -v -u 'dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1' https://test.pactflow.io | jq .
+
 ```{{execute}}
+
+```
