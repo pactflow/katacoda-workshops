@@ -72,13 +72,13 @@ Click on the `+` icon next to `Tab1` to open a new tab to run these!
 
 #### GET /animals
 
-````
+```
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals" | jq .
 ```{{execute}}
 
 #### GET /animals/:id
 
-````
+```
 
 curl -H "Authorization: Bearer 1234" -X GET "http://localhost:8081/animals/1" | jq .
 
@@ -143,5 +143,3 @@ Or use the API:
 curl -v -u 'dXfltyFMgNOFZAxr8io9wJ37iUpY42M:O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1' https://test.pactflow.io | jq .
 
 ```{{execute}}
-
-```

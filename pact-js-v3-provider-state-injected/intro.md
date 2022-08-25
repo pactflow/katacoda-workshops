@@ -22,4 +22,5 @@ This example follows what is described in the blog post https://pactflow.io/blog
 
 1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
 2. `npm run test`{{execute}} - Run consumer and provider tests
+2. `npm run test:consumer`{{execute}} - Run consumer tests
 3. `npm run test:provider`{{execute}} - Run provider tests

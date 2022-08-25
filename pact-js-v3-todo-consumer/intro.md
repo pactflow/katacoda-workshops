@@ -22,7 +22,8 @@ This is an example project with a test that uses V3 Pact features. It has an exa
 
 1. `npm install`{{execute}} (on the root project directory) - This has already been performed for you, when the tutorial started!
 2. `npm run test`{{execute}} - Run consumer and provider tests
-3. `npm run test:provider`{{execute}} - Run provider tests
+3. `npm run test:consumer`{{execute}} - Run consumer tests
+4. `npm run test:provider`{{execute}} - Run provider tests
 
 ## V3 features
 
