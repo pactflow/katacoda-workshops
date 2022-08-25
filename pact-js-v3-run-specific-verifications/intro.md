@@ -18,7 +18,10 @@ If you want to view a file, search with the prefix `pact-js/examples/v3/run-spec
 
 Using some pre-created pact files we are demonstrating the possibility to rerun specific verifications by filtering using env. variables.
 
-Main documentation: https://github.com/pact-foundation/pact-js/#re-run-specific-verification-failures
+Main documentation:
+
+<a href="https://docs.pact.io/implementation_guides/javascript/docs/troubleshooting#re-run-specific-verification-failures" target="_blank">Re-run specific verification failures
+</a>
 
 This folder contains 3 pact files, each file contains some interactions that should be run, and some that should be skipped.
 

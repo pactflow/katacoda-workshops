@@ -17,9 +17,9 @@ If you want to view a file, search with the prefix `pact-js/examples/v3/e2e` to 
 Using a simple animal dating API, we demonstrate the following Pact features:
 
 - Consumer testing and pact file generation, including advanced features like:
-  - [Flexible matching](https://docs.pact.io/getting_started/matching#flexible-matching)
-  - [Provider states](https://docs.pact.io/getting_started/provider_states)
-- Sharing Pacts by publishing to and retrieving from a [Pact Broker](https://github.com/pact-foundation/pact_broker)
+  - <a href="https://docs.pact.io/getting_started/matching#flexible-matching" target="_blank">Flexible matching</a>
+  - <a href="https://docs.pact.io/getting_started/provider_states" target="_blank">Provider states</a>
+- Sharing Pacts by publishing to and retrieving from a <a href="https://github.com/pact-foundation/pact_brokers" target="_blank">Pact Broker</a>
 - Provider side verification
 
 This comprises a complete E2E example that can be used as a basis for projects.
@@ -28,7 +28,14 @@ This comprises a complete E2E example that can be used as a basis for projects.
 
 - [The Example Project](#the-example-project) - [Provider (Profile API)](#provider-profile-api) - [Consumer (Matching API)](#consumer-matching-api)
 - [Running the tests](#running-the-tests)
-- [Running the API](#running-the-api) - [Animal Profile API](#animal-profile-api) - [GET /animals](#get-animals) - [GET /animals/:id](#get-animalsid) - [GET /animals/available](#get-animalsavailable) - [POST /animals](#post-animals) - [Matching service](#matching-service) - [GET /suggestions/:id](#get-suggestionsid)
+- [Running the API](#running-the-api)
+  - [Animal Profile API](#animal-profile-api)
+    - [GET /animals](#get-animals)
+    - [GET /animals/:id](#get-animalsid)
+    - [GET /animals/available](#get-animalsavailable)
+    - [POST /animals](#post-animals)
+  - [Matching service](#matching-service)
+    - [GET /suggestions/:id](#get-suggestionsid)
 - [Viewing contracts with the Pact Broker](#viewing-contracts-with-the-pact-broker)
 <!-- /TOC -->
 
