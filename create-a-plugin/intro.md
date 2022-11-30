@@ -1,5 +1,7 @@
 In the scenario, you will create, publish and use your first [Pact Plugin](https://docs.pact.io/plugins).
 
+We will use a templated project that you can use, to help reduce the amount of boilerplate required to write your Plugin.
+
 The course is written in Golang, however, extensive experience with the language will not be required for the workshop.
 
 ## Workshop Prerequisites
