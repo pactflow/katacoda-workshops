@@ -2,7 +2,7 @@
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && source ~/.bashrc && nvm install 18
 echo "=> Downloading Golang Plugin Template"
 git clone https://github.com/pact-foundation/pact-plugin-template-golang.git
-git clone git@github.com:pact-foundation/example-project-js-foobar-plugin.git
+git clone https://github.com/pact-foundation/example-project-js-foobar-plugin.git
 
 project=example-project-js-foobar-plugin
 
