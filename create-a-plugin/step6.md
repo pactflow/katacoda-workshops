@@ -58,11 +58,31 @@ In fact, they are prepared in a way that can also be installed through the Plugi
 Install your plugin, using the CLI, customised to your git repo:
 
 ```
-/root/bin/pact-plugin-cli install -y github.com/YOURPROJECT/pact-foobar/plugin
+/root/bin/pact-plugin-cli install -y https://github.com/YOUR_ORG/pact-foobar-plugin/releases/tag/v0.0.1
 ```{{copy}}
 
 Check if it's installed:
 
 `/root/bin/pact-plugin-cli list`{{exec}}
 
-You can now head back to your JS tests and try running again to see if it works!
+You can now head back to your JS tests and try running again to see if it works:
+
+```
+cd ~/example-project-js-foobar-plugin
+npm t
+```{{exec}}
+
+```
+...
+Verifying a pact between myconsumer and myprovider
+
+  an HTTP request to /foobar
+     Given the Foobar protocol exists
+    returns a response which
+      has status code 200 (OK)
+      includes headers
+        "content-type" with value "application/foo" (OK)
+      has a matching body (OK)
+```
+
+WOOT! 🎉
