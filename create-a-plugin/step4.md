@@ -219,6 +219,10 @@ By now, you should have a simple text content matcher that knows how to handle a
 
 Run `make bin`{{exec}} to create the plugin, and then start it to ensure it compiles and runs: `build/myplugin`{{exec}}. 
 
+## Install our plugin for local testing
+
+run `make install_local`{{exec}} to build the plugin and move it into the plugins directory for local development.
+
 ## Further Reading
 
 * Creating a [Content Matcher](https://github.com/pact-foundation/pact-plugins/blob/main/docs/content-matcher-design.md) Plugin developer guide
