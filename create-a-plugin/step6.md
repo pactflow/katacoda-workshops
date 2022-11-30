@@ -32,7 +32,7 @@ Add the files and commit the changes:
 ```
 git add .
 git commit -m 'feat: initial foobar plugin'
-git push
+git push origin master
 ```
 
 _NOTE: you will need to use your personal access token as the password in this step_
@@ -47,7 +47,11 @@ That's it! There is a `release.yml` in the github workflows directory that will 
 
 ## Check the release step
 
-We can download the `pact-plugin-cli` now to see if it can:
+Head over to your GitHub Actions build page for your repo (https://github.com/YOUR_ORG/pact-foobar-plugin/actions). You should see the release job is running (it should take about 3-4 mins to execute).
+
+Once it's completed, it will create a number of release artifacts that are ready to be downloaded by your users!
+
+In fact, they are prepared in a way that can also be installed through the Plugin CLI. Let's download the CLI and install it that way:
 
 `curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-plugins/main/scripts/install-plugin-cli.sh | bash`{{exec}}
 
@@ -61,3 +65,4 @@ Check if it's installed:
 
 `/root/bin/pact-plugin-cli list`{{exec}}
 
+You can now head back to your JS tests and try running again to see if it works!
