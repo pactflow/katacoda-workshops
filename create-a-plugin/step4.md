@@ -16,7 +16,9 @@ The template helps you bootstrap a new plugin quickly. It features:
 
 It's worth opening the `README` in `pact-plugin-template-golang/README.md` and familiarising yourself.
 
-We will now proceed to create our first plugin!
+We will now proceed to create our first plugin! Let's open the template project:
+
+`cd ~/pact-plugin-template-golang`{{exec}}
 
 ## Creating the plugin
 
@@ -217,7 +219,7 @@ The Golang library doesn't support generators, so you can leave this method as i
 
 By now, you should have a simple text content matcher that knows how to handle a `application/foo` content type. It can now be used in any Pact test or interaction that supports plugins, and uses that content type.
 
-Run `make bin`{{exec}} to create the plugin, and then start it to ensure it compiles and runs: `build/myplugin`{{exec}}. 
+Run `make bin`{{exec}} to create the plugin, and then start it to ensure it compiles and runs: `build/foobar`{{exec}}. 
 
 ## Install our plugin for local testing
 
