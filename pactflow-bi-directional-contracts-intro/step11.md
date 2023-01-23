@@ -1,10 +1,10 @@
-If you've made it this far, you should now have a good understanding of how Pactflow's bi-directional contract testinsg feature works to make it safe to release software into production quickly and reliably.
+If you've made it this far, you should now have a good understanding of how PactFlow's bi-directional contract testinsg feature works to make it safe to release software into production quickly and reliably.
 
 ## Summary
 
 ### Consumer Contracts
 
-Pactflow currently supports pact files as a consumer contract format. In order to produce a consumer contract, you need to decide on a testing approach to capture the contract:
+PactFlow currently supports pact files as a consumer contract format. In order to produce a consumer contract, you need to decide on a testing approach to capture the contract:
 
 1. Use [Pact](http://docs.pact.io) - this will be the default choice for many, as it can both mock the API calls and produce a pact file
 2. Use an existing mocking tools such as Wiremock or Mountebank, or record/replay tools (such as VCR or Polly), and convert the mocks to a pact file after a successful run.
@@ -13,7 +13,7 @@ Pactflow currently supports pact files as a consumer contract format. In order t
 
 ### Provider Contracts
 
-Pactflow currently supports oas(OpenAPI) spec files as a provider contract formats along with provider verification results. In order to produce a provider contract, you need to decide on a testing approach to capture the spec and verification results to form the provider contract:
+PactFlow currently supports oas(OpenAPI) spec files as a provider contract formats along with provider verification results. In order to produce a provider contract, you need to decide on a testing approach to capture the spec and verification results to form the provider contract:
 
 #### Verifying the provider contract
 
@@ -26,12 +26,12 @@ There are severals ways we can test the Provider, to ensure it doesn't drift fro
 1. White-box style tests that run as part of your unit tests. Tools such as 1. 1.1. RestAssured (Java) or Supertest (NodeJS) are examples of
    Black-box style functional API testing, using tools like Dredd or Postman.
 
-### How Pactflow protects your teams
+### How PactFlow protects your teams
 
-Pactflow will prevent a consumer from deploying a change that a Provider has yet to support
+PactFlow will prevent a consumer from deploying a change that a Provider has yet to support
 
 1. It is always safe to remove a field from a provider, if no consumers are currently using it
-1. It is not safe to remove a field/endpoint from a provider, if an existing consumer is using it, and Pactflow will detect this situation.
+1. It is not safe to remove a field/endpoint from a provider, if an existing consumer is using it, and PactFlow will detect this situation.
 
 ## Further material
 
@@ -39,7 +39,7 @@ You may be interested in one of our longer form [workshops](https://docs.pact.io
 
 ### Bi-directional Contract Testing resources
 
-This is a Pactflow-only feature currently available on all plans that will enable your teams to supercharge your existing testing tools to perform both consumer-driven and provider-driven contract tests.
+This is a PactFlow-only feature currently available on all plans that will enable your teams to supercharge your existing testing tools to perform both consumer-driven and provider-driven contract tests.
 
 - Bi-directional Contract Testing [Overview](https://pactflow.io/bi-directional-contract-testing/)
 - [Video introducing](https://youtu.be/8_abWl1N32Q) to Bi-Directional Contract Testing
@@ -52,6 +52,6 @@ This is a Pactflow-only feature currently available on all plans that will enabl
 You’ll find our educational resources helpful to get you started with Pact:
 
 - Our introduction to contract testing [videos](https://www.youtube.com/playlist?list=PLwy9Bnco-IpfZ72VQ7hce8GicVZs7nm0i&utm_source=hubspot&utm_medium=email&utm_campaign=demo)
-- Getting started [tutorials](https://docs.pactflow.io/docs/tutorials) - short (15 minute) in-browser exercises to get started with Pact and Pactflow
-- [Pactflow University](https://docs.pactflow.io/docs/workshops/) - our introduction and CI/CD workshops, as well as some advanced material
+- Getting started [tutorials](https://docs.pactflow.io/docs/tutorials) - short (15 minute) in-browser exercises to get started with Pact and PactFlow
+- [PactFlow University](https://docs.pactflow.io/docs/workshops/) - our introduction and CI/CD workshops, as well as some advanced material
 - [Examples](https://docs.pactflow.io/docs/examples/) - a series of reference examples across languages and technologies

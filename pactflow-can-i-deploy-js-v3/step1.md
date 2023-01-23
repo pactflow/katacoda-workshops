@@ -4,7 +4,7 @@ We will continue working through our example scenario authoring a Pact test betw
 
 ![Scenario](./assets/scenario.png)
 
-Whilst we will be building on the previous example, today's focus will be on the "deploy" step of your CI/CD pipeline and how Pactflow can help you release faster and safer, by gating the release step and providing visbility into which applications have been deployed to which environment, and what versions are compatible with one another.
+Whilst we will be building on the previous example, today's focus will be on the "deploy" step of your CI/CD pipeline and how PactFlow can help you release faster and safer, by gating the release step and providing visbility into which applications have been deployed to which environment, and what versions are compatible with one another.
 
 ![Ecosystem](./assets/ecosystem.png)
 

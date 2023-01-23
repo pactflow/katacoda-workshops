@@ -6,8 +6,8 @@ The course is written in NodeJS, however, extensive experience with the language
 
 You must have:
 * completed the [introductory course](https://killercoda.com/pactflow/scenario/pactflow-getting-started-js)
-* a Pactflow account (https://pactflow.io)
-* obtained a [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token) from your Pactflow account
+* a PactFlow account (https://pactflow.io)
+* obtained a [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token) from your PactFlow account
 
 ## Goals
 
@@ -16,6 +16,6 @@ Prevent releasing incompatible changes to production, by using integrating `can-
 You will:
 
 1. Build on a basic contract testing example
-1. Learn how Pactflow fits into the picture
+1. Learn how PactFlow fits into the picture
 1. Understand important Pact CLI tools
-1. Learn how deployments work with Pactflow
+1. Learn how deployments work with PactFlow

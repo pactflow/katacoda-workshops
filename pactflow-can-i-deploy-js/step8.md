@@ -1,4 +1,4 @@
-If you've made it this far, you should now have a basic understanding of how Pact and Pactflow work together to make it safe to release software into production quickly and reliably.
+If you've made it this far, you should now have a basic understanding of how Pact and PactFlow work together to make it safe to release software into production quickly and reliably.
 
 ## Next Steps?
 

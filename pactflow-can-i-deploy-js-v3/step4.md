@@ -1,8 +1,8 @@
-# Publish to Pactflow
+# Publish to PactFlow
 
-Now that we have created our contract, we need to share the contract to our provider. This is where Pactflow comes in to the picture. This step is referred to as "publishing" the pact.
+Now that we have created our contract, we need to share the contract to our provider. This is where PactFlow comes in to the picture. This step is referred to as "publishing" the pact.
 
-1. Go to Pactflow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
+1. Go to PactFlow and copy your [read/write API Token](https://docs.pactflow.io/#configuring-your-api-token)
 1. Export these two environment variables into the terminal, being careful to replace the placeholders with your own values:
 
    ```
@@ -11,7 +11,7 @@ Now that we have created our contract, we need to share the contract to our prov
    ```
 
 1. `npm run publish`{{execute}}
-1. Go to your Pactflow dashboard and check that a new contract has appeared
+1. Go to your PactFlow dashboard and check that a new contract has appeared
 
 Your dashboard should look something like this:
 
@@ -25,9 +25,9 @@ Read more about [branches](https://docs.pact.io/pact_broker/branches/) in Pact.
 
 When an application version is deployed or released, we use the `record-deployment` or `record-release` commands provided by the Pact Broker CLI to indicate which environment an application is in at any given time.
 
-## Don't have a Pactflow account?
+## Don't have a PactFlow account?
 
-If you don't have a Pactflow account, you can publish a [test broker](https://test.pactflow.io) that uses the [open source pact broker](https://github.com/pact-foundation/pact_broker/).
+If you don't have a PactFlow account, you can publish a [test broker](https://test.pactflow.io) that uses the [open source pact broker](https://github.com/pact-foundation/pact_broker/).
 
 ```
 export PACT_BROKER_BASE_URL=https://test.pactflow.io
@@ -71,4 +71,4 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 
 ## Check
 
-There should be a contract published in your Pactflow account before moving on
+There should be a contract published in your PactFlow account before moving on
