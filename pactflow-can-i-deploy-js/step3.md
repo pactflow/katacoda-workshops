@@ -68,7 +68,7 @@ const expectedProduct = { id: 10, type: "pizza", name: "Margharita" };
 There's a lot here, so let's break it down a little.
 
 1. Import the appropriate library - this will differ depending on language
-2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in Pactflow
+2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in PactFlow
 3. Here we setup some Pact lifecycle hooks.
    - First we run `setup()`{{}} before all of the tests run to start the Pact runtime).
    - We also configure two other lifecycle hooks to `verify()`{{}} that the test was successful and write out the pact file

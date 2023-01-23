@@ -2,7 +2,7 @@
 
 Now that we have tested our provider and published our provider contract, we can deploy the application to production.
 
-Whilst we don't currently have any consumers to worry about, we want to be prepared for when we do. Pactflow has a tool called [`can-i-deploy`](https://docs.pact.io/pact_broker/can_i_deploy) to help us.
+Whilst we don't currently have any consumers to worry about, we want to be prepared for when we do. PactFlow has a tool called [`can-i-deploy`](https://docs.pact.io/pact_broker/can_i_deploy) to help us.
 
 The `can-i-deploy` command is an important part of a CI/CD workflow, adding stage gates to prevent deploying incompatible applications to environments such as production.
 
@@ -30,11 +30,11 @@ There are no missing dependencies
 
 Later on, when consumers start to use our API, we will be prevented from releasing a change that results in a backwards incompatible change for our consumers. Consumers will also use this command to ensure they are compatible with the Provider API in the target environment (in this case, `production`).
 
-We can now deploy our provider to production. Once we have deployed, we let Pactflow know that the new version of the Provider has been promoted to that environment:
+We can now deploy our provider to production. Once we have deployed, we let PactFlow know that the new version of the Provider has been promoted to that environment:
 
 `npm run deploy`{{execute}}
 
-This allows Pactflow to communicate to any future consumers of the provider, that the OAS associated with this version of the provider is supported in production. If a consumer adds functionality that uses a subset of the OAS, they will be free to deploy safely!
+This allows PactFlow to communicate to any future consumers of the provider, that the OAS associated with this version of the provider is supported in production. If a consumer adds functionality that uses a subset of the OAS, they will be free to deploy safely!
 
 # Check
 

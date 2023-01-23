@@ -10,7 +10,7 @@ This step involves the following:
 
 1. Importing the Pact, JUnit and Spring dependencies
 1. Starting the spring boot application - the API - using the `@SpringBootTest` annotation
-1. Configuring Pact to use the contracts stored in Pactflow
+1. Configuring Pact to use the contracts stored in PactFlow
 1. Configuring Pact to test the API running at `http://localhost:8080`
 1. Executing the provider verification
 1. Handling any provider states

@@ -76,7 +76,7 @@ There's a lot here, so let's break it down a little.
 Steps `1`, `2` are JS specific activities to get Pact into a project. Steps `3`, `4`, and `5`, follow the [3A's (Arrange/Act/Assert) pattern](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019#write-your-tests) for authoring unit tests.
 
 1. Import the appropriate library - this will differ depending on language
-2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in Pactflow
+2. Configure Pact. The name of the consumer and provider is important, as it uniquely identifies the applications in PactFlow
 3. _Arrange_: we tell Pact what we're expecting our code to do and what we expect the provider to return when we do it
 4. _Act_: we configure our API client to send requests to the Pact mock service (instead of the real provider) and we execute the call to the API
 5. _Assert_: we check that our call to `getProduct(...)` worked as expected. This should just do what a regular unit test of this method would do.

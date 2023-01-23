@@ -31,11 +31,11 @@ VERIFICATION RESULTS
 All required verification results are published and successful
 ```
 
-We can now deploy our consumer to production. Once we have deployed, we let Pactflow know that the new version of the consumer has been promoted to that environment:
+We can now deploy our consumer to production. Once we have deployed, we let PactFlow know that the new version of the consumer has been promoted to that environment:
 
 `npm run deploy`{{execute}}
 
-This allows Pactflow to prevent any providers from deploying an incompatible change to `production`.
+This allows PactFlow to prevent any providers from deploying an incompatible change to `production`.
 
 # Check
 

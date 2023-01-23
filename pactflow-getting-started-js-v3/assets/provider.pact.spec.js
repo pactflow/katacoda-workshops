@@ -6,7 +6,7 @@ describe("Pact Verification", () => {
   before((done) => server.listen(8081, done));
 
   it("validates the expectations of ProductService", () => {
-    // (2) Telling Pact to use the contracts stored in Pactflow and where the Product API will be running
+    // (2) Telling Pact to use the contracts stored in PactFlow and where the Product API will be running
     const opts = {
       logLevel: "INFO",
       providerBaseUrl: "http://localhost:8081",
