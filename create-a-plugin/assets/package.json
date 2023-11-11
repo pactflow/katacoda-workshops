@@ -2,7 +2,7 @@
   "name": "pactflow-getting-started-js",
   "version": "0.1.0",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.1"
   },
