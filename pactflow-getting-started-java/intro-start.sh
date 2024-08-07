@@ -4,8 +4,9 @@ mkdir -p /usr/java
 cd /usr/java
 wget -c https://download.java.net/java/GA/jdk15.0.2/0d1cfde4252546c6931946de8db48ee2/7/GPL/openjdk-15.0.2_linux-x64_bin.tar.gz
 tar -xf openjdk-15.0.2_linux-x64_bin.tar.gz
-export JAVA_HOME="/usr/java/jdk-15.0.2"
-export PATH="/usr/java/jdk-15.0.2/bin:${PATH}"
+echo 'export JAVA_HOME=/usr/java/jdk-15.0.2' >> ~/.bashrc
+echo "export PATH=/usr/java/jdk-15.0.2/bin:${PATH}" >> ~/.bashrc
+source ~/.bashrc
 echo "Installing OpenJDK 11 for provider"
 mkdir -p /usr/java
 cd /usr/java
