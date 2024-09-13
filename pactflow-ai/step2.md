@@ -31,12 +31,6 @@ to write your own client code in this demo.
 - [Consumer](https://github.com/pactflow/example-consumer)
 - [Provider](https://github.com/pactflow/example-provider)
 
-- ### Java Demo
-
-- [Consumer](https://github.com/pactflow/example-consumer-java-junit)
-- [Provider](https://github.com/pactflow/example-provider-springboot)
-
-
 ## Grab the TypeScript example
 
 Clone the repo
