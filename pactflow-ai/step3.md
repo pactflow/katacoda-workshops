@@ -1,23 +1,25 @@
 ## Lets create some tests - JavaScript / TypeScript
 
+We'll demonstrate the test generation capabilities for the three generation modes:
+
 1. `request-response`:
-   1. Generate a Pact from a HTTP request and response pair from curl.
-2. `openapi`:
-   1. Generate a Pact from a OpenAPI specification
+   1. Generate a pact from a HTTP request and response pair from [HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) (e.g. `curl` output).
+3. `openapi`:
+   1. Generate a Pact from a OpenAPI description
    2. Improve the output by providing it the client code.
-3. `client-code`
+4. `client-code`
    1. Generate Pact tests from client code.
 
 ## request-response
 
-For some users, you may have an existing provider, that you wish to generate contracts for. `pactflow-ai` allows you to generate Pact tests from capture files. 
+For some users, you may have an existing provider that you wish to generate contracts for. `pactflow-ai` allows you to generate Pact tests from capture files. 
 
-These capture files, are request/response pairs, from curl traffic.
+These capture files, are request/response pairs, as seen from the output from `curl` traffic. Specifically, the capture files should conform to an [HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages), using the HTTP/1.1 format.
 
 You can see some sample captures, generated from requests to our running provider.
 
-- Request Capture `capture/get.request.http`
-- Response Capture `capture/get.response.http`
+- Request Capture: `capture/get.request.http`
+- Response Capture: `capture/get.response.http`
 
 ```
 pactflow-ai generate request-response \
@@ -34,8 +36,8 @@ pactflow-ai generate request-response \
 You may need to tweak the output, and you'll note some assumptions are made.
 
 1. Your client code will not be used (it hasn't been provided)
-2. The system under test is a client created purely for testing purposes, you would replace this with your actual client code.
-3. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so I needed to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's[toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
+2. The system under test is a client created purely for testing purposes. It may also be replaced by a generic HTTP library such as `fetch` or `axios`. You should replace this with your actual client code. 
+3. We are using Jest in our project, and `pactflow-ai` sometimes chooses to use the mocha or chai based assertion libraries. You may need to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's [toEqual](https://jestjs.io/docs/expect#toequalvalue).
 
 ```js
 expect(data).to.deep.equal({
@@ -76,7 +78,7 @@ For consumers, they can easily leverage tools like swagger-codegen to bootstrap 
 
 Pact users have long requested the ability to generate Pact tests from OpenAPI descriptions, and with `pactflow-ai` this is now a possibility.
 
-Lets leverage just an OpenAPI description, to generate a Pact consumer test.
+Let's leverage just an OpenAPI description, to generate a Pact consumer test.
 
 ```sh
 pactflow-ai generate openapi \
@@ -93,9 +95,9 @@ pactflow-ai generate openapi \
 You may need to tweak the output, and you'll note some assumptions are made.
 
 1. Your client code will not be used (it hasn't been provided)
-2. A dummy client is substituted in place of your actual code. A user should replace this with their actual client.
+2. The system under test is a client created purely for testing purposes. It may also be replaced by a generic HTTP library such as `fetch` or `axios`. You should replace this with your actual client code. 
   1. Try removing or commenting out the dummy client code and run the test
-3. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so I needed to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's[toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
+3. We are using Jest in our project, and `pactflow-ai` sometimes chooses to use the mocha or chai based assertion libraries. You may need to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's [toEqual](https://jestjs.io/docs/expect#toequalvalue).
 
 👉🏼 `npm run test:pact`{{exec}}
 
@@ -103,23 +105,23 @@ The test should fail, as we are not issuing any client side request. Pact will s
 
 You could try and integrate this test with your client code on your own, or you could use `pactflow-ai` to help you out.
 
-## OpenAPI + client-code
+## openapi + client-code
 
 In this example, we will use an OpenAPI description as an input, but will also provide the context of our client code, which will become our system under test.
 
-By providing the context of our code, `pactflow-ai` can replace the dummy client generated in the previous step, with our real client. If your code also contains
-the object model used, then `pactflow-ai` should ensure that only fields used by a consumer are added to the contract. This avoids a common pitfall test authors face,
-whereby more fields are added to a consumer test, than the consumer client code uses. This puts tension between provider teams, as they are unduly bound to honour
-those fields for consumers that do not use them.
+By providing our code as context, `pactflow-ai` can replace the dummy client generated in the previous step, with our real client. If the code provided also contains the object model used, then `pactflow-ai` should ensure that only fields used by a consumer are added to the contract. This avoids a common pitfall test authors face, whereby more fields are added to a consumer test, than the consumer client code uses. This puts tension between provider teams, as they are unduly bound to honour those fields for consumers that do not use them.
 
 ```sh
 pactflow-ai generate openapi \
   --spec ./products.yml \
   --endpoint "/product/{id}" \
   --code ./src/api.js \
+  --code ./src/product.js \
   --output ./src/api.pact.spec.ts \
   --language typescript
 ```{{exec}}
+
+*Note that we are passing in both the API class and Product class via multiple invocations of the `--code` flag.*
 
 👉🏼 Check the generated Pact test at `./src/api.pact.spec.ts`
 
@@ -127,8 +129,8 @@ pactflow-ai generate openapi \
 
 You may need to tweak the output, and you'll note some assumptions are made.
 
-1. We may need to change our product import from `./src/api` to `./api`
-2. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so I needed to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's[toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
+1. We may need to change our Product or API imports (e.g. from `./src/api` to `./api`)
+2. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so you may ned change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's[toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
 3. Be sure to check expectations encoded into the Pact contract
 
 👉🏼 `npm run test:pact`{{exec}}
@@ -236,7 +238,7 @@ describe('Consumer Pact with Product Service', () => {
 
       return provider.executeTest(async (mockserver) => {
         const api = new API(mockserver.url);
-        api.generateAuthToken = () => 'Bearer token'; // Mock the auth token generation
+        // api.generateAuthToken = () => 'Bearer token'; // No need to mock the auth token generation
         const product = await api.getProduct('1234');
         expect(product).toEqual({
           id: '1234',
@@ -256,14 +258,15 @@ ensuring the test is correct before you submit it to your team for review.
 
 ## client-code
 
-For some users, they do not have OpenAPI descriptions, for the providers the services rely on. `pactflow-ai` can generate Pact tests from
-your client code, without the need for an OpenAPI description.
+For some users, they do not have OpenAPI descriptions for the providers the services rely on. `pactflow-ai` can generate Pact tests from your client code, without the need for an OpenAPI description.
 
 ```sh
-pactflow-ai generate code ./src/api.js \
+pactflow-ai generate code ./src/api.js ./src/product.js \
   --output ./src/api.pact.spec.ts \
   --language typescript
 ```{{exec}}
+
+*Note that we are passing in both the API class and Product class.*
 
 👉🏼 Check the generated Pact test at `src/api.pact.spec.ts`
 
@@ -272,7 +275,7 @@ pactflow-ai generate code ./src/api.js \
 You may need to tweak the output, and you'll note some assumptions are made.
 
 1. We may need to change our product import from `./src/api` to `./api`
-2. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so I needed to change mocha's [to.have.property](https://www.chaijs.com/api/bdd/#method_property) / [that.is.a](https://www.chaijs.com/api/bdd/#method_property) methods to jest's[toHaveProperty](https://jestjs.io/docs/expect#tohavepropertykeypath-value) / jest's[toBeInstanceOf](https://jestjs.io/docs/expect#tobeinstanceofclass) method.
+3. We are using Jest in our project, and `pactflow-ai` sometimes chooses to use the mocha or chai based assertion libraries. You may need to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's [toEqual](https://jestjs.io/docs/expect#toequalvalue).
 
 👉🏼 `npm run test:pact`{{exec}}
 
@@ -280,24 +283,27 @@ You may need to tweak the output, and you'll note some assumptions are made.
 
 You've now seen the different options that PactFlow AI can provide, and how they can help you quickly generate consumer Pact tests.
 
-Whilst they may need a small amount of tweaking to run, they quickly and accurately generate Pact tests, using the latest client library
-DSL's, following recommend Pact best practices, including the usage of Provider States and Matchers. 
+Whilst they may need a small amount of tweaking to run, they quickly and accurately generate Pact tests, using the latest client library DSL's, following recommend Pact best practices, including the usage of Provider States and Matchers. 
 
 By refining the inputs you provide to PactFlow AI, hopefully you can find ways to tailor it to your particular use case.
 
-You've now seen PactFlow AI generate Pact consumer tests. We look forward to bringing you further Pact DSL support in other languages such as Python / .NET & GoLang.
-
-Hopefully we have powered your imagination, and we would love to know both how you get using using `pactflow-ai` today, and what you want to see in the future!
-
 ### Check
 
-Before moving to the next step, check the following:
-
 1. You have been able to run `pactflow-ai generate request-response` to generate a Pact test from a set of curl headers
-1. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description
-1. You have been able to run `pactflow-ai generate code` to generate a Pact test from client-code
-1. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description enhanced by client-code
-1. You have been able to run `npm run test:pact` to execute the generated Pact tests
-1. You have been able to generate a pact file in the `pacts` folder
+2. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description
+3. You have been able to run `pactflow-ai generate code` to generate a Pact test from client-code
+4. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description enhanced by client-code
+5. You have been able to run `npm run test:pact` to execute the generated Pact tests
+6. You have been able to generate a pact file in the `pacts` folder
 
-<--- In our next step, we will look at similar scenario with a Java application. --->
+## Summary
+
+You've now seen PactFlow AI Test Generation capability, the different options provided, and how they can help you quickly generate consumer Pact tests.
+
+Whilst they may need a small amount of tweaking to run, they quickly and accurately, using the latest client library DSLs, and follow the recommended Pact best practices, including the usage of provider states and matchers.
+
+By refining the inputs you provide to PactFlow, you can tailor it to your particular use case.
+
+We look forward to bringing you further Pact DSL support in other languages such as Python, .NET & Go.
+
+Hopefully we have powered your imagination, and we would love to know both how you get using using `pactflow-ai` today, and what you want to see in the future!

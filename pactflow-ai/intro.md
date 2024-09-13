@@ -13,7 +13,7 @@
 
 ## Goals
 
-Leverage [PactFlow AI](https://docs.pactflow.io/docs/ai) in several scenarios
+Leverage [PactFlow's Test Generation capabilities](https://docs.pactflow.io/docs/ai) in several scenarios
 
 ## Scenarios
 

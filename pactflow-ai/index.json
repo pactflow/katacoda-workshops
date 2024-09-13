@@ -1,6 +1,6 @@
 {
-  "title": "PactFlow AI",
-  "description": "Showcasing PactFlow AI capabilities",
+  "title": "PactFlow's Test Generation capability, featuring HaloAI",
+  "description": "Showcasing PactFlow's AI-Augmented Conract Testing Feature",
   "difficulty": "Beginner",
   "time": "60",
   "details": {
@@ -18,10 +18,6 @@
       {
         "title": "Step 3",
         "text": "step3.md"
-      },
-      {
-        "title": "Step 4",
-        "text": "step4.md"
       }
     ],
     "intro": {

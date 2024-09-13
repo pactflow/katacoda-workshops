@@ -1,6 +1,6 @@
 ## Installation
 
-PactFlow AI, comes as a command-line application called `pactflow-ai` which we will install to our machine.
+PactFlow's test generation capabilities, comes as a command-line application called `pactflow-ai` which we will install to our machine.
 
 Installation documentation is provided [here](https://docs.pactflow.io/docs/ai#installation).
 
@@ -32,13 +32,13 @@ You'll need to authenticate the `pactflow-ai` tool, against your PactFlow accoun
 
 Log into your PactFlow account, and visit the Settings > Tokens page. Select `Copy Token Value` on the Read only token, and select `as Environment Variables`.
 
-You can now paste the environment variables into the terminal on the right, and press Enter.
+You can now paste the environment variables into the terminal on the right, and press enter.
 
 ### Check
 
 Before moving to the next step, check the following:
 
 1. There is a binary accessible on the command line called `pactflow-ai`{{exec}}.
-2. You can run the binary `pactflow-ai`{{exec}}
+2. You can run the binary `pactflow-ai`{{exec}}.
 3. You've set your PactFlow authentication credentials. 
    1. environment variables `PACT_BROKER_BASE_URL` & `PACT_BROKER_TOKEN` in your shell.

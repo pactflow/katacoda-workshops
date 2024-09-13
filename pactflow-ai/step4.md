@@ -2,7 +2,6 @@
 
 ## Download the Java Demo Project
 
-
 Lets go back to our root folder
 
 👉🏼 `cd ~`{{exec}}
