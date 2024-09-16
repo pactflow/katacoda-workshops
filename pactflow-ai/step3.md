@@ -130,7 +130,7 @@ pactflow-ai generate openapi \
 You may need to tweak the output, and you'll note some assumptions are made.
 
 1. We may need to change our Product or API imports (e.g. from `./src/api` to `./api`)
-2. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so you may ned change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's[toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
+2. We are using Jest in our project, and `pactflow-ai` prefers to use mocha based matchers, so you may ned change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's [toEqual](https://jestjs.io/docs/expect#toequalvalue) method.
 3. Be sure to check expectations encoded into the Pact contract
 
 👉🏼 `npm run test:pact`{{exec}}
