@@ -36,7 +36,7 @@ Leverage [PactFlow's Test Generation capabilities](https://docs.pactflow.io/docs
 
 ## Ready to start?
 
-See the terminal on the right-hand side? It's currently installing NodeJS and Java which are used in this demo.
+See the terminal on the right-hand side? It's currently installing NodeJS and some additional tools which are used in this demo.
 
 Please wait until it's finished and you get a message saying good to go!
 
