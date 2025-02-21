@@ -16,8 +16,8 @@
     "record-deployment:provider": "npx pact-broker record-deployment --pacticipant katacoda-provider-v3 --version 1.0.0-someprovidersha --environment production"
   },
   "devDependencies": {
-    "@pact-foundation/pact": "^10.1.1",
-    "chai": "^4.3.6",
-    "mocha": "^10.0.0"
+    "@pact-foundation/pact": "10.1.2",
+    "chai": "4.3.6",
+    "mocha": "10.0.0"
   }
 }
