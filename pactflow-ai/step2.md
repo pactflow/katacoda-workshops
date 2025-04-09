@@ -1,6 +1,6 @@
 ## Setup
 
- allows for consumer side HTTP Pact contract test creation, via three modes:
+PactFlow AI allows for consumer side HTTP Pact contract test creation, via three sources:
 
 1. `request-response`:
    1. Generate a pact from a HTTP request and response pair from [HTTP Messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages) (e.g. `curl` output).
