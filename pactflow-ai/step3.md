@@ -22,7 +22,7 @@ You can see some sample captures, generated from requests to our running provide
 - Response Capture: `capture/get.response.http`
 
 ```
-pactflow-ai generate request-response \
+pactflow-ai generate \
   --request ./capture/get.request.http \
   --response ./capture/get.response.http \
   --language typescript \
@@ -81,7 +81,7 @@ Pact users have long requested the ability to generate Pact tests from OpenAPI d
 Let's leverage just an OpenAPI description, to generate a Pact consumer test.
 
 ```sh
-pactflow-ai generate openapi \
+pactflow-ai generate \
 --spec ./products.yml \
 --endpoint "/product/{id}" \
 --output ./src/api.pact.spec.ts \
@@ -112,7 +112,7 @@ In this example, we will use an OpenAPI description as an input, but will also p
 By providing our code as context, `pactflow-ai` can replace the dummy client generated in the previous step, with our real client. If the code provided also contains the object model used, then `pactflow-ai` should ensure that only fields used by a consumer are added to the contract. This avoids a common pitfall test authors face, whereby more fields are added to a consumer test, than the consumer client code uses. This puts tension between provider teams, as they are unduly bound to honour those fields for consumers that do not use them.
 
 ```sh
-pactflow-ai generate openapi \
+pactflow-ai generate \
   --spec ./products.yml \
   --endpoint "/product/{id}" \
   --code ./src/api.js \
@@ -261,7 +261,9 @@ ensuring the test is correct before you submit it to your team for review.
 For some users, they do not have OpenAPI descriptions for the providers the services rely on. `pactflow-ai` can generate Pact tests from your client code, without the need for an OpenAPI description.
 
 ```sh
-pactflow-ai generate code ./src/api.js ./src/product.js \
+pactflow-ai generate \
+  --code ./src/api.js \
+  --code ./src/product.js \
   --output ./src/api.pact.spec.ts \
   --language typescript
 ```{{exec}}
@@ -289,10 +291,10 @@ By refining the inputs you provide to PactFlow AI, hopefully you can find ways t
 
 ### Check
 
-1. You have been able to run `pactflow-ai generate request-response` to generate a Pact test from a set of curl headers
-2. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description
-3. You have been able to run `pactflow-ai generate code` to generate a Pact test from client-code
-4. You have been able to run `pactflow-ai generate openapi` to generate a Pact test from an OpenAPI Description enhanced by client-code
+1. You have been able to run `pactflow-ai generate --request --response` to generate a Pact test from a set of curl headers
+2. You have been able to run `pactflow-ai generate --openapi` to generate a Pact test from an OpenAPI Description
+3. You have been able to run `pactflow-ai generate --code` to generate a Pact test from client-code
+4. You have been able to run `pactflow-ai generate --openapi --code` to generate a Pact test from an OpenAPI Description enhanced by client-code
 5. You have been able to run `npm run test:pact` to execute the generated Pact tests
 6. You have been able to generate a pact file in the `pacts` folder
 

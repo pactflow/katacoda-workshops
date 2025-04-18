@@ -30,20 +30,20 @@ For some users, they do not have OpenAPI descriptions, for the providers the ser
 your client code, without the need for an OpenAPI description.
 
 ```sh
-pactflow-ai generate code ./src/main/java/com/example/products/ProductClient.java \
+pactflow-ai generate \
+  --code ./src/main/java/com/example/products/Product.java \
+  --code ./src/main/java/com/example/products/ProductClient.java \
   --output ./src/test/java/com/example/products/ProductsPactFlowAiTest.java \
   --language java
 ```{{exec}}
 
-👉🏼 Check the generated Pact test at `src/test/java/com/example/products/ProductsPactFlowAiTest.java`
+👉🏼 Check the generated Pact test at `src/test/java/com/example/products/ProductsPactFlowAiTest.java`{{exec}}
 
 You can compare it with the existing test that was manually created `src/test/java/com/example/products/ProductsPactFlowTest.java` to compare
 
 👉🏼 `./gradlew clean test -i`{{exec}}
 
 You may need to tweak the output, and you'll note some assumptions are made.
-
-1. The Product object model located as `src/main/java/com/example/products/Product.java` was not included with our client code when communicating with `pactflow-ai`. You can workaround this by inclining files before processing your tests. We will see further improvements in usage, and the context you can provide to `pactflow-ai`.
 
 ## Summary
 
@@ -55,6 +55,6 @@ Hopefully we have powered your imagination, and we would love to know both how y
 
 Before moving to the next step, check the following:
 
-1. You have been able to run `pactflow-ai generate code` to generate a Pact-JVM test from client-code
+1. You have been able to run `pactflow-ai generate --code` to generate a Pact-JVM test from client-code
 1. You have been able to run `npm run test:pact` to execute the generated Pact tests
 1. You have been able to generate a pact file in the `pacts` folder
