@@ -82,7 +82,7 @@ Let's leverage just an OpenAPI description, to generate a Pact consumer test.
 
 ```sh
 pactflow-ai generate \
---spec ./products.yml \
+--openapi ./products.yml \
 --endpoint "/product/{id}" \
 --output ./src/api.pact.spec.ts \
 --language typescript
@@ -113,7 +113,7 @@ By providing our code as context, `pactflow-ai` can replace the dummy client gen
 
 ```sh
 pactflow-ai generate \
-  --spec ./products.yml \
+  --openapi ./products.yml \
   --endpoint "/product/{id}" \
   --code ./src/api.js \
   --code ./src/product.js \
