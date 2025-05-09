@@ -1,0 +1,1 @@
+[ -f ~/example-consumer/src/api.js ] && echo "done"

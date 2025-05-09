@@ -1,6 +1,6 @@
 {
-  "title": "PactFlow AI - Starter Course",
-  "description": "Introducing PactFlow's AI-Augmented Contract Testing Feature",
+  "title": "PactFlow AI - Test Templates",
+  "description": "Test Templates allow teams to generate contract tests with PactFlow AI that align with their existing style, frameworks, and SDK versions.",
   "difficulty": "Beginner",
   "time": "60",
   "details": {

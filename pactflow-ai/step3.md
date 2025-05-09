@@ -279,6 +279,18 @@ You may need to tweak the output, and you'll note some assumptions are made.
 1. We may need to change our product import from `./src/api` to `./api`
 3. We are using Jest in our project, and `pactflow-ai` sometimes chooses to use the mocha or chai based assertion libraries. You may need to change mocha's [to.deep.equal](https://www.chaijs.com/api/bdd/#method_deep) method to jest's [toEqual](https://jestjs.io/docs/expect#toequalvalue).
 
+We can customize our output with the `--instructions` flag, which takes a string prompt on the command line, or a path to a file, containing a single or list of instructions. If you got chai matchers in your previous generation, you can try again with
+
+```sh
+pactflow-ai generate \
+  --code ./src/api.js \
+  --code ./src/product.js \
+  --output ./src/api.pact.spec.ts \
+  --language typescript \
+  --instructions 'use jest'
+```{{exec}}
+
+
 👉🏼 `npm run test:pact`{{exec}}
 
 ## Summary
@@ -302,10 +314,12 @@ By refining the inputs you provide to PactFlow AI, hopefully you can find ways t
 
 You've now seen PactFlow AI Test Generation capability, the different options provided, and how they can help you quickly generate consumer Pact tests.
 
-Whilst they may need a small amount of tweaking to run, they quickly and accurately, using the latest client library DSLs, and follow the recommended Pact best practices, including the usage of provider states and matchers.
+Once generated, tests run quickly and accurately, using the latest client library DSLs, and follow the recommended Pact best practices, including the usage of provider states and matchers.
 
-By refining the inputs you provide to PactFlow, you can tailor it to your particular use case.
+By refining the inputs you provide to PactFlow, you can tailor it to your particular use case by providing additional prompts, and test templates minimizing the amount of tweaking needed to run, or providing extra context. You can try it out in our PactFlow AI Test Templates Course
 
 We look forward to bringing you further Pact DSL support in other languages such as Python, .NET & Go.
 
 Hopefully we have powered your imagination, and we would love to know both how you get using using `pactflow-ai` today, and what you want to see in the future!
+
+In the next step, we will look at test generation in Java.
