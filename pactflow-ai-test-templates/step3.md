@@ -14,72 +14,56 @@ Node JS:
 
 ```js
 import { SpecificationVersion, PactV4, MatchersV3 } from "@pact-foundation/pact";
-import { ProductAPI } from './product'
+import { ThingAPI } from './thing'
 
 // Extract matchers here to improve readability when used in the test
 const { like } = MatchersV3;
 
-// Create a 3 level test hierarchy
-//
-// 1. Top level describe block containing the name of the API being tested
-// 2. Describe block for the specific API endpoint
-// 3. Test block for the specific test case
-// 4. Execute the test case
-// 5. Call the API under test
-// 6. Assert the response
-// 8. Use Pact matchers to constrain and test the Provider response
-// 7. Use Jest matchers to assert the API client behaviour
-
 // Top level - name of the API
-describe("Product API", () => {
+describe("🧱 Thing API", () => {
   // Use the PactV4 class, and serialise the Pact as V4 Pact Specification
   const pact = new PactV4({
-    consumer: "ProductConsumer",
-    provider: "ProviderProvider",
+    consumer: "ThingConsumer",
+    provider: "ThingProvider",
     spec: SpecificationVersion.SPECIFICATION_VERSION_V4,
+    logLevel: "error",
   });
 
   // Level 2 - Describe block for the specific API endpoint
-  describe("GET /products/:id", () => {
+  describe("🔌 GET /thing/:id", () => {
 
     // Level 3 - Test block for the specific test case
-    test("given a valid product, returns 200", async () => {
+    test("🧪 given a valid thing, returns 200", async () => {
       await pact
         .addInteraction()
-        .given("a product with id 1 exists")
-        .uponReceiving("a request for a valid product")
-        // Avoid matchers on the request unless necessary
-        .withRequest("GET", "/products/1", (builder) => {
+        .given("a thing with id 1 exists")
+        .uponReceiving("a request for a valid thing")
+        .withRequest("GET", "/thing/1", (builder) => {
           builder.headers({ Accept: "application/json" });
         })
         .willRespondWith(200, (builder) => {
-          // Use loose matchers where possible, to avoid unnecessary constraints on the provider
           builder.jsonBody(
             like({
               id: 1,
-              name: "Product 1",
+              name: "Thing 1",
               price: 100,
             })
           );
         })
         .executeTest(async (mockserver) => {
-          // Instantiate the ProductAPI client
-          const productAPI = new ProductAPI(mockserver.url);
+          const ThingAPI = new ThingAPI(mockserver.url);
 
-          // Call the API under test
-          const product = await productAPI.getProductById(1);
+          const Thing = await ThingAPI.getThingById(1);
 
-          // Use Jest matchers to assert the response
-          expect(product).toEqual({
+          expect(Thing).toEqual({
             id: 1,
-            name: "Product 1",
+            name: "Some 1",
             price: 100,
           });
         });
     });
   });
 });
-
 ```
 
 Save this code block as `src/pact.test.template`

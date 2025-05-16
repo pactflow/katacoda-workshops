@@ -19,7 +19,12 @@ You may be able to create a standalone Pact test, without client code, but we wo
 PactFlow currently supports the following programming languages
 
 - Java
+- Kotlin
 - TypeScript
+- .NET
+- PHP
+- Golang
+- Swift
 
 *(Refer to the [docs](https://docs.pactflow.io/docs/ai) for the most up-to-date list of supported languages)*.
 
