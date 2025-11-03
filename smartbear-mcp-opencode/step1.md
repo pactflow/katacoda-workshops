@@ -20,7 +20,12 @@ To use GitHub Copilot models with OpenCode, you need to authenticate with your G
 
 👉🏼 `opencode auth login`{{exec}}
 
+And select `Github Copilot` as the authentication method.
+
+You can pick other AI providers if you wish, but this workshop will assume GitHub Copilot for the examples. You will need to amend your commands accordingly.
+
 This command will:
+
 1. Open your browser to GitHub's authentication page
 2. Prompt you to authorize OpenCode
 3. Grant access to GitHub Copilot models

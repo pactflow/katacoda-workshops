@@ -20,5 +20,3 @@ if [ ! -z "$PACT_BROKER_TOKEN" ]; then
 else
   echo "WARNING: PACT_BROKER_TOKEN environment variable is not set"
 fi
-
-exit 0

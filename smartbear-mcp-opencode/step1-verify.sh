@@ -22,5 +22,3 @@ else
   echo "ERROR: OpenCode config directory not found"
   exit 1
 fi
-
-exit 0
