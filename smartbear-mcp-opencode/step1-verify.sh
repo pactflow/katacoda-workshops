@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if OpenCode CLI is installed
 if command -v opencode &> /dev/null; then
   echo "OpenCode CLI is installed"

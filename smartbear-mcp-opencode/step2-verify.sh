@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if OpenCode config file exists
 if [ -f "$HOME/.config/opencode/opencode.jsonc" ]; then
   echo "OpenCode config file exists"
