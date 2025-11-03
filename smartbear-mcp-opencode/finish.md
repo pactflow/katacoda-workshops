@@ -6,13 +6,13 @@ You've completed the SmartBear MCP Server with OpenCode workshop! 🎉
 
 Throughout this workshop, you've learned how to:
 
-✅ Install and configure the SmartBear MCP Server
-✅ Set up authentication with SmartBear services (PactFlow, SwaggerHub)
-✅ Connect OpenCode to the MCP server
-✅ Use MCP tools to interact with PactFlow and SwaggerHub
-✅ Generate code from contracts and API specifications
-✅ Automate deployment safety checks
-✅ Create contract-driven development workflows
+- ✅ Install and configure the SmartBear MCP Server
+- ✅ Set up authentication with SmartBear services (PactFlow, SwaggerHub)
+- ✅ Connect OpenCode to the MCP server
+- ✅ Use MCP tools to interact with PactFlow and SwaggerHub
+- ✅ Generate code from contracts and API specifications
+- ✅ Automate deployment safety checks
+- ✅ Create contract-driven development workflows
 
 ## Key Takeaways
 

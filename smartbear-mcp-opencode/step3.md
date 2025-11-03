@@ -2,19 +2,7 @@
 
 Now that everything is configured, let's explore how to use the SmartBear MCP Server with OpenCode to enhance your development workflow.
 
-### View Available SmartBear Tools
-
-Documentation Reference: [SmartBear MCP Portal](https://developer.smartbear.com/smartbear-mcp)
-
-First, let's see what tools are available through the SmartBear MCP server:
-
-👉🏼 Ask OpenCode to list all available tools:
-
-```bash
-opencode run "What tools are available from the SmartBear MCP server? Please provide a complete list with descriptions."  --model 'github-copilot/claude-sonnet-4'
-```{{exec}}
-
-OpenCode will query the MCP server and return a formatted list of all available tools.
+We just ran a prompt to list available SmartBear MCP tools. Let's dive deeper into some of the key tools and see how to use them effectively. For more information, refer to the [SmartBear MCP Portal](https://developer.smartbear.com/smartbear-mcp)
 
 ### Understanding the SmartBear Tools
 
@@ -23,6 +11,7 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 #### Reflect (Test Automation)
 
 **Suite Management:**
+
 - `smartbearmcp_reflect_list_suites` - Retrieve a list of all available reflect suites
 - `smartbearmcp_reflect_list_suite_executions` - List all executions for a given suite (requires suiteId)
 - `smartbearmcp_reflect_execute_suite` - Execute a reflect suite (requires suiteId)
@@ -30,6 +19,7 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 - `smartbearmcp_reflect_cancel_suite_execution` - Cancel a suite execution (requires suiteId, executionId)
 
 **Individual Test Management:**
+
 - `smartbearmcp_reflect_list_tests` - List all reflect tests
 - `smartbearmcp_reflect_run_test` - Run a specific reflect test (requires testId)
 - `smartbearmcp_reflect_get_test_status` - Get the status of a test execution (requires testId, executionId)
@@ -37,6 +27,7 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 #### API Hub (Portal & API Management)
 
 **Portal Management:**
+
 - `smartbearmcp_api_hub_list_portals` - Search for available portals where you have designer role
 - `smartbearmcp_api_hub_create_portal` - Create a new portal (requires subdomain, swaggerHubOrganizationId)
 - `smartbearmcp_api_hub_get_portal` - Retrieve information about a specific portal (requires portalId)
@@ -44,6 +35,7 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 - `smartbearmcp_api_hub_update_portal` - Update portal configuration (requires portalId)
 
 **Product Management:**
+
 - `smartbearmcp_api_hub_list_portal_products` - Get products for a specific portal (requires portalId)
 - `smartbearmcp_api_hub_create_portal_product` - Create a new product for a portal (requires portalId, type, name, slug)
 - `smartbearmcp_api_hub_get_portal_product` - Retrieve information about a specific product (requires productId)
@@ -51,6 +43,7 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 - `smartbearmcp_api_hub_update_portal_product` - Update product settings (requires productId)
 
 **API Registry & Management:**
+
 - `smartbearmcp_api_hub_search_apis_and_domains` - Search for APIs and Domains in SwaggerHub Registry
 - `smartbearmcp_api_hub_get_api_definition` - Fetch resolved API definition from SwaggerHub (requires owner, api, version)
 - `smartbearmcp_api_hub_create_or_update_api` - Create/update API in SwaggerHub Registry (requires owner, apiName, definition)
@@ -60,15 +53,18 @@ The SmartBear MCP Server provides tools from multiple SmartBear products:
 #### Contract Testing (PactFlow)
 
 **AI-Powered Test Generation & Review:**
+
 - `smartbearmcp_contract_testing_generate_pact_tests` - Generate Pact tests using PactFlow AI from request/response pairs, code files, or OpenAPI documents
 - `smartbearmcp_contract_testing_review_pact_tests` - Review Pact tests using PactFlow AI (requires pactTests object)
 
 **Contract Verification & Deployment:**
+
 - `smartbearmcp_contract_testing_get_provider_states` - Retrieve states of a specific provider (requires provider name)
 - `smartbearmcp_contract_testing_can_i_deploy` - Check if a service version can be safely deployed (requires pacticipant, version, environment)
 - `smartbearmcp_contract_testing_matrix` - Retrieve contract verification matrix showing consumer-provider relationships (requires q array)
 
 **Account Management:**
+
 - `smartbearmcp_contract_testing_check_pactflow_ai_entitlements` - Check PactFlow AI entitlements and credit balance
 
 ## Key Features:
