@@ -1,15 +1,15 @@
 #!/bin/bash
-echo "setup node 16"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && source ~/.bashrc && nvm install 16
+echo "setup node 24"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash && source ~/.bashrc && nvm install 24 && nvm use 24
 echo "Downloading projects"
 echo "=> downloading consumer project"
-git clone https://github.com/pactflow/example-bi-directional-consumer-mountebank
+git clone https://github.com/pactflow/example-bi-directional-consumer-mountebank --branch feat/advanced-drift
 
 echo "=> downloading provider project"
-git clone https://github.com/pactflow/example-bi-directional-provider-dredd
+git clone https://github.com/mefellows/example-provider --branch feat/advanced-drift
 
-echo "Changing into directory of the consumer project: /root/example-bi-directional-provider-dredd"
-cd /root/example-bi-directional-provider-dredd
+echo "Changing into directory of the provider project: /root/example-provider"
+cd /root/example-provider
 npm i
 echo "force install absolute version"
 npx -y @pact-foundation/absolute-version

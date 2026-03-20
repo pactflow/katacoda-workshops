@@ -12,27 +12,42 @@ This diagram shows an illustrative CI/CD pipeline as it relates to our progress 
 
 Let's run the command:
 
-`npm run can-i-deploy`{{execute}}
+```
+pact broker can-i-deploy \
+  --pacticipant "my-product-api" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
 
 This should pass, because as we discussed above, there are no consumers:
 
 ```
-$ npm run can-i-deploy
-
-> product-service@1.0.0 can-i-deploy /root/example-bi-directional-provider-dredd
-> pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-provider-dredd --version="$(npx @pact-foundation/absolute-version)" --to-environment production
-
-npx: installed 47 in 2.835s
-Computer says yes \o/
+$ pact broker can-i-deploy \
+  --pacticipant "my-product-api" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
 
 There are no missing dependencies
+✅ Computer says yes \o/
 ```
 
 Later on, when consumers start to use our API, we will be prevented from releasing a change that results in a backwards incompatible change for our consumers. Consumers will also use this command to ensure they are compatible with the Provider API in the target environment (in this case, `production`).
 
 We can now deploy our provider to production. Once we have deployed, we let PactFlow know that the new version of the Provider has been promoted to that environment:
 
-`npm run deploy`{{execute}}
+```
+pact broker record-deployment \
+  --pacticipant "my-product-api" \
+    --version "$(git rev-parse --short HEAD)" \
+    --environment production
+```{{execute}}
+
+Which should show the output similar to this:
+
+```
+✅ Recorded deployment of my-product-api version 27ae6a6 to production environment in the Pact Broker.
+```
+
 
 This allows PactFlow to communicate to any future consumers of the provider, that the OAS associated with this version of the provider is supported in production. If a consumer adds functionality that uses a subset of the OAS, they will be free to deploy safely!
 

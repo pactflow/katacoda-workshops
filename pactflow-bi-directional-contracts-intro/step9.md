@@ -12,33 +12,52 @@ _REMEMBER: The `can-i-deploy` command is an important part of a CI/CD workflow, 
 
 Let's run the command:
 
-`npm run can-i-deploy`{{execute}}
+```
+pact broker can-i-deploy \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --to-environment production
+```{{execute}}
 
 This should pass, because the provider has already pulbished its contract and deployed to production, and we believe the consumer is compatible with the provider OAS:
 
 ```
-$ npx pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-consumer-mountebank --version $GIT_COMMIT --to-environment production
-Computer says yes \o/
-
-CONSUMER                             | C.VERSION | PROVIDER                        | P.VERSION | SUCCESS? | RESULT#
--------------------------------------|-----------|---------------------------------|-----------|----------|--------
-pactflow-example-bi-directional-consumer-mountebank | 5009e94   | pactflow-example-bi-directional-provider-dredd | 6559541   | true     | 1
-
-VERIFICATION RESULTS
---------------------
-1. https://test.pactflow.io/hal-browser/browser.html#https://test.pactflow.io/contracts/provider/pactflow-example-bi-directional-provider-dredd/version/6559541/consumer/pactflow-example-bi-directional-consumer-mountebank/pact-version/ce2a9dfed28309e26288b9c9333529c92762d36a/verification-results (success)
-
+$ pact broker can-i-deploy \
+   --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+     --version "$(git rev-parse --short HEAD)" \
+     --to-environment production
+┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
+│ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
+╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
+│ pactflow-example-bi-directional-consumer-mountebank ┆ f3873c8   ┆ my-product-api ┆ 27ae6a6   ┆ true     ┆ true   │
+└─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
 All required verification results are published and successful
+✅ Computer says yes \o/
 ```
 
 We can now deploy our consumer to production. Once we have deployed, we let PactFlow know that the new version of the consumer has been promoted to that environment:
 
-`npm run deploy`{{execute}}
+```
+pact broker record-deployment \
+  --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+    --version "$(git rev-parse --short HEAD)" \
+    --environment production
+```{{execute}}
+
+Which should show the output similar to this:
+
+```
+pact broker record-deployment \
+   --pacticipant "pactflow-example-bi-directional-consumer-mountebank" \
+     --version "$(git rev-parse --short HEAD)" \
+     --environment production
+✅ Recorded deployment of pactflow-example-bi-directional-consumer-mountebank version f3873c8 to production environment in the Pact Broker.
+```
 
 This allows PactFlow to prevent any providers from deploying an incompatible change to `production`.
 
 # Check
 
-Your dashboard should look something like this, where both your consumer and consumer are marked as having been deployed to `production`:
+Your dashboard should look something like this, where both your consumer and provider are marked as having been deployed to `production`:
 
 ![pactflow dashboard - completed](./assets/pactflow-dashboard-complete.png)

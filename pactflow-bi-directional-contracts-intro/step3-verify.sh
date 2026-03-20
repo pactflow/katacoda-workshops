@@ -1,1 +1,1 @@
-[ -f /root/example-bi-directional-provider-dredd/output/report.md ] && echo "done"
+ls -la /root/example-provider/output/results/verification.*.result && echo "done"
