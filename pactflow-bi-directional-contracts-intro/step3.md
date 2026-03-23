@@ -142,7 +142,7 @@ and verify the status with:
 
 #### Create your First Test Suite
 
-Create a file named `drift.yaml` in the `example-provider` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
+Create a file named `drift.yaml` in the `example-bi-directional-provider-drift` folder. We will point Drift to the Petstore OpenAPI definition and define a few simple operations to verify.
 
 ```
 # yaml-language-server: $schema=https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
@@ -199,7 +199,7 @@ operations:
 
 Run the drift verify command. We will use the Petstore virtual server (https://petstore.swagger.io/v2/) as our target URL.
 
-`cd /root/example-provider`{{execute}}
+`cd /root/example-bi-directional-provider-drift`{{execute}}
 
 `drift verify --test-files drift.yaml --server-url https://petstore.swagger.io/v2/`{{execute}}
 
@@ -257,7 +257,7 @@ Here is the Drift test suite we have created for our Product API, with some prop
 3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
 4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-`example-provider/drift/drift.yaml`{{copy}}
+`example-bi-directional-provider-drift/drift/drift.yaml`{{copy}}
 
 The version of the drift-testcase-file schema we are using is v1, which is the latest version at the time of writing. You can find the latest version of the schema here: https://download.pactflow.io/drift/schemas/drift.testcases.v1.schema.json
 
@@ -346,7 +346,7 @@ Here is an unhappy path test case, where the provided authentication token is in
 
 Our javascript test script will programmatically start our server, and the drift API testing tool, which will then issue requests and assert on responses to our locally running provider at `http://127.0.0.1:8080`.
 
-View the file at `example-provider/src/product/api-inmemory.test.js`{{copy}} to see how this is implemented.
+View the file at `example-bi-directional-provider-drift/src/product/api-inmemory.test.js`{{copy}} to see how this is implemented.
 
 We spawn drift as a child process, and await its completion. Once drift has completed, we can capture the exit code and assert that it is 0, which indicates all tests passed.
 
@@ -388,7 +388,7 @@ describe("API Tests with Drift", () => {
 
 Now we can run the tests:
 
-1. `cd /root/example-provider`{{execute}}
+1. `cd /root/example-bi-directional-provider-drift`{{execute}}
 2. `npm run test:inmemory`{{execute}}
 
 Your output should look like this:
@@ -487,4 +487,4 @@ As you can see, Drift has issued calls to all 3 endpoints, each with multiple va
 ## Before you move on
 
 1. `drift`{{execute}} should be globally installed, if not, ensure you have installed it correctly using `npm install -g @pactflow/drift`{{execute}}
-2. There are verification results `ls -la /root/example-provider/output/results/verification.*.result`{{execute}} for the test run
+2. There are verification results `ls -la /root/example-bi-directional-provider-drift/output/results/verification.*.result`{{execute}} for the test run

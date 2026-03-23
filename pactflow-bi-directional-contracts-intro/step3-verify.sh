@@ -1,1 +1,1 @@
-ls -la /root/example-provider/output/results/verification.*.result && echo "done"
+ls -la /root/example-bi-directional-provider-drift/output/results/verification.*.result && echo "done"

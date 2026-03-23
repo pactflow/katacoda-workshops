@@ -148,7 +148,7 @@ Having designed our API, we can now set about building it.
 
 Here is the Product API using the [Express JS](https://expressjs.com) framework. Once again, writing an API is beyond the scope of this tutorial.
 
-_NOTE: you can see the full project here: <https://github.com/mefellows/example-provider/tree/feat/advanced-drift>_
+_NOTE: you can see the full project here: <https://github.com/pactflow/example-bi-directional-provider-drift>_
 
 We define our product, the available routes, the datastore (an simple in-memory database) and the server.
 
@@ -157,7 +157,7 @@ We define our product, the available routes, the datastore (an simple in-memory 
 3. Click into the editor window and press `ctrl+p` or `command+p` to search for a file
 4. Press `ctrl+v` or `command+v` to paste the filename and select the file from the list
 
-`example-provider/src/product/product.js`{{copy}}
+`example-bi-directional-provider-drift/src/product/product.js`{{copy}}
 
 ```
 class Product {
@@ -175,7 +175,7 @@ class Product {
 module.exports = Product;
 ```
 
-`example-provider/src/product/product.routes.js`{{copy}}
+`example-bi-directional-provider-drift/src/product/product.routes.js`{{copy}}
 
 ```
 const router = require('express').Router();
@@ -238,7 +238,7 @@ class InMemoryRepository {
 module.exports = InMemoryRepository;
 ```
 
-`example-provider/src/product/product.controller.js`{{copy}}
+`example-bi-directional-provider-drift/src/product/product.controller.js`{{copy}}
 
 1. Click the filename above to copy.
 2. Ensure the `editor` tab is open
@@ -314,7 +314,7 @@ exports.initializeRepository = initializeRepository;
 exports.getRepository = () => repository;
 ```
 
-`example-provider/server.js`{{copy}}
+`example-bi-directional-provider-drift/server.js`{{copy}}
 
 ```
 const app = require('express')();
@@ -342,17 +342,17 @@ init();
 
 ### Check
 
-Before moving to the next step, cd into the `example-provider` directory and run the provider to see if it starts.
+Before moving to the next step, cd into the `example-bi-directional-provider-drift` directory and run the provider to see if it starts.
 
 The tutorial environment should have installed 2 projects and their dependencies. Once the terminal process completes you can run:
 
-1. `cd /root/example-provider`{{execute}}
+1. `cd /root/example-bi-directional-provider-drift`{{execute}}
 1. `npm i`{{execute}}
 1. `npm start`{{execute}}
 
 Open up a separate terminal and run the following command:
 
-1. `cd /root/example-provider`{{execute}}
+1. `cd /root/example-bi-directional-provider-drift`{{execute}}
 1. `curl -H "Authorization: Bearer $(date)" localhost:8080/products | jq .`{{execute}}
 
 You should see the following output:

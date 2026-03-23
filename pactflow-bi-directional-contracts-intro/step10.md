@@ -11,9 +11,9 @@ Let's see it in action.
 
 ## Provider breaking changes
 
-Change directories into `cd /root/example-provider`{{execute}}
+Change directories into `cd /root/example-bi-directional-provider-drift`{{execute}}
 
-1.  Try adding a new expectation on the provider by updating the contract. First remove the 'version' property in `example-provider/src/product/product.js`{{copy}} and comment out in the oas `example-provider/openapi.yaml`{{copy}} at lines 32/55/94/124/125
+1.  Try adding a new expectation on the provider by updating the contract. First remove the 'version' property in `example-bi-directional-provider-drift/src/product/product.js`{{copy}} and comment out in the oas `example-bi-directional-provider-drift/openapi.yaml`{{copy}} at lines 32/55/94/124/125
 
     1. `git add . && git commit -m 'feat: remove version'`{{execute}}
     2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
@@ -48,9 +48,9 @@ Change directories into `cd /root/example-provider`{{execute}}
 
 OK, that was a trick! Note how in the consumer's `Product` definition, it doesn't actually use the `version` field? PactFlow knows all of the consumers needs down to the field level. Because no consumer uses `version` this is a safe operation.
 
-Reset our change `git reset --hard origin/feat/advanced-drift`{{execute}}
+Reset our change `git reset --hard main`{{execute}}
 
-1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-provider/src/product/product.js`{{copy}} and in the oas `example-provider/openapi.yaml`{{copy}} at lines 31/54/93/114/122/123
+1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-drift/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-drift/openapi.yaml`{{copy}} at lines 31/54/93/114/122/123
 
     1. `git add . && git commit -m 'feat: remove name'`{{execute}}
     2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
@@ -153,7 +153,7 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
     You shouldn't be able to deploy!
 
 ```
-✗ pact broker can-i-deploy     --pacticipant "pactflow-example-bi-directional-consumer-mountebank"         --version "$(git rev-parse --short HEAD)" --branch feat/advanced-drift         --to-environment production
+✗ pact broker can-i-deploy     --pacticipant "pactflow-example-bi-directional-consumer-mountebank"         --version "$(git rev-parse --short HEAD)" --branch master         --to-environment production
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡

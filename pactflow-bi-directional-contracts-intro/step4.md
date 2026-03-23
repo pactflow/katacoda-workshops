@@ -47,7 +47,7 @@ You should see output similar to this:
 
 ```
 📨 Attempting to publish provider contract for provider: my-product-api version: 2f6c6b1
-✅ Created my-product-api version 2f6c6b1 with branch feat/advanced-drift
+✅ Created my-product-api version 2f6c6b1 with branch main
 Provider contract published for my-product-api version 2f6c6b1 with successful self verification results.
 View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/2f6c6b1/provider-contract-verification-results
 Next steps:
