@@ -1,1 +1,1 @@
-ls /root/example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-my-product-api.json && echo "done"
+ls /root/example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-drift.json && echo "done"

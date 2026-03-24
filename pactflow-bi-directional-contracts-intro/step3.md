@@ -288,11 +288,10 @@ The types of plugins we want to use
 
 ```
 plugins:
-  - name: oas
-  - name: json
-  - name: data
-  - name: http-dump
-  - name: junit-output
+  - name: oas           # validates responses against the OpenAPI spec
+  - name: json          # JSON request/response handling
+  - name: data          # enables ${product-data:...} dataset interpolation
+  - name: junit-output  # writes a JUnit XML report to output/reports/junit/
 ```
 
 Any global configuration for the test suite
@@ -351,33 +350,57 @@ View the file at `example-bi-directional-provider-drift/src/product/api-inmemory
 We spawn drift as a child process, and await its completion. Once drift has completed, we can capture the exit code and assert that it is 0, which indicates all tests passed.
 
 ```js
-// Set repository type for this test suite
+/**
+ * Drift API Conformance Tests — In-Memory Repository
+ *
+ * This file is the Jest entry point for running Drift conformance tests against
+ * the in-memory variant of the Product API.
+ *
+ * How it works:
+ *   1. An Express server is spun up in-process on port 8080, mounting:
+ *      - The production routes (product.routes)
+ *      - Test-only state management routes (automation/test.routes)
+ *   2. Jest invokes runDrift(), which shells out to `drift verify` pointing at
+ *      drift/drift.yaml and http://localhost:8080.
+ *   3. For each test operation, Drift fires lifecycle events that trigger the
+ *      Lua hooks in drift/product.lua. Those hooks call the test-only routes to
+ *      seed or reset the in-memory repository before/after each request.
+ *   4. Drift validates each response against the OpenAPI spec (openapi.yaml).
+ *   5. The Jest assertion simply checks that Drift exited with code 0 (all passed).
+ *
+ * Test results and a JUnit XML report are written to output/ for CI consumption
+ * and for publishing to PactFlow as part of the provider contract.
+ */
+
+// Force the in-memory repository — must be set before any modules are loaded
 process.env.REPOSITORY_TYPE = 'inmemory';
 
 const { runDrift } = require('../../automation/drift');
 const controller = require('./product.controller');
 const bodyParser = require('body-parser');
 
-// Setup provider server to verify
+// Build the Express app that Drift will test against
 const app = require('express')();
 const authMiddleware = require('../middleware/auth.middleware');
 app.use(bodyParser.json());
 app.use(authMiddleware);
 app.use(require('./product.routes'));
-app.use(require('../../automation/test.routes')); // Test only routes for setting up test state
+app.use(require('../../automation/test.routes')); // Test-only: state setup/reset endpoints
 const server = app.listen("8080");
 
 describe("API Tests with Drift", () => {
-  // Ensure server and pg connection are closed
   afterAll(async () => {
+    // Shut down the server and close any open DB connections
     await new Promise((resolve) => server.close(resolve));
     const repo = controller.getRepository();
     if (repo && typeof repo.close === 'function') {
       await repo.close();
     }
+    console.log("\n\n")
   });
 
-  it("Validates the API comforms to its OpenAPI Description", async () => {
+  it("Validates the API conforms to its OpenAPI Description", async () => {
+    // Exit code 0 = all Drift operations passed OAS validation
     const exitCode = await runDrift();
     expect(exitCode).toBe(0);
   })

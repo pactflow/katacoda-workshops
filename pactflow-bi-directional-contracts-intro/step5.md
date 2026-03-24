@@ -14,7 +14,7 @@ Let's run the command:
 
 ```
 pact broker can-i-deploy \
-  --pacticipant "my-product-api" \
+  --pacticipant "pactflow-example-bi-directional-provider-drift" \
     --version "$(git rev-parse --short HEAD)" \
     --to-environment production
 ```{{execute}}
@@ -23,7 +23,7 @@ This should pass, because as we discussed above, there are no consumers:
 
 ```
 $ pact broker can-i-deploy \
-  --pacticipant "my-product-api" \
+  --pacticipant "pactflow-example-bi-directional-provider-drift" \
     --version "$(git rev-parse --short HEAD)" \
     --to-environment production
 
@@ -37,7 +37,7 @@ We can now deploy our provider to production. Once we have deployed, we let Pact
 
 ```
 pact broker record-deployment \
-  --pacticipant "my-product-api" \
+  --pacticipant "pactflow-example-bi-directional-provider-drift" \
     --version "$(git rev-parse --short HEAD)" \
     --environment production
 ```{{execute}}
@@ -45,7 +45,7 @@ pact broker record-deployment \
 Which should show the output similar to this:
 
 ```
-✅ Recorded deployment of my-product-api version 27ae6a6 to production environment in the Pact Broker.
+✅ Recorded deployment of pactflow-example-bi-directional-provider-drift version 27ae6a6 to production environment in the Pact Broker.
 ```
 
 

@@ -114,12 +114,6 @@ To generate our pact file, we have created a few helper functions to inspect Mou
 
 - `example-bi-directional-consumer-mountebank/test/mountebankSerialiser.js`{{copy}}
 
-Open the `mountebankSerialiser.js` file and update line 2 to reference the name of the provider you created in step 4:
-
-```js
-const provider = "my-product-api";
-```{{copy}}
-
 To extract the mock information, we have a few choices (see http://www.mbtest.org/docs/api/mocks). In this case, when we start Mountebank, we actually pass the `--debug` [flag](http://www.mbtest.org/docs/commandLine#start) giving us a really important behaviour:
 
 > Include a `matches` array with each stub in the body of a GET imposter response for debugging why a particular stub did or did not match a request. Every time a response from the stub is used, a match will be added containing the request, the response configuration, the actual generated response (even if it is proxied), and the overall processing time.
@@ -141,6 +135,6 @@ OK, time to run the tests!
 
 ### Check
 
-1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-my-product-api.json`{{copy}}
-   1. Switch to Tab 1 and run `cat pacts/pactflow-example-bi-directional-consumer-mountebank-my-product-api.json | jq .`{{exec}}
+1. It has generated a pact file `example-bi-directional-consumer-mountebank/pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-drift.json`{{copy}}
+   1. Switch to Tab 1 and run `cat pacts/pactflow-example-bi-directional-consumer-mountebank-pactflow-example-bi-directional-provider-drift.json | jq .`{{exec}}
 2. You have studied the API spec and understood how it works: `example-bi-directional-consumer-mountebank/src/api.spec.js`{{copy}}

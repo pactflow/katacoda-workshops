@@ -29,7 +29,7 @@ $ pact broker can-i-deploy \
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
-│ pactflow-example-bi-directional-consumer-mountebank ┆ f3873c8   ┆ my-product-api ┆ 27ae6a6   ┆ true     ┆ true   │
+│ pactflow-example-bi-directional-consumer-mountebank ┆ f3873c8   ┆ pactflow-example-bi-directional-provider-drift ┆ 27ae6a6   ┆ true     ┆ true   │
 └─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
 All required verification results are published and successful
 ✅ Computer says yes \o/

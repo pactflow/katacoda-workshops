@@ -27,7 +27,7 @@ Change directories into `cd /root/example-bi-directional-provider-drift`{{execut
 
     pact pactflow publish-provider-contract \
     openapi.yaml \
-    --provider "my-product-api" \
+    --provider "pactflow-example-bi-directional-provider-drift" \
     --provider-app-version "$(git rev-parse --short HEAD)" \
     --branch "$(git rev-parse --abbrev-ref HEAD)" \
     --content-type application/yaml \
@@ -41,7 +41,7 @@ Change directories into `cd /root/example-bi-directional-provider-drift`{{execut
 
     ```
     pact broker can-i-deploy \
-    --pacticipant "my-product-api" \
+    --pacticipant "pactflow-example-bi-directional-provider-drift" \
         --version "$(git rev-parse --short HEAD)" \
         --to-environment production
     ```{{execute}}
@@ -50,7 +50,7 @@ OK, that was a trick! Note how in the consumer's `Product` definition, it doesn'
 
 Reset our change `git reset --hard main`{{execute}}
 
-1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-drift/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-drift/openapi.yaml`{{copy}} at lines 31/54/93/114/122/123
+1.  Try changing the provider code in a way that will break it's existing consumer. For example, comment out all references to `name` in `example-bi-directional-provider-drift/src/product/product.js`{{copy}} and in the oas `example-bi-directional-provider-drift/openapi.yaml`{{copy}} at lines 31/54/93/115/122/123
 
     1. `git add . && git commit -m 'feat: remove name'`{{execute}}
     2. Run the following command to publish, ensuring it is run after the test run `npm run test:inmemory`{{execute}} to capture the exit code
@@ -64,7 +64,7 @@ Reset our change `git reset --hard main`{{execute}}
 
     pact pactflow publish-provider-contract \
     openapi.yaml \
-    --provider "my-product-api" \
+    --provider "pactflow-example-bi-directional-provider-drift" \
     --provider-app-version "$(git rev-parse --short HEAD)" \
     --branch "$(git rev-parse --abbrev-ref HEAD)" \
     --content-type application/yaml \
@@ -78,7 +78,7 @@ Reset our change `git reset --hard main`{{execute}}
 
     ```
     pact broker can-i-deploy \
-    --pacticipant "my-product-api" \
+    --pacticipant "pactflow-example-bi-directional-provider-drift" \
         --version "$(git rev-parse --short HEAD)" \
         --to-environment production
     ```{{execute}}
@@ -86,19 +86,19 @@ Reset our change `git reset --hard main`{{execute}}
     You should have an output like below
 
 ```
-✗ pact broker can-i-deploy   --pacticipant "my-product-api"     --version "$(git rev-parse --short HEAD)"     --to-environment production
+✗ pact broker can-i-deploy   --pacticipant "pactflow-example-bi-directional-provider-drift"     --version "$(git rev-parse --short HEAD)"     --to-environment production
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
-│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ my-product-api ┆ 309a813   ┆ false    ┆ 1      │
+│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ pactflow-example-bi-directional-provider-drift ┆ 309a813   ┆ false    ┆ 1      │
 └─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
 
 VERIFICATION RESULTS
 --------------------
-1. https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
+1. https://test.pactflow.io/contracts/bi-directional/provider/pactflow-example-bi-directional-provider-drift/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
 
 
-The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of my-product-api failed
+The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of pactflow-example-bi-directional-provider-drift failed
 
 
 ❌ Computer says no ¯\_(ツ)_/¯
@@ -157,15 +157,15 @@ Change directories into your consumer project: `cd /root/example-bi-directional-
 ┌─────────────────────────────────────────────────────┬───────────┬────────────────┬───────────┬──────────┬────────┐
 │ CONSUMER                                            ┆ C.VERSION ┆ PROVIDER       ┆ P.VERSION ┆ SUCCESS? ┆ RESULT │
 ╞═════════════════════════════════════════════════════╪═══════════╪════════════════╪═══════════╪══════════╪════════╡
-│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ my-product-api ┆ 309a813   ┆ false    ┆ 1      │
+│ pactflow-example-bi-directional-consumer-mountebank ┆ 7cbbcd8   ┆ pactflow-example-bi-directional-provider-drift ┆ 309a813   ┆ false    ┆ 1      │
 └─────────────────────────────────────────────────────┴───────────┴────────────────┴───────────┴──────────┴────────┘
 
 VERIFICATION RESULTS
 --------------------
-1. https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
+1. https://test.pactflow.io/contracts/bi-directional/provider/pactflow-example-bi-directional-provider-drift/version/309a813/consumer/pactflow-example-bi-directional-consumer-mountebank/version/7cbbcd8/cross-contract-verification-results (failure)
 
 
-The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of my-product-api failed
+The cross contract comparison between the pact for one of the versions of pactflow-example-bi-directional-consumer-mountebank currently in production (7cbbcd8) and the oas for version 309a813 of pactflow-example-bi-directional-provider-drift failed
 
 
 ❌ Computer says no ¯\_(ツ)_/¯

@@ -33,7 +33,7 @@ VERIFICATION_FILE=$(ls output/results/verification.*.result | head -n 1)
 
 pact pactflow publish-provider-contract \
 openapi.yaml \
-  --provider "my-product-api" \
+  --provider "pactflow-example-bi-directional-provider-drift" \
   --provider-app-version "$(git rev-parse --short HEAD)" \
   --branch "$(git rev-parse --abbrev-ref HEAD)" \
   --content-type application/yaml \
@@ -46,16 +46,16 @@ openapi.yaml \
 You should see output similar to this:
 
 ```
-📨 Attempting to publish provider contract for provider: my-product-api version: 2f6c6b1
-✅ Created my-product-api version 2f6c6b1 with branch main
-Provider contract published for my-product-api version 2f6c6b1 with successful self verification results.
-View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/my-product-api/version/2f6c6b1/provider-contract-verification-results
+📨 Attempting to publish provider contract for provider: pactflow-example-bi-directional-provider-drift version: 2f6c6b1
+✅ Created pactflow-example-bi-directional-provider-drift version 2f6c6b1 with branch main
+Provider contract published for pactflow-example-bi-directional-provider-drift version 2f6c6b1 with successful self verification results.
+View the published provider contract at https://test.pactflow.io/contracts/bi-directional/provider/pactflow-example-bi-directional-provider-drift/version/2f6c6b1/provider-contract-verification-results
 Next steps:
 * Check your application is safe to deploy - https://docs.pact.io/can_i_deploy
-$ pact-broker can-i-deploy --pacticipant my-product-api --version 2f6c6b1 --to-environment <your environment name>
+$ pact-broker can-i-deploy --pacticipant pactflow-example-bi-directional-provider-drift --version 2f6c6b1 --to-environment <your environment name>
 * Record deployment or release to specified environment (choose one) - https://docs.pact.io/go/record-deployment
-$ pact-broker record-deployment --pacticipant my-product-api --version 2f6c6b1 --environment <your environment name>
-$ pact-broker record-release --pacticipant my-product-api --version 2f6c6b1 --environment <your environment name>
+$ pact-broker record-deployment --pacticipant pactflow-example-bi-directional-provider-drift --version 2f6c6b1 --environment <your environment name>
+$ pact-broker record-release --pacticipant pactflow-example-bi-directional-provider-drift --version 2f6c6b1 --environment <your environment name>
 ```
 
 1. Go to your PactFlow dashboard, by clicking on the link in the terminal output

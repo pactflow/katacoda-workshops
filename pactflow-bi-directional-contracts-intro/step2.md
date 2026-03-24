@@ -34,7 +34,7 @@ paths:
               examples:
                 application/json:
                   value:
-                    - id: 10
+                    - id: "10"
                       type: "beverage"
                       price: 10.99
                       name: "cola"
@@ -57,7 +57,7 @@ paths:
             examples:
               application/json:
                 value:
-                  id: 666
+                  id: "666"
                   type: "beverage"
                   price: 10.99
                   name: "cola"
@@ -69,7 +69,7 @@ paths:
         "401":
           description: Unauthorized - missing or invalid token
           content: {}
-  /products/{id}:
+  /product/{id}:
     get:
       summary: Find product by ID
       description: Returns a single product
@@ -84,8 +84,8 @@ paths:
         style: simple
         explode: false
         schema:
-          type: number
-        example: 10
+          type: string
+        example: "10"
       responses:
         "200":
           description: successful operation
@@ -96,7 +96,7 @@ paths:
               examples:
                 application/json:
                   value:
-                    id: 10
+                    id: "666"
                     type: "beverage"
                     price: 10.99
                     name: "cola"
@@ -118,14 +118,14 @@ components:
       scheme: bearer
   schemas:
     Product:
-      required:
-      - id
-      - name
-      # - price
       type: object
+      required:
+        - id
+        - name
+        - price
       properties:
         id:
-          type: number
+          type: string
         type:
           type: string
         name:
@@ -140,7 +140,7 @@ As you can see, we have 3 main endpoints:
 
 1. `POST /products` - create a new product
 1. `GET /products` - gets all products
-1. `GET /products/:id` - gets a single product
+1. `GET /product/:id` - gets a single product
 
 Having designed our API, we can now set about building it.
 
@@ -161,12 +161,13 @@ We define our product, the available routes, the datastore (an simple in-memory 
 
 ```
 class Product {
-    constructor(id, type, name, version) {
+    constructor(id, type, name, version, price) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.version = version;
-        if (!id || !type || !name) {
+        this.price = price;
+        if (!id || !type || !name || price === undefined || price === null) {
             throw new Error("Invalid product");
         }
     }
@@ -181,10 +182,9 @@ module.exports = Product;
 const router = require('express').Router();
 const controller = require('./product.controller');
 
-router.get("/products/:id", controller.getById);
+router.get("/product/:id", controller.getById);
 router.get("/products", controller.getAll);
 router.post("/products", controller.create);
-router.post("/admin", controller.admin);
 
 module.exports = router;
 ```
@@ -195,9 +195,9 @@ module.exports = router;
 const Product = require('../product');
 
 const defaultProducts = [
-    ["9", new Product(9, "CREDIT_CARD", "Gem Visa", "v1")],
-    ["10", new Product(10, "CREDIT_CARD", "28 Degrees", "v1")],
-    ["11", new Product(11, "PERSONAL_LOAN", "MyFlexiPay", "v2")],
+    ["9", new Product("9", "CREDIT_CARD", "Gem Visa", "v1", 59.95)],
+    ["10", new Product("10", "CREDIT_CARD", "28 Degrees", "v1", 28.0)],
+    ["11", new Product("11", "PERSONAL_LOAN", "MyFlexiPay", "v2", 199.0)],
 ];
 
 class InMemoryRepository {
@@ -225,7 +225,7 @@ class InMemoryRepository {
         for (const product of productList) {
             const normalized = product instanceof Product
                 ? product
-                : new Product(product.id, product.type, product.name, product.version);
+                : new Product(product.id, product.type, product.name, product.version, product.price);
             this.products.set(`${normalized.id}`, normalized)
         }
     }
@@ -274,7 +274,7 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     console.log("getById", req.params.id);
-    if (!req.params.id || Number.isNaN(parseInt(req.params.id)) ) {
+    if (!req.params.id) {
         res.status(400).send({message: "Product ID is required"});
         return;
     }
@@ -286,11 +286,11 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
     console.log("create", req.body);
     try {
-        const product = new Product(req.body.id, req.body.type, req.body.name, req.body.version);
+        const product = new Product(req.body.id, req.body.type, req.body.name, req.body.version, req.body.price);
         const repo = await initializeRepository();
         await repo.add(product);
         res.status(201).send()
-    } catch (e) {
+    } catch {
         res.status(400).send({message: "Invalid product"})
     }
 };
