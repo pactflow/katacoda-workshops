@@ -4,7 +4,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^5.0.0"
   },
   "scripts": {
     "test:consumer": "mocha --exit --timeout 30000 consumer.pact.spec.js",
